@@ -12,38 +12,54 @@ const ColorEditor = () => {
   return (
     <div className="flex flex-col space-y-2">
       {/* Hue */}
-      <input
-        type="range"
-        min="0"
-        max="360"
-        value={hue}
-        onChange={(e) => setHue(Number(e.target.value))}
-        style={{
-          background: color,
-        }}
-      />
+      <div className="w-full flex space-x-2 p-2 items-center">
+        <div className="min-w-20">Hue</div>
+        <input
+          type="range"
+          min="0"
+          max="360"
+          value={hue}
+          onChange={(e) => setHue(Number(e.target.value))}
+          style={{
+            background: color,
+          }}
+          className="flex-1"
+        />
+      </div>
+
       {/* Saturation */}
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={saturation}
-        onChange={(e) => setSaturation(Number(e.target.value))}
-        style={{
-          background: color,
-        }}
-      />
+      <div className="w-full flex space-x-2 p-2 items-center">
+        <div className="min-w-20">Saturation</div>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={saturation}
+          onChange={(e) => setSaturation(Number(e.target.value))}
+          style={{
+            background: color,
+          }}
+          className="flex-1"
+        />
+      </div>
+
       {/* Lightness */}
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={lightness}
-        onChange={(e) => setLightness(Number(e.target.value))}
-        style={{
-          background: color,
-        }}
-      />
+      <div className="w-full flex space-x-2 p-2 items-center">
+        <div className="min-w-20">Lightness</div>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={lightness}
+          onChange={(e) => setLightness(Number(e.target.value))}
+          style={{
+            background: color,
+          }}
+          className="flex-1"
+        />
+      </div>
+
+      {/* Color display */}
       <div className="p-4" style={{ backgroundColor: color }}></div>
     </div>
   );
