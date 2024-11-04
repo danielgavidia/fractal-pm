@@ -5,9 +5,12 @@ import { dummyTasks } from "@/api/dummyData";
 interface TaskStoreState {
   tasks: Task[];
   createTask: (task: Task) => void;
+  deleteTask: (taskId: string) => void;
 }
 
 export const taskStore = create<TaskStoreState>((set) => ({
   tasks: dummyTasks,
   createTask: (task: Task) => set((state) => ({ tasks: [...state.tasks, task] })),
+  deleteTask: (taskId: string) =>
+    set((state) => ({ tasks: state.tasks.filter((task) => task.id !== taskId) })),
 }));
