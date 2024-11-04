@@ -1,6 +1,6 @@
 import { Task } from "@/types/types";
 import { useState } from "react";
-import UpdateTaskModal from "./UpdateTaskModal";
+import ModalUpdateTask from "./ModalUpdateTask";
 
 interface TaskTabProps {
   task: Task;
@@ -19,7 +19,7 @@ const TaskTab = ({ task }: TaskTabProps) => {
       <p>{task.description}</p>
       <p>{task.status}</p>
       <button onClick={() => setIsOpen(true)}>Edit</button>
-      {isOpen && <UpdateTaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
+      {isOpen && <ModalUpdateTask task={task} isOpen={isOpen} onClose={handleClose} />}
     </div>
   );
 };

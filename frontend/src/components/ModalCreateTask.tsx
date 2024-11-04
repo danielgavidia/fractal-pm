@@ -1,7 +1,7 @@
 import { taskStore } from "@/stores/taskStore";
 import React, { useState } from "react";
 
-const CreateTaskModal = () => {
+const ModalCreateTask = () => {
   // Store
   const { createTask } = taskStore();
 
@@ -45,4 +45,4 @@ const CreateTaskModal = () => {
   );
 };
 
-export default CreateTaskModal;
+export default ModalCreateTask;

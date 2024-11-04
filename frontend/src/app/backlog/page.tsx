@@ -3,14 +3,14 @@ import { taskStore } from "@/stores/taskStore";
 
 // Components
 import TaskRow from "@/components/TaskRow";
-import CreateTaskModal from "@/components/CreateTaskModal";
+import ModalCreateTask from "@/components/ModalCreateTask";
 
 const page = () => {
   const { tasks } = taskStore();
 
   return (
     <div>
-      <CreateTaskModal />
+      <ModalCreateTask />
       {tasks.map((task, key) => (
         <TaskRow key={key} task={task} />
       ))}
