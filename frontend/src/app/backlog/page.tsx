@@ -1,10 +1,10 @@
 "use client";
-import Kanban from "@/components/Kanban";
+import Backlog from "@/components/Backlog";
 
 const page = () => {
   return (
     <>
-      <Kanban />
+      <Backlog />
     </>
   );
 };

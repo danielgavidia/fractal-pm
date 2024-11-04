@@ -1,18 +1,15 @@
-import { taskStore } from "@/stores/taskStore";
-import { Task, TaskStatusEnums } from "@/types/types";
+import { useState } from "react";
+import { Task } from "@/types/types";
 
 // Components
-import UpdateTaskModal from "./UpdateTaskModal";
-import { useState } from "react";
+import TaskStatusBadge from "./TaskStatusBadge";
+import TaskModal from "./TaskModal";
 
 interface TaskRowProps {
   task: Task;
 }
 
 const TaskRow = ({ task }: TaskRowProps) => {
-  const { deleteTask, updateTaskStatus } = taskStore();
-  const statusOptions = Object.values(TaskStatusEnums);
-
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleClose = () => {
@@ -20,21 +17,16 @@ const TaskRow = ({ task }: TaskRowProps) => {
   };
 
   return (
-    <div>
-      <p>{task.title}</p>
-      <p>{task.description}</p>
-      <div>
-        {statusOptions.map((status, key) => (
-          <button key={key} onClick={() => updateTaskStatus(task.id, status)}>
-            {status}
-          </button>
-        ))}
-      </div>
-      <p>Status: {task.status}</p>
-      <button onClick={() => deleteTask(task.id)}>Delete</button>
-      <button onClick={() => setIsOpen(true)}>Edit</button>
-      {isOpen && <UpdateTaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
-    </div>
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="flex border-[0.5px] w-full justify-between items-center p-1"
+      >
+        <p className="text-xs min-w-28 text-left">{task.title}</p>
+        <TaskStatusBadge status={task.status} />
+      </button>
+      {isOpen && <TaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
+    </>
   );
 };
 

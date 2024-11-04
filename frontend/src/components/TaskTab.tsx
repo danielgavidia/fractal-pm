@@ -1,6 +1,10 @@
 import { Task } from "@/types/types";
 import { useState } from "react";
-import UpdateTaskModal from "./UpdateTaskModal";
+import { truncateText } from "@/utils/truncateText";
+
+// Components
+import TaskStatusBadge from "./TaskStatusBadge";
+import TaskModal from "./TaskModal";
 
 interface TaskTabProps {
   task: Task;
@@ -9,18 +13,19 @@ interface TaskTabProps {
 const TaskTab = ({ task }: TaskTabProps) => {
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
   return (
-    <div>
-      <p>{task.title}</p>
-      <p>{task.description}</p>
-      <p>{task.status}</p>
-      <button onClick={() => setIsOpen(true)}>Edit</button>
-      {isOpen && <UpdateTaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
-    </div>
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="flex flex-col border-[0.5px] border-gray-300 shadow-gray-200 shadow-sm rounded-none text-xs w-32 p-2 text-gray-700"
+      >
+        <div className="font-semibold h-10 text-left">{truncateText(task.title, 30)}</div>
+        <div className="text-[10px] text-left h-14">{truncateText(task.description, 60)}</div>
+        <TaskStatusBadge status={task.status} />
+      </button>
+      {isOpen && <TaskModal task={task} isOpen={isOpen} onClose={() => setIsOpen(false)} />}
+    </>
   );
 };
 
