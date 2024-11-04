@@ -24,6 +24,9 @@ const Sidebar = () => {
       <Link href="/kanban" className="text-sm">
         Kanban
       </Link>
+      <Link href="/themes" className="text-sm">
+        Themes
+      </Link>
     </nav>
   );
 };
