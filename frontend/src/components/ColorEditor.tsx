@@ -7,7 +7,7 @@ const ColorEditor = () => {
   const [hue, setHue] = useState<number>(180);
   const [saturation, setSaturation] = useState<number>(50);
   const [lightness, setLightness] = useState<number>(50);
-  const color = valueToColor(hue, saturation, lightness);
+  const color = valueToColor({ hue, saturation, lightness });
 
   return (
     <div className="flex flex-col space-y-2">

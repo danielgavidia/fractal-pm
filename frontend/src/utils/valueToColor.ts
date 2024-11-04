@@ -46,7 +46,13 @@ export function hslToRgb(h: number, s: number, l: number) {
 }
 
 // Helper function to get RGB and HEX
-export function valueToColor(hue: number, saturation: number, lightness: number): string {
+interface ValueToColorProps {
+  hue: number;
+  saturation: number;
+  lightness: number;
+}
+
+export function valueToColor({ hue, saturation, lightness }: ValueToColorProps): string {
   const { r, g, b } = hslToRgb(hue, saturation, lightness);
   const rgb = `rgb(${r}, ${g}, ${b})`;
   return rgb;
