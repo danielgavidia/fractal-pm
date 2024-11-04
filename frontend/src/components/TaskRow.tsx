@@ -1,6 +1,9 @@
 import { taskStore } from "@/stores/taskStore";
 import { Task, TaskStatusEnums } from "@/types/types";
-import { TaskStatus } from "@/types/types";
+
+// Components
+import TaskUpdate from "./TaskUpdate";
+import { useState } from "react";
 
 interface TaskRowProps {
   task: Task;
@@ -8,8 +11,13 @@ interface TaskRowProps {
 
 const TaskRow = ({ task }: TaskRowProps) => {
   const { deleteTask, updateTaskStatus } = taskStore();
-
   const statusOptions = Object.values(TaskStatusEnums);
+
+  // Local state
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div>
@@ -24,6 +32,8 @@ const TaskRow = ({ task }: TaskRowProps) => {
       </div>
       <p>Status: {task.status}</p>
       <button onClick={() => deleteTask(task.id)}>Delete</button>
+      <button onClick={() => setIsOpen(true)}>Edit</button>
+      {isOpen && <TaskUpdate task={task} isOpen={isOpen} onClose={handleClose} />}
     </div>
   );
 };
