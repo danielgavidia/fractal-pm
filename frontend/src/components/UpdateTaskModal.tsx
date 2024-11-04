@@ -2,13 +2,13 @@ import { taskStore } from "@/stores/taskStore";
 import { Task, TaskStatus } from "@/types/types";
 import React, { useState } from "react";
 
-interface TaskUpdateProps {
+interface UpdateTaskModalProps {
   task: Task;
   isOpen: boolean;
   onClose: () => void;
 }
 
-const TaskUpdate = ({ task, isOpen, onClose }: TaskUpdateProps) => {
+const UpdateTaskModal = ({ task, isOpen, onClose }: UpdateTaskModalProps) => {
   // Store
   const { updateTask } = taskStore();
 
@@ -73,4 +73,4 @@ const TaskUpdate = ({ task, isOpen, onClose }: TaskUpdateProps) => {
   );
 };
 
-export default TaskUpdate;
+export default UpdateTaskModal;

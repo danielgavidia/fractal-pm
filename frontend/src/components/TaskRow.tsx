@@ -2,7 +2,7 @@ import { taskStore } from "@/stores/taskStore";
 import { Task, TaskStatusEnums } from "@/types/types";
 
 // Components
-import TaskUpdate from "./TaskUpdate";
+import UpdateTaskModal from "./UpdateTaskModal";
 import { useState } from "react";
 
 interface TaskRowProps {
@@ -33,7 +33,7 @@ const TaskRow = ({ task }: TaskRowProps) => {
       <p>Status: {task.status}</p>
       <button onClick={() => deleteTask(task.id)}>Delete</button>
       <button onClick={() => setIsOpen(true)}>Edit</button>
-      {isOpen && <TaskUpdate task={task} isOpen={isOpen} onClose={handleClose} />}
+      {isOpen && <UpdateTaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
     </div>
   );
 };
