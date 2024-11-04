@@ -1,13 +1,15 @@
 "use client";
-
-import TaskRow from "@/components/TaskRow";
 import { taskStore } from "@/stores/taskStore";
-import React from "react";
+
+// Components
+import TaskRow from "@/components/TaskRow";
+import TaskCreate from "@/components/TaskCreate";
 
 const page = () => {
   const { tasks } = taskStore();
   return (
     <div>
+      <TaskCreate />
       {tasks.map((task, key) => (
         <TaskRow key={key} task={task} />
       ))}
