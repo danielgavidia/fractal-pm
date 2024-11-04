@@ -1,18 +1,15 @@
-import { taskStore } from "@/stores/taskStore";
-import { Task, TaskStatusEnums } from "@/types/types";
+import { useState } from "react";
+import { Task } from "@/types/types";
 
 // Components
-import ModalUpdateTask from "./ModalUpdateTask";
-import { useState } from "react";
 import TaskStatusBadge from "./TaskStatusBadge";
+import TaskModal from "./TaskModal";
 
 interface TaskRowProps {
   task: Task;
 }
 
 const TaskRow = ({ task }: TaskRowProps) => {
-  const { updateTaskStatus } = taskStore();
-
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleClose = () => {
@@ -28,7 +25,7 @@ const TaskRow = ({ task }: TaskRowProps) => {
         <p className="text-xs min-w-28 text-left">{task.title}</p>
         <TaskStatusBadge status={task.status} />
       </button>
-      {isOpen && <ModalUpdateTask task={task} isOpen={isOpen} onClose={handleClose} />}
+      {isOpen && <TaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
     </>
   );
 };
