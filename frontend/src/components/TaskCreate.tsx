@@ -13,9 +13,10 @@ const TaskCreate = () => {
     e.preventDefault();
     if (taskTitle !== "" && taskDescription !== "") {
       createTask({
+        id: Date.now().toString(),
         title: taskTitle,
         description: taskDescription,
-        state: "pending",
+        status: "pending",
       });
       console.log("submit");
       setTaskTitle("");
