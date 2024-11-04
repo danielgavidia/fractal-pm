@@ -9,7 +9,7 @@ const page = () => {
   const { tasks } = taskStore();
 
   return (
-    <div>
+    <div className="p-4">
       <ModalCreateTask />
       {tasks.map((task, key) => (
         <TaskRow key={key} task={task} />

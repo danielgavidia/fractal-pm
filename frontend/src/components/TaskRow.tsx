@@ -10,8 +10,7 @@ interface TaskRowProps {
 }
 
 const TaskRow = ({ task }: TaskRowProps) => {
-  const { deleteTask, updateTaskStatus } = taskStore();
-  const statusOptions = Object.values(TaskStatusEnums);
+  const { updateTaskStatus } = taskStore();
 
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,21 +19,16 @@ const TaskRow = ({ task }: TaskRowProps) => {
   };
 
   return (
-    <div>
-      <p>{task.title}</p>
-      <p>{task.description}</p>
-      <div>
-        {statusOptions.map((status, key) => (
-          <button key={key} onClick={() => updateTaskStatus(task.id, status)}>
-            {status}
-          </button>
-        ))}
-      </div>
-      <p>Status: {task.status}</p>
-      <button onClick={() => deleteTask(task.id)}>Delete</button>
-      <button onClick={() => setIsOpen(true)}>Edit</button>
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="flex border-[0.5px] w-full justify-between items-center p-1"
+      >
+        <p className="text-xs min-w-28 text-left">{task.title}</p>
+        <p>{task.status}</p>
+      </button>
       {isOpen && <ModalUpdateTask task={task} isOpen={isOpen} onClose={handleClose} />}
-    </div>
+    </>
   );
 };
 
