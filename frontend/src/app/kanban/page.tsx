@@ -1,15 +1,20 @@
 "use client";
 import TaskTab from "@/components/TaskTab";
+import TaskTabColumn from "@/components/TaskTabColumn";
 import { taskStore } from "@/stores/taskStore";
+import { TaskStatus } from "@/types/types";
+import { getTasksByStatus } from "@/utils/getTasksByStatus";
 
 // Components
 
 const page = () => {
   const { tasks } = taskStore();
+  const tasksByStatus = getTasksByStatus(tasks);
+
   return (
-    <div>
-      {tasks.map((task, key) => (
-        <TaskTab key={key} task={task} />
+    <div className="flex">
+      {tasksByStatus.map((tasks, key) => (
+        <TaskTabColumn key={key} status={tasks.status} tasks={tasks.tasks} />
       ))}
     </div>
   );
