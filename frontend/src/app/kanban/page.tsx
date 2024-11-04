@@ -12,7 +12,7 @@ const page = () => {
   const tasksByStatus = getTasksByStatus(tasks);
 
   return (
-    <div className="flex">
+    <div className="flex p-4 w-full justify-center">
       {tasksByStatus.map((tasks, key) => (
         <TaskTabColumn key={key} status={tasks.status} tasks={tasks.tasks} />
       ))}
