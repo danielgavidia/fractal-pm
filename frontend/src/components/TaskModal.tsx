@@ -79,31 +79,33 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
         </form>
 
         {/* Status changes */}
-        <div className="grid grid-cols-2 py-2">
-          {Object.values(statusMapping).map((status, key) => {
-            if (status.name === taskStatus) {
-              return (
-                <button
-                  key={key}
-                  onClick={() => setTaskStatus(status.name)}
-                  className="p-1 border-[0.5px] border-gray-500 rounded-xl"
-                >
-                  <TaskStatusBadge status={status.name} />
-                </button>
-              );
-            } else {
-              return (
-                <button
-                  key={key}
-                  onClick={() => setTaskStatus(status.name)}
-                  className="p-1 border-[0.5px] border-white"
-                >
-                  <TaskStatusBadge status={status.name} />
-                </button>
-              );
-            }
-          })}
-        </div>
+        {task && (
+          <div className="grid grid-cols-2 py-2">
+            {Object.values(statusMapping).map((status, key) => {
+              if (status.name === taskStatus) {
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setTaskStatus(status.name)}
+                    className="p-1 border-[0.5px] border-gray-500 rounded-xl"
+                  >
+                    <TaskStatusBadge status={status.name} />
+                  </button>
+                );
+              } else {
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setTaskStatus(status.name)}
+                    className="p-1 border-[0.5px] border-white"
+                  >
+                    <TaskStatusBadge status={status.name} />
+                  </button>
+                );
+              }
+            })}
+          </div>
+        )}
 
         {/* Cancel, update and create buttons */}
         <div className="flex justify-end gap-2 py-2">
