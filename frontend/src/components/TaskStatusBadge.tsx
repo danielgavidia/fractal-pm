@@ -1,3 +1,5 @@
+"use client";
+
 import { TaskStatus } from "@/types/types";
 import { statusMapping } from "@/utils/statusMapping";
 
@@ -9,8 +11,10 @@ const TaskStatusBadge = ({ status }: TaskStatusBadgeProps) => {
   const { backgroundColor, ballColor, label } = statusMapping[status];
   return (
     <div
-      className={"flex items-center rounded-xl p-[0.5px] min-w-24"}
-      style={{ backgroundColor: backgroundColor }}
+      className={"flex items-center rounded-xl p-[0.5px] min-w-24 text-gray-900"}
+      style={{
+        backgroundColor: backgroundColor,
+      }}
     >
       <div
         className={"p-1 bg-black mx-2 rounded-full"}

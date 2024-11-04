@@ -1,6 +1,6 @@
 import { Task, TaskStatus } from "@/types/types";
 import { create } from "zustand";
-import { dummyTasks } from "@/api/dummyData";
+import { dummyTasks } from "@/api/dummyTasks";
 
 interface TaskStoreState {
   tasks: Task[];
