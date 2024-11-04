@@ -5,12 +5,16 @@ import { truncateText } from "@/utils/truncateText";
 // Components
 import TaskStatusBadge from "./TaskStatusBadge";
 import TaskModal from "./TaskModal";
+import { themeStore } from "@/stores/themeStore";
+import { valueToColor } from "@/utils/valueToColor";
 
 interface TaskTabProps {
   task: Task;
 }
 
 const TaskTab = ({ task }: TaskTabProps) => {
+  const { currentTheme } = themeStore();
+
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -18,7 +22,11 @@ const TaskTab = ({ task }: TaskTabProps) => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="flex flex-col border-[0.5px] border-gray-300 shadow-gray-200 shadow-sm rounded-none text-xs w-32 p-2 text-gray-700"
+        className="flex flex-col border-[0.5px] rounded-none text-xs w-32 p-2 text-gray-700"
+        style={{
+          color: valueToColor(currentTheme.textSecondary),
+          borderColor: valueToColor(currentTheme.textPrimary),
+        }}
       >
         <div className="font-semibold h-10 text-left">{truncateText(task.title, 30)}</div>
         <div className="text-[10px] text-left h-14">{truncateText(task.description, 60)}</div>
