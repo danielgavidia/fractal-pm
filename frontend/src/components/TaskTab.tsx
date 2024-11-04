@@ -1,8 +1,10 @@
 import { Task } from "@/types/types";
 import { useState } from "react";
-import ModalUpdateTask from "./ModalUpdateTask";
 import { truncateText } from "@/utils/truncateText";
+
+// Components
 import TaskStatusBadge from "./TaskStatusBadge";
+import TaskModal from "./TaskModal";
 
 interface TaskTabProps {
   task: Task;
@@ -22,7 +24,7 @@ const TaskTab = ({ task }: TaskTabProps) => {
         <div className="text-[10px] text-left h-14">{truncateText(task.description, 60)}</div>
         <TaskStatusBadge status={task.status} />
       </button>
-      {isOpen && <ModalUpdateTask task={task} isOpen={isOpen} onClose={() => setIsOpen(false)} />}
+      {isOpen && <TaskModal task={task} isOpen={isOpen} onClose={() => setIsOpen(false)} />}
     </>
   );
 };

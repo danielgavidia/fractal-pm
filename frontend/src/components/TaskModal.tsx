@@ -2,30 +2,41 @@ import { taskStore } from "@/stores/taskStore";
 import { Task, TaskStatus } from "@/types/types";
 import React, { useState } from "react";
 
-interface ModalUpdateTaskProps {
-  task: Task;
+interface TaskModalProps {
+  task?: Task; // Optional task for update mode
   isOpen: boolean;
   onClose: () => void;
 }
 
-const ModalUpdateTask = ({ task, isOpen, onClose }: ModalUpdateTaskProps) => {
+const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
   // Store
-  const { updateTask } = taskStore();
+  const { createTask, updateTask } = taskStore();
 
   // Local state
-  const [taskTitle, setTaskTitle] = useState<string>(task.title);
-  const [taskDescription, setTaskDescription] = useState<string>(task.description);
-  const [taskStatus, setTaskStatus] = useState<TaskStatus>(task.status);
+  const [taskTitle, setTaskTitle] = useState<string>(task?.title || "");
+  const [taskDescription, setTaskDescription] = useState<string>(task?.description || "");
+  const [taskStatus, setTaskStatus] = useState<TaskStatus>(task?.status || "notStarted");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (taskTitle !== "" && taskDescription !== "") {
-      updateTask(task.id, {
-        ...task,
-        title: taskTitle,
-        description: taskDescription,
-        status: taskStatus,
-      });
+      if (task) {
+        // Update mode
+        updateTask(task.id, {
+          ...task,
+          title: taskTitle,
+          description: taskDescription,
+          status: taskStatus,
+        });
+      } else {
+        // Create mode
+        createTask({
+          id: Date.now().toString(),
+          title: taskTitle,
+          description: taskDescription,
+          status: taskStatus,
+        });
+      }
       onClose();
     }
   };
@@ -36,7 +47,7 @@ const ModalUpdateTask = ({ task, isOpen, onClose }: ModalUpdateTaskProps) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96 h-96 flex flex-col justify-between">
         <div className="flex justify-between items-center mb-4">
-          <div className="text-sm font-bold">Update Task</div>
+          <div className="text-sm font-bold">{task ? "Update Task" : "Create Task"}</div>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             ✕
           </button>
@@ -63,7 +74,7 @@ const ModalUpdateTask = ({ task, isOpen, onClose }: ModalUpdateTaskProps) => {
               type="submit"
               className="px-4 py-2 hover:bg-blue-500 bg-black text-white rounded text-sm"
             >
-              Update
+              {task ? "Update" : "Create"}
             </button>
           </div>
         </form>
@@ -72,4 +83,4 @@ const ModalUpdateTask = ({ task, isOpen, onClose }: ModalUpdateTaskProps) => {
   );
 };
 
-export default ModalUpdateTask;
+export default TaskModal;

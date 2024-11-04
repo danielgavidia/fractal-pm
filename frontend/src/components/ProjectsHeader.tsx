@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ModalCreateTask from "./ModalCreateTask";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+
+// Components
+import TaskModal from "./TaskModal";
 
 const ProjectsHeader = () => {
   // Local state
@@ -15,7 +17,7 @@ const ProjectsHeader = () => {
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
-      {isOpen && <ModalCreateTask isOpen={isOpen} onClose={() => setIsOpen(false)} />}
+      {isOpen && <TaskModal isOpen={isOpen} onClose={() => setIsOpen(false)} />}
     </>
   );
 };
