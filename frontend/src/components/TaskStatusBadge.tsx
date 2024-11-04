@@ -1,9 +1,7 @@
 "use client";
 
-import { themeStore } from "@/stores/themeStore";
 import { TaskStatus } from "@/types/types";
 import { statusMapping } from "@/utils/statusMapping";
-import { valueToColor } from "@/utils/valueToColor";
 
 interface TaskStatusBadgeProps {
   status: TaskStatus;
@@ -11,13 +9,11 @@ interface TaskStatusBadgeProps {
 
 const TaskStatusBadge = ({ status }: TaskStatusBadgeProps) => {
   const { backgroundColor, ballColor, label } = statusMapping[status];
-  const { currentTheme } = themeStore();
   return (
     <div
-      className={"flex items-center rounded-xl p-[0.5px] min-w-24"}
+      className={"flex items-center rounded-xl p-[0.5px] min-w-24 text-gray-900"}
       style={{
         backgroundColor: backgroundColor,
-        color: valueToColor(currentTheme.backgroundSecondary),
       }}
     >
       <div
