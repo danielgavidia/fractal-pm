@@ -1,20 +1,11 @@
 "use client";
-import { taskStore } from "@/stores/taskStore";
-
-// Components
-import TaskRow from "@/components/TaskRow";
-import ModalCreateTask from "@/components/ModalCreateTask";
+import Backlog from "@/components/Backlog";
 
 const page = () => {
-  const { tasks } = taskStore();
-
   return (
-    <div className="p-4">
-      <ModalCreateTask />
-      {tasks.map((task, key) => (
-        <TaskRow key={key} task={task} />
-      ))}
-    </div>
+    <>
+      <Backlog />
+    </>
   );
 };
 
