@@ -1,8 +1,8 @@
-export type TaskStatus = "pending" | "inProgress" | "completed" | "archived";
+export type TaskStatus = "pending" | "in progress" | "completed" | "archived";
 
 export enum TaskStatusEnums {
   PENDING = "pending",
-  IN_PROGRESS = "inProgress",
+  IN_PROGRESS = "in progress",
   COMPLETED = "completed",
   ARCHIVED = "archived",
 }

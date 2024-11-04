@@ -11,7 +11,7 @@ export const dummyTasks: Task[] = [
     id: "task-2",
     title: "Implement Authentication",
     description: "Set up user authentication using NextAuth.js",
-    status: "inProgress",
+    status: "in progress",
   },
   {
     id: "task-3",
@@ -35,7 +35,7 @@ export const dummyTasks: Task[] = [
     id: "task-6",
     title: "Optimize Image Loading",
     description: "Implement lazy loading for images to improve performance",
-    status: "inProgress",
+    status: "in progress",
   },
   {
     id: "task-7",
@@ -53,7 +53,7 @@ export const dummyTasks: Task[] = [
     id: "task-9",
     title: "Implement Search Feature",
     description: "Add full-text search functionality to the dashboard",
-    status: "inProgress",
+    status: "in progress",
   },
   {
     id: "task-10",
@@ -77,7 +77,7 @@ export const dummyTasks: Task[] = [
     id: "task-13",
     title: "Security Audit",
     description: "Conduct security assessment and fix vulnerabilities",
-    status: "inProgress",
+    status: "in progress",
   },
   {
     id: "task-14",
@@ -95,7 +95,7 @@ export const dummyTasks: Task[] = [
     id: "task-16",
     title: "User Onboarding Flow",
     description: "Design and implement user onboarding experience",
-    status: "inProgress",
+    status: "in progress",
   },
   {
     id: "task-17",
