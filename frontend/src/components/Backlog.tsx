@@ -1,16 +1,20 @@
 import { taskStore } from "@/stores/taskStore";
-import ModalCreateTask from "./ModalCreateTask";
+
+// Components
+import ProjectsHeader from "./ProjectsHeader";
 import TaskRow from "./TaskRow";
 
 const Backlog = () => {
   const { tasks } = taskStore();
 
   return (
-    <div className="p-4">
-      <ModalCreateTask />
-      {tasks.map((task, key) => (
-        <TaskRow key={key} task={task} />
-      ))}
+    <div className="px-4 w-full">
+      <ProjectsHeader />
+      <div className="py-2">
+        {tasks.map((task, key) => (
+          <TaskRow key={key} task={task} />
+        ))}
+      </div>
     </div>
   );
 };

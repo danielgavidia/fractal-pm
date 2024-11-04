@@ -11,9 +11,6 @@ interface TaskTabProps {
 const TaskTab = ({ task }: TaskTabProps) => {
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
   return (
     <>
@@ -25,7 +22,7 @@ const TaskTab = ({ task }: TaskTabProps) => {
         <div className="text-[10px] text-left h-14">{truncateText(task.description, 60)}</div>
         <TaskStatusBadge status={task.status} />
       </button>
-      {isOpen && <ModalUpdateTask task={task} isOpen={isOpen} onClose={handleClose} />}
+      {isOpen && <ModalUpdateTask task={task} isOpen={isOpen} onClose={() => setIsOpen(false)} />}
     </>
   );
 };

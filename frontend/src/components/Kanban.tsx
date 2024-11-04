@@ -1,6 +1,7 @@
 import { taskStore } from "@/stores/taskStore";
 import { getTasksByStatus } from "@/utils/getTasksByStatus";
 import TaskTabColumn from "./TaskTabColumn";
+import ProjectsHeader from "./ProjectsHeader";
 
 const Kanban = () => {
   const { tasks } = taskStore();
@@ -8,7 +9,7 @@ const Kanban = () => {
 
   return (
     <div className="px-4 w-full">
-      <div className="w-full border-b-[0.5px] py-4 font-bold sticky top-0 bg-white">Projects</div>
+      <ProjectsHeader />
       <div className="flex justify-center">
         {tasksByStatus.map((tasks, key) => (
           <TaskTabColumn key={key} status={tasks.status} tasks={tasks.tasks} />
