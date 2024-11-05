@@ -36,6 +36,8 @@ export type Color = {
 };
 
 export type Theme = {
+  id: string;
+  name: string;
   backgroundPrimary: Color;
   backgroundSecondary: Color;
   textPrimary: Color;
