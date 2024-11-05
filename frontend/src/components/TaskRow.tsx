@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Task } from "@/types/types";
 
 // Components
-import TaskStatusBadge from "./TaskStatusBadge";
-import TaskModal from "./TaskModal";
+import TaskStatusBadge from "@/components/TaskStatusBadge";
+import TaskModal from "@/components/TaskModal";
 
 interface TaskRowProps {
   task: Task;

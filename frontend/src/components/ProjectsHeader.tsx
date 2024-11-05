@@ -5,7 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 // Components
-import TaskModal from "./TaskModal";
+import TaskModal from "@/components/TaskModal";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
 

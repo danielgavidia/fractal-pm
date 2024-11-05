@@ -2,7 +2,10 @@ import { Task } from "@/types/types";
 import { cleanResponseString } from "@/utils/cleanResponseString";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY });
+const openai = new OpenAI({
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY,
+  dangerouslyAllowBrowser: true, // Change
+});
 
 export const openaiChatCompletions = async (
   model: string,
@@ -50,12 +53,8 @@ export const getTaskFromPrompt = async (prompt: string): Promise<Task> => {
 
   // Clean string
   const resCleaned = cleanResponseString(res);
-  console.log(resCleaned);
 
   // Parse
   const task: Task = JSON.parse(resCleaned);
   return task;
 };
-
-const res = await getTaskFromPrompt("Hi. Bake a cake.");
-console.log(res);

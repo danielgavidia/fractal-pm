@@ -1,7 +1,9 @@
 import { taskStore } from "@/stores/taskStore";
 import { getTasksByStatus } from "@/utils/getTasksByStatus";
-import TaskTabColumn from "./TaskTabColumn";
-import ProjectsHeader from "./ProjectsHeader";
+
+// Components
+import TaskTabColumn from "@/components/TaskTabColumn";
+import ProjectsHeader from "@/components/ProjectsHeader";
 
 const Kanban = () => {
   const { tasks } = taskStore();

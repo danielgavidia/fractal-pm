@@ -4,9 +4,12 @@ import { statusMapping } from "@/utils/statusMapping";
 import { useState } from "react";
 
 //Components
-import TaskStatusBadge from "./TaskStatusBadge";
+import TaskStatusBadge from "@/components/TaskStatusBadge";
+
+// Utils
 import { valueToColor } from "@/utils/valueToColor";
 import { themeStore } from "@/stores/themeStore";
+import { getTaskFromPrompt } from "@/lib/openai";
 
 interface TaskModalProps {
   task?: Task; // Optional task for update mode
@@ -18,6 +21,10 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
   // Store
   const { createTask, updateTask } = taskStore();
   const { currentTheme } = themeStore();
+
+  // Colors
+  const backgroundSecondary = valueToColor(currentTheme.backgroundSecondary);
+  const textPrimary = valueToColor(currentTheme.textPrimary);
 
   // Local state
   const [taskTitle, setTaskTitle] = useState<string>(task?.title || "");
@@ -53,11 +60,22 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
   };
 
   // Handle submit message
-  const handleSubmitMessage = (e: React.FormEvent) => {
+  const handleSubmitMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (currentMessage !== "") {
-      setMessages((prior) => [...prior, currentMessage]);
-      setCurrentMessage("");
+      try {
+        setMessages((prior) => [...prior, currentMessage]);
+        setCurrentMessage("");
+        const taskFromPrompt = await getTaskFromPrompt(currentMessage);
+        if (taskFromPrompt) {
+          setTaskTitle(taskFromPrompt.title || "");
+          setTaskDescription(taskFromPrompt.description || "");
+          setTaskStatus(taskFromPrompt.status || "notStarted");
+        }
+      } catch (error) {
+        console.error("Error getting task from prompt:", error);
+        // Optionally handle the error in the UI
+      }
     }
   };
 
@@ -66,10 +84,10 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
       <div
-        className="p-6 rounded-lg shadow-lg w-3/4 h-1/2 flex flex-col justify-between"
+        className="p-6 rounded-lg shadow-lg w-3/4 h-3/4 flex flex-col justify-between"
         style={{
-          backgroundColor: valueToColor(currentTheme.backgroundSecondary),
-          color: valueToColor(currentTheme.textPrimary),
+          backgroundColor: backgroundSecondary,
+          color: textPrimary,
         }}
       >
         {/* Modal header */}
@@ -78,12 +96,9 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
           <button onClick={onClose}>✕</button>
         </div>
 
-        <div className="flex h-full mb-2">
+        <div className="flex flex-col h-full mb-2 w-full space-y-2">
           {/* Form */}
-          <form
-            onSubmit={handleSubmit}
-            className={`flex flex-col space-y-2 h-full ${task ? "w-full" : "w-1/2"}`}
-          >
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-2 h-full">
             <div className="text-sm text-center">Task</div>
             {/* Task title */}
             <input
@@ -105,10 +120,15 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
 
           {/* AI Chat */}
           {!task && (
-            <div className="w-1/2 flex flex-col h-full ml-2 space-y-2">
+            <div className="flex flex-col h-full space-y-2 border-t-[0.5px] py-2">
               <div className="text-sm text-center">AI Chat</div>
               <textarea
-                className="flex-1 p-2 text-xs outline-none text-black text-right"
+                className="flex-1 p-2 text-xs outline-none text-black text-right border-[0.5px]"
+                style={{
+                  backgroundColor: backgroundSecondary,
+                  borderColor: textPrimary,
+                  color: textPrimary,
+                }}
                 value={messages.join("\n")}
                 readOnly
               />
@@ -116,7 +136,12 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
                 <input
                   value={currentMessage}
                   onChange={(e) => setCurrentMessage(e.target.value)}
-                  className="w-full h-full text-black outline-none text-xs p-2"
+                  className="w-full h-full text-black outline-none text-xs p-2 border-[0.5px]"
+                  style={{
+                    backgroundColor: backgroundSecondary,
+                    borderColor: textPrimary,
+                    color: textPrimary,
+                  }}
                 ></input>
               </form>
             </div>
@@ -144,7 +169,7 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
                     onClick={() => setTaskStatus(status.name)}
                     className="p-1 border-[0.5px]"
                     style={{
-                      borderColor: valueToColor(currentTheme.backgroundSecondary),
+                      borderColor: backgroundSecondary,
                     }}
                   >
                     <TaskStatusBadge status={status.name} />
