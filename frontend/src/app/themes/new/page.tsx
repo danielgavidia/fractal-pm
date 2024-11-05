@@ -5,6 +5,7 @@ import ColorEditor from "@/components/ColorEditor";
 import { useState } from "react";
 import { Theme, Color } from "@/types/types";
 import { themeStore } from "@/stores/themeStore";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const { createTheme } = themeStore();
@@ -23,6 +24,8 @@ const Page = () => {
       [key]: color,
     }));
   };
+
+  const router = useRouter();
 
   return (
     <div className="px-4">
@@ -58,6 +61,7 @@ const Page = () => {
         onClick={() => {
           if (theme.name) {
             createTheme(theme);
+            router.push("/themes");
           }
         }}
         className="w-full p-2 mt-4 text-white rounded border-[0.5px] text-xs"
