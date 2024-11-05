@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   return (
     <nav
-      className="flex flex-col p-4 min-w-36 bg-gray-100 space-y-2 h-screen sticky top-0"
+      className="flex flex-col p-4 min-w-40 bg-gray-100 space-y-2 h-screen sticky top-0"
       style={{
         backgroundColor: valueToColor(currentTheme.backgroundSecondary),
         color: valueToColor(currentTheme.textPrimary),
