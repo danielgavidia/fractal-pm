@@ -53,6 +53,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
           title: taskTitle,
           description: taskDescription,
           status: taskStatus,
+          ticketType: "task",
           epicId: Date.now().toString(),
         });
       }

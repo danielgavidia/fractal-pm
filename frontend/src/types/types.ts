@@ -1,6 +1,8 @@
 // Tickets
 export type TicketStatus = "notStarted" | "inProgress" | "completed" | "archived";
 
+export type TicketType = "epic" | "task";
+
 export enum TicketStatusEnums {
   NOT_STARTED = "notStarted",
   IN_PROGRESS = "inProgress",
@@ -8,25 +10,23 @@ export enum TicketStatusEnums {
   ARCHIVED = "archived",
 }
 
-export type Ticket = Task | Epic;
+export interface Ticket {
+  id: string;
+  title: string;
+  description: string;
+  status: TicketStatus;
+  ticketType: TicketType;
+}
 
 // Tasks
-export type Task = {
-  id: string;
-  title: string;
-  description: string;
-  status: TicketStatus;
+export interface Task extends Ticket {
   epicId: string;
-};
+}
 
 // Epics
-export type Epic = {
-  id: string;
-  title: string;
-  description: string;
-  status: TicketStatus;
+export interface Epic extends Ticket {
   taskIds: string[];
-};
+}
 
 // Themes
 export type Color = {

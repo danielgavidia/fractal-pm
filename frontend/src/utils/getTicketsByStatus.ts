@@ -1,4 +1,4 @@
-import { Ticket, TicketStatus } from "@/types/types";
+import { Ticket, TicketStatus, TicketStatusEnums } from "@/types/types";
 
 export const getTicketsByStatus = (tickets: Ticket[]) => {
   const tasksByStatus = Object.entries(
@@ -9,9 +9,17 @@ export const getTicketsByStatus = (tickets: Ticket[]) => {
       acc[ticket.status].push(ticket);
       return acc;
     }, {} as Record<TicketStatus, Ticket[]>)
-  ).map(([status, tickets]) => ({
-    status: status as TicketStatus,
-    tickets: tickets,
-  }));
+  )
+    .sort(([statusA], [statusB]) => {
+      const enumValues = Object.values(TicketStatusEnums);
+      return (
+        enumValues.indexOf(statusA as TicketStatusEnums) -
+        enumValues.indexOf(statusB as TicketStatusEnums)
+      );
+    })
+    .map(([status, tickets]) => ({
+      status: status as TicketStatus,
+      tickets: tickets,
+    }));
   return tasksByStatus;
 };

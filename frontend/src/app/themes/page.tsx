@@ -4,7 +4,7 @@
 import ThemeDisplay from "@/components/ThemeDisplay";
 import { themeStore } from "@/stores/themeStore";
 
-const page = () => {
+const Page = () => {
   const { themes } = themeStore();
   return (
     <div className="p-4">
@@ -16,4 +16,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

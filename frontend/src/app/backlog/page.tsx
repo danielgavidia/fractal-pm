@@ -1,7 +1,7 @@
 "use client";
 import Backlog from "@/components/Backlog";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <Backlog />
@@ -9,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
