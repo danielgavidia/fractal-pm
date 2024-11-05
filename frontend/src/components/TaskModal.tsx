@@ -4,7 +4,7 @@ import { statusMapping } from "@/utils/statusMapping";
 import { useState } from "react";
 
 //Components
-import TaskStatusBadge from "@/components/TaskStatusBadge";
+import TicketStatusBadge from "@/components/TicketStatusBadge";
 
 // Utils
 import { valueToColor } from "@/utils/valueToColor";
@@ -175,7 +175,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
                     onClick={() => setTaskStatus(status.name)}
                     className="p-1 border-[0.5px] rounded-xl"
                   >
-                    <TaskStatusBadge status={status.name} />
+                    <TicketStatusBadge status={status.name} />
                   </button>
                 );
               } else {
@@ -188,7 +188,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
                       borderColor: backgroundSecondary,
                     }}
                   >
-                    <TaskStatusBadge status={status.name} />
+                    <TicketStatusBadge status={status.name} />
                   </button>
                 );
               }

@@ -2,12 +2,12 @@
 
 import SectionHeader from "@/components/SectionHeader";
 import { epicStore } from "@/stores/epicStore";
-import { Epic } from "@/types/types";
+import { Epic, TicketStatus } from "@/types/types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Page = () => {
-  const { createEpic } = epicStore();
+  const { updateEpic } = epicStore();
   const router = useRouter();
 
   // Get epic
@@ -22,21 +22,21 @@ const Page = () => {
   // Local state
   const [epicTitle, setEpicTitle] = useState<string>(epic.title);
   const [epicDescription, setEpicDescription] = useState<string>(epic.description);
+  const [epicStatus, setEpicStatus] = useState<TicketStatus>(epic.status);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newEpic: Epic = {
-      id: Date.now().toString(),
+      ...epic,
       title: epicTitle,
       description: epicDescription,
-      status: "inProgress",
-      ticketType: "epic",
+      status: epicStatus,
     };
     if (epicTitle !== "" && epicDescription !== "") {
-      createEpic(newEpic);
+      updateEpic(epic.id, newEpic);
       setEpicTitle("");
       setEpicDescription("");
-      router.push(`/epics/${newEpic.id}`);
+      router.push(`/epics/${epic.id}`);
     }
   };
 

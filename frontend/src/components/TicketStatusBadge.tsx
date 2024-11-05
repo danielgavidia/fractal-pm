@@ -3,11 +3,11 @@
 import { TicketStatus } from "@/types/types";
 import { statusMapping } from "@/utils/statusMapping";
 
-interface TaskStatusBadgeProps {
+interface TicketStatusBadgeProps {
   status: TicketStatus;
 }
 
-const TaskStatusBadge = ({ status }: TaskStatusBadgeProps) => {
+const TicketStatusBadge = ({ status }: TicketStatusBadgeProps) => {
   const { backgroundColor, ballColor, label } = statusMapping[status];
   return (
     <div
@@ -25,4 +25,4 @@ const TaskStatusBadge = ({ status }: TaskStatusBadgeProps) => {
   );
 };
 
-export default TaskStatusBadge;
+export default TicketStatusBadge;

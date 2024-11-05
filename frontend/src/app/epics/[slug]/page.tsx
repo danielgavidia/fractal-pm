@@ -32,7 +32,7 @@ const Page = () => {
     <div className="px-4">
       <SectionHeader
         title={`Epic: ${epic.title}`}
-        callback={() => router.push(`/epics/edit/${epic.id}`)}
+        callback={() => router.push(`/epics/update/${epic.id}`)}
         iconDefinition={faPenToSquare}
         buttonLabel="Edit"
       />
