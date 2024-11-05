@@ -12,6 +12,8 @@ import { themeStore } from "@/stores/themeStore";
 import { getTaskFromPrompt } from "@/lib/openai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "./Dropdown";
+import { epicStore } from "@/stores/epicStore";
 
 interface TaskModalProps {
   ticket?: Ticket; // Optional task for update mode
@@ -22,6 +24,7 @@ interface TaskModalProps {
 const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   // Store
   const { createTask, deleteTask, updateTask } = taskStore();
+  const { epics } = epicStore();
   const { currentTheme } = themeStore();
 
   // Colors
@@ -121,6 +124,11 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
               className="border-[0.5px] p-2 resize-none h-full text-xs outline-none text-black mb-2"
             />
           </form>
+
+          {/* Epic drowdown */}
+          <div>
+            <Dropdown dropdownItems={epics.map((epic) => epic.title)} />
+          </div>
 
           {/* AI Chat */}
           {!ticket && (
