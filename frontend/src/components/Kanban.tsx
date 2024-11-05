@@ -1,23 +1,21 @@
 // Components
 import TicketTabColumn from "@/components/TicketTabColumn";
-import ProjectsHeader from "@/components/ProjectsHeader";
 
 // Types
-import { Ticket, TicketStatus } from "@/types/types";
+import { Ticket } from "@/types/types";
+import { getTicketsByStatus } from "@/utils/getTicketsByStatus";
 
 interface KanbanProps {
-  ticketsByStatus: { status: TicketStatus; tickets: Ticket[] }[];
+  tickets: Ticket[];
 }
 
-const Kanban = ({ ticketsByStatus }: KanbanProps) => {
+const Kanban = ({ tickets }: KanbanProps) => {
+  const ticketsByStatus = getTicketsByStatus(tickets);
   return (
-    <div className="w-full">
-      <ProjectsHeader />
-      <div className="flex justify-center">
-        {ticketsByStatus.map((tickets, key) => (
-          <TicketTabColumn key={key} status={tickets.status} tickets={tickets.tickets} />
-        ))}
-      </div>
+    <div className="flex justify-center">
+      {ticketsByStatus.map((tickets, key) => (
+        <TicketTabColumn key={key} status={tickets.status} tickets={tickets.tickets} />
+      ))}
     </div>
   );
 };

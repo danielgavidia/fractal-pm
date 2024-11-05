@@ -1,18 +1,19 @@
 "use client";
 
 import { epicStore } from "@/stores/epicStore";
-import { getTicketsByStatus } from "@/utils/getTicketsByStatus";
 
 // Components
 import Kanban from "@/components/Kanban";
+import SectionHeader from "@/components/SectionHeader";
 
 const Page = () => {
   const { epics } = epicStore();
-  const epicsByStatus = getTicketsByStatus(epics);
+
   return (
-    <>
-      <Kanban ticketsByStatus={epicsByStatus} />
-    </>
+    <div className="px-4">
+      <SectionHeader title="Epics" />
+      <Kanban tickets={epics} />
+    </div>
   );
 };
 
