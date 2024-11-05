@@ -13,6 +13,16 @@ export type Task = {
   title: string;
   description: string;
   status: TaskStatus;
+  epicId?: string;
+};
+
+// Epics
+export type Epic = {
+  id: string;
+  title: string;
+  description: string;
+  status: TaskStatus;
+  taskIds: string[];
 };
 
 // Themes
