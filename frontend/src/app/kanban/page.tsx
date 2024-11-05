@@ -1,16 +1,25 @@
 "use client";
-import Kanban from "@/components/Kanban";
 
 import { taskStore } from "@/stores/taskStore";
-import { getTicketsByStatus } from "@/utils/getTicketsByStatus";
+import { useState } from "react";
+
+// Components
+import Kanban from "@/components/Kanban";
+import SectionHeader from "@/components/SectionHeader";
+import TaskModal from "@/components/TaskModal";
 
 const Page = () => {
   const { tasks } = taskStore();
-  const tasksByStatus = getTicketsByStatus(tasks);
+
+  // Local state
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
-    <>
-      <Kanban ticketsByStatus={tasksByStatus} />
-    </>
+    <div className="px-4">
+      <SectionHeader title="Kanban" callback={() => setIsOpen(true)} />
+      <Kanban tickets={tasks} />
+      {isOpen && <TaskModal isOpen={isOpen} onClose={() => setIsOpen(false)} />}
+    </div>
   );
 };
 

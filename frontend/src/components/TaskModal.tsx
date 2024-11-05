@@ -10,6 +10,10 @@ import TaskStatusBadge from "@/components/TaskStatusBadge";
 import { valueToColor } from "@/utils/valueToColor";
 import { themeStore } from "@/stores/themeStore";
 import { getTaskFromPrompt } from "@/lib/openai";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "./Dropdown";
+import { epicStore } from "@/stores/epicStore";
 
 interface TaskModalProps {
   ticket?: Ticket; // Optional task for update mode
@@ -19,7 +23,8 @@ interface TaskModalProps {
 
 const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   // Store
-  const { createTask, updateTask } = taskStore();
+  const { createTask, deleteTask, updateTask } = taskStore();
+  const { epics } = epicStore();
   const { currentTheme } = themeStore();
 
   // Colors
@@ -30,6 +35,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState<string>(ticket?.title || "");
   const [taskDescription, setTaskDescription] = useState<string>(ticket?.description || "");
   const [taskStatus, setTaskStatus] = useState<TicketStatus>(ticket?.status || "notStarted");
+  const [epicId, setEpicId] = useState<string>(ticket?.epicId || epics[0].id);
 
   const [currentMessage, setCurrentMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
@@ -45,6 +51,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
           title: taskTitle,
           description: taskDescription,
           status: taskStatus,
+          epicId: epicId,
         });
       } else {
         // Create mode
@@ -54,7 +61,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
           description: taskDescription,
           status: taskStatus,
           ticketType: "task",
-          epicId: Date.now().toString(),
+          epicId: epicId,
         });
       }
       onClose();
@@ -86,7 +93,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
       <div
-        className="p-6 rounded-lg shadow-lg w-3/4 h-3/4 flex flex-col justify-between"
+        className="p-6 shadow-lg w-3/4 h-3/4 flex flex-col justify-between"
         style={{
           backgroundColor: backgroundSecondary,
           color: textPrimary,
@@ -120,6 +127,12 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
             />
           </form>
 
+          {/* Epic drowdown */}
+          <div className="flex flex-col items-center space-y-2">
+            <p className="text-xs text-left w-full p">Epic: </p>
+            <Dropdown dropdownItems={epics.map((epic) => epic.title)} callback={setEpicId} />
+          </div>
+
           {/* AI Chat */}
           {!ticket && (
             <div className="flex flex-col h-full space-y-2 border-t-[0.5px] py-2">
@@ -144,6 +157,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
                     borderColor: textPrimary,
                     color: textPrimary,
                   }}
+                  placeholder="Start chat"
                 ></input>
               </form>
             </div>
@@ -183,16 +197,30 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
         )}
 
         {/* Cancel, update and create buttons */}
-        <div className="flex justify-end gap-2">
-          <button type="button" onClick={onClose} className="px-4 py-2 border rounded text-sm">
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-2 hover:bg-blue-500 bg-black text-white rounded text-sm"
-          >
-            {ticket ? "Update" : "Create"}
-          </button>
+        <div className={`flex items-center ${ticket ? "justify-between" : "justify-end"}`}>
+          {ticket && (
+            <button
+              onClick={() => {
+                deleteTask(ticket.id);
+                onClose();
+              }}
+              className="text-red-500 p-2 border-[1px] border-red-500 rounded flex items-center space-x-2 text-sm"
+            >
+              <p>Delete</p>
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          )}
+          <div className="flex gap-2">
+            <button type="button" onClick={onClose} className="p-2 border rounded text-sm">
+              Cancel
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="p-2 hover:bg-blue-500 bg-black text-white rounded text-sm"
+            >
+              {ticket ? "Update" : "Create"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
