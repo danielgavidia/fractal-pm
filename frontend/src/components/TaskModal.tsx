@@ -10,6 +10,8 @@ import TaskStatusBadge from "@/components/TaskStatusBadge";
 import { valueToColor } from "@/utils/valueToColor";
 import { themeStore } from "@/stores/themeStore";
 import { getTaskFromPrompt } from "@/lib/openai";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface TaskModalProps {
   ticket?: Ticket; // Optional task for update mode
@@ -19,7 +21,7 @@ interface TaskModalProps {
 
 const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   // Store
-  const { createTask, updateTask } = taskStore();
+  const { createTask, deleteTask, updateTask } = taskStore();
   const { currentTheme } = themeStore();
 
   // Colors
@@ -183,16 +185,30 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
         )}
 
         {/* Cancel, update and create buttons */}
-        <div className="flex justify-end gap-2">
-          <button type="button" onClick={onClose} className="px-4 py-2 border rounded text-sm">
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-2 hover:bg-blue-500 bg-black text-white rounded text-sm"
-          >
-            {ticket ? "Update" : "Create"}
-          </button>
+        <div className="flex justify-between items-center">
+          {ticket && (
+            <button
+              onClick={() => {
+                deleteTask(ticket.id);
+                onClose();
+              }}
+              className="text-red-500 p-2 border-[1px] border-red-500 rounded flex items-center space-x-2 text-sm"
+            >
+              <p>Delete</p>
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          )}
+          <div className="flex gap-2">
+            <button type="button" onClick={onClose} className="p-2 border rounded text-sm">
+              Cancel
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="p-2 hover:bg-blue-500 bg-black text-white rounded text-sm"
+            >
+              {ticket ? "Update" : "Create"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
