@@ -11,7 +11,7 @@ interface KanbanProps {
 
 const Kanban = ({ ticketsByStatus }: KanbanProps) => {
   return (
-    <div className="px-4 w-full">
+    <div className="w-full">
       <ProjectsHeader />
       <div className="flex justify-center">
         {ticketsByStatus.map((tickets, key) => (
