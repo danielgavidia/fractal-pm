@@ -6,6 +6,7 @@ export const dummyEpics: Epic[] = [
     title: "User Authentication & Management",
     description: "Implement core user authentication and management features",
     status: "inProgress",
+    ticketType: "epic",
     taskIds: ["task-2", "task-9", "task-10", "task-13", "task-14", "task-16", "task-17", "task-18"],
   },
   {
@@ -13,6 +14,7 @@ export const dummyEpics: Epic[] = [
     title: "UI/UX Improvements",
     description: "Enhance user interface and overall user experience",
     status: "inProgress",
+    ticketType: "epic",
     taskIds: ["task-1", "task-4", "task-6", "task-12"],
   },
   {
@@ -20,6 +22,7 @@ export const dummyEpics: Epic[] = [
     title: "Documentation & Testing",
     description: "Comprehensive documentation and testing implementation",
     status: "inProgress",
+    ticketType: "epic",
     taskIds: ["task-3", "task-7", "task-15", "task-19"],
   },
   {
@@ -27,6 +30,7 @@ export const dummyEpics: Epic[] = [
     title: "Infrastructure & DevOps",
     description: "Setup and maintain development and deployment infrastructure",
     status: "inProgress",
+    ticketType: "epic",
     taskIds: ["task-5", "task-8", "task-11", "task-20"],
   },
 ];

@@ -6,6 +6,7 @@ export const dummyTasks: Task[] = [
     title: "Design User Interface",
     description: "Create wireframes and mockups for the new dashboard",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-2",
   },
   {
@@ -13,6 +14,7 @@ export const dummyTasks: Task[] = [
     title: "Implement Authentication",
     description: "Set up user authentication using NextAuth.js",
     status: "inProgress",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -20,6 +22,7 @@ export const dummyTasks: Task[] = [
     title: "Write API Documentation",
     description: "Document all API endpoints and their usage",
     status: "completed",
+    ticketType: "task",
     epicId: "epic-3",
   },
   {
@@ -27,6 +30,7 @@ export const dummyTasks: Task[] = [
     title: "Fix Navigation Bug",
     description: "Debug and fix the navigation menu responsiveness issue",
     status: "archived",
+    ticketType: "task",
     epicId: "epic-2",
   },
   {
@@ -34,6 +38,7 @@ export const dummyTasks: Task[] = [
     title: "Database Schema Design",
     description: "Design and document the database schema for user management",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-5",
   },
   {
@@ -41,6 +46,7 @@ export const dummyTasks: Task[] = [
     title: "Optimize Image Loading",
     description: "Implement lazy loading for images to improve performance",
     status: "inProgress",
+    ticketType: "task",
     epicId: "epic-2",
   },
   {
@@ -48,6 +54,7 @@ export const dummyTasks: Task[] = [
     title: "Unit Test Components",
     description: "Write comprehensive unit tests for React components",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-3",
   },
   {
@@ -55,6 +62,7 @@ export const dummyTasks: Task[] = [
     title: "Setup CI/CD Pipeline",
     description: "Configure GitHub Actions for automated deployment",
     status: "completed",
+    ticketType: "task",
     epicId: "epic-5",
   },
   {
@@ -62,6 +70,7 @@ export const dummyTasks: Task[] = [
     title: "Implement Search Feature",
     description: "Add full-text search functionality to the dashboard",
     status: "inProgress",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -69,6 +78,7 @@ export const dummyTasks: Task[] = [
     title: "Mobile Responsiveness",
     description: "Ensure all pages are properly responsive on mobile devices",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -76,6 +86,7 @@ export const dummyTasks: Task[] = [
     title: "Error Handling",
     description: "Implement global error boundary and error pages",
     status: "archived",
+    ticketType: "task",
     epicId: "epic-5",
   },
   {
@@ -83,6 +94,7 @@ export const dummyTasks: Task[] = [
     title: "Performance Monitoring",
     description: "Set up performance monitoring tools and analytics",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-2",
   },
   {
@@ -90,6 +102,7 @@ export const dummyTasks: Task[] = [
     title: "Security Audit",
     description: "Conduct security assessment and fix vulnerabilities",
     status: "inProgress",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -97,6 +110,7 @@ export const dummyTasks: Task[] = [
     title: "Accessibility Review",
     description: "Ensure WCAG 2.1 compliance across all features",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -104,6 +118,7 @@ export const dummyTasks: Task[] = [
     title: "Data Export Feature",
     description: "Add functionality to export data in CSV/PDF formats",
     status: "completed",
+    ticketType: "task",
     epicId: "epic-3",
   },
   {
@@ -111,6 +126,7 @@ export const dummyTasks: Task[] = [
     title: "User Onboarding Flow",
     description: "Design and implement user onboarding experience",
     status: "inProgress",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -118,6 +134,7 @@ export const dummyTasks: Task[] = [
     title: "API Rate Limiting",
     description: "Implement rate limiting for API endpoints",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -125,6 +142,7 @@ export const dummyTasks: Task[] = [
     title: "Password Reset Flow",
     description: "Add forgot password and reset functionality",
     status: "completed",
+    ticketType: "task",
     epicId: "epic-1",
   },
   {
@@ -132,6 +150,7 @@ export const dummyTasks: Task[] = [
     title: "Code Documentation",
     description: "Update inline code documentation and README files",
     status: "archived",
+    ticketType: "task",
     epicId: "epic-3",
   },
   {
@@ -139,6 +158,7 @@ export const dummyTasks: Task[] = [
     title: "Third-party Integrations",
     description: "Integrate with external payment and analytics services",
     status: "notStarted",
+    ticketType: "task",
     epicId: "epic-5",
   },
 ];
