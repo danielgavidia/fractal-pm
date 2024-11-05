@@ -25,7 +25,7 @@ export interface Task extends Ticket {
 
 // Epics
 export interface Epic extends Ticket {
-  taskIds: string[];
+  taskIds?: string[];
 }
 
 // Themes
