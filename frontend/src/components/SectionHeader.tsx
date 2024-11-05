@@ -19,7 +19,7 @@ const SectionHeader = ({ title, callback }: SectionHeaderProps) => {
   return (
     <>
       <div
-        className="w-full border-b-[0.5px] py-4 font-bold sticky top-0 flex"
+        className="w-full border-b-[0.5px] py-4 mb-2 font-bold sticky top-0 flex"
         style={{ backgroundColor: backgroundColor }}
       >
         <p className="flex-1">{title}</p>
