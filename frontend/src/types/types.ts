@@ -1,19 +1,22 @@
-// Tasks
-export type TaskStatus = "notStarted" | "inProgress" | "completed" | "archived";
+// Tickets
+export type TicketStatus = "notStarted" | "inProgress" | "completed" | "archived";
 
-export enum TaskStatusEnums {
+export enum TicketStatusEnums {
   NOT_STARTED = "notStarted",
   IN_PROGRESS = "inProgress",
   COMPLETED = "completed",
   ARCHIVED = "archived",
 }
 
+export type Ticket = Task | Epic;
+
+// Tasks
 export type Task = {
   id: string;
   title: string;
   description: string;
-  status: TaskStatus;
-  epicId?: string;
+  status: TicketStatus;
+  epicId: string;
 };
 
 // Epics
@@ -21,7 +24,7 @@ export type Epic = {
   id: string;
   title: string;
   description: string;
-  status: TaskStatus;
+  status: TicketStatus;
   taskIds: string[];
 };
 

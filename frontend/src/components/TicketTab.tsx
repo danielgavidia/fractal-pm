@@ -1,18 +1,19 @@
-import { Task } from "@/types/types";
+import { Ticket } from "@/types/types";
 import { useState } from "react";
 import { truncateText } from "@/utils/truncateText";
 
 // Components
 import TaskStatusBadge from "@/components/TaskStatusBadge";
-import TaskModal from "@/components/TaskModal";
+// import TaskModal from "@/components/TaskModal";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
 
-interface TaskTabProps {
-  task: Task;
+interface TicketTabProps {
+  ticket: Ticket;
+  // ticketType: "task" | "epic";
 }
 
-const TaskTab = ({ task }: TaskTabProps) => {
+const TicketTab = ({ ticket }: TicketTabProps) => {
   const { currentTheme } = themeStore();
 
   // Local state
@@ -28,13 +29,17 @@ const TaskTab = ({ task }: TaskTabProps) => {
           borderColor: valueToColor(currentTheme.textPrimary),
         }}
       >
-        <div className="font-semibold h-10 text-left">{truncateText(task.title, 30)}</div>
-        <div className="text-[10px] text-left h-14">{truncateText(task.description, 60)}</div>
-        <TaskStatusBadge status={task.status} />
+        <div className="font-semibold h-10 text-left">{truncateText(ticket.title, 30)}</div>
+        <div className="text-[10px] text-left h-14">{truncateText(ticket.description, 60)}</div>
+        <TaskStatusBadge status={ticket.status} />
       </button>
-      {isOpen && <TaskModal task={task} isOpen={isOpen} onClose={() => setIsOpen(false)} />}
+      {/* {isOpen && ticketType === "task" ? (
+        <TaskModal ticket={ticket} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      ) : (
+        <></>
+      )} */}
     </>
   );
 };
 
-export default TaskTab;
+export default TicketTab;

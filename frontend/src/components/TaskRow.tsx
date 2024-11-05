@@ -25,7 +25,7 @@ const TaskRow = ({ task }: TaskRowProps) => {
         <p className="text-xs min-w-28 text-left">{task.title}</p>
         <TaskStatusBadge status={task.status} />
       </button>
-      {isOpen && <TaskModal task={task} isOpen={isOpen} onClose={handleClose} />}
+      {isOpen && <TaskModal ticket={task} isOpen={isOpen} onClose={handleClose} />}
     </>
   );
 };

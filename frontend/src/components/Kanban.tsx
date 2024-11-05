@@ -1,20 +1,21 @@
-import { taskStore } from "@/stores/taskStore";
-import { getTasksByStatus } from "@/utils/getTasksByStatus";
-
 // Components
-import TaskTabColumn from "@/components/TaskTabColumn";
+import TicketTabColumn from "@/components/TicketTabColumn";
 import ProjectsHeader from "@/components/ProjectsHeader";
 
-const Kanban = () => {
-  const { tasks } = taskStore();
-  const tasksByStatus = getTasksByStatus(tasks);
+// Types
+import { Ticket, TicketStatus } from "@/types/types";
 
+interface KanbanProps {
+  ticketsByStatus: { status: TicketStatus; tickets: Ticket[] }[];
+}
+
+const Kanban = ({ ticketsByStatus }: KanbanProps) => {
   return (
     <div className="px-4 w-full">
       <ProjectsHeader />
       <div className="flex justify-center">
-        {tasksByStatus.map((tasks, key) => (
-          <TaskTabColumn key={key} status={tasks.status} tasks={tasks.tasks} />
+        {ticketsByStatus.map((tickets, key) => (
+          <TicketTabColumn key={key} status={tickets.status} tickets={tickets.tickets} />
         ))}
       </div>
     </div>
