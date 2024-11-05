@@ -1,6 +1,7 @@
 "use client";
 
 import SectionHeader from "@/components/SectionHeader";
+import TicketStatusPicker from "@/components/TicketStatusPicker";
 import { epicStore } from "@/stores/epicStore";
 import { Epic, TicketStatus } from "@/types/types";
 import { useParams, useRouter } from "next/navigation";
@@ -63,6 +64,10 @@ const Page = () => {
           className="p-2 text-xs outline-none text-black"
         ></textarea>
       </form>
+
+      {/* Epic status */}
+      <p className="text-xs">Status</p>
+      <TicketStatusPicker callback={setEpicStatus} defaultStatus={epicStatus} />
 
       {/* Submit */}
       <button onClick={handleSubmit} className="w-full border-[1px] p-2">
