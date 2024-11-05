@@ -1,5 +1,5 @@
 import { taskStore } from "@/stores/taskStore";
-import { Task, TaskStatus } from "@/types/types";
+import { Task as Ticket, TicketStatus } from "@/types/types";
 import { statusMapping } from "@/utils/statusMapping";
 import { useState } from "react";
 
@@ -12,12 +12,12 @@ import { themeStore } from "@/stores/themeStore";
 import { getTaskFromPrompt } from "@/lib/openai";
 
 interface TaskModalProps {
-  task?: Task; // Optional task for update mode
+  ticket?: Ticket; // Optional task for update mode
   isOpen: boolean;
   onClose: () => void;
 }
 
-const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
+const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   // Store
   const { createTask, updateTask } = taskStore();
   const { currentTheme } = themeStore();
@@ -27,9 +27,9 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
   const textPrimary = valueToColor(currentTheme.textPrimary);
 
   // Local state
-  const [taskTitle, setTaskTitle] = useState<string>(task?.title || "");
-  const [taskDescription, setTaskDescription] = useState<string>(task?.description || "");
-  const [taskStatus, setTaskStatus] = useState<TaskStatus>(task?.status || "notStarted");
+  const [taskTitle, setTaskTitle] = useState<string>(ticket?.title || "");
+  const [taskDescription, setTaskDescription] = useState<string>(ticket?.description || "");
+  const [taskStatus, setTaskStatus] = useState<TicketStatus>(ticket?.status || "notStarted");
 
   const [currentMessage, setCurrentMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
@@ -38,10 +38,10 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (taskTitle !== "" && taskDescription !== "") {
-      if (task) {
+      if (ticket) {
         // Update mode
-        updateTask(task.id, {
-          ...task,
+        updateTask(ticket.id, {
+          ...ticket,
           title: taskTitle,
           description: taskDescription,
           status: taskStatus,
@@ -53,6 +53,7 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
           title: taskTitle,
           description: taskDescription,
           status: taskStatus,
+          epicId: Date.now().toString(),
         });
       }
       onClose();
@@ -92,7 +93,7 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
       >
         {/* Modal header */}
         <div className="flex justify-between items-center mb-4">
-          <div className="text-sm font-bold">{task ? "Update Task" : "Create Task"}</div>
+          <div className="text-sm font-bold">{ticket ? "Update Task" : "Create Task"}</div>
           <button onClick={onClose}>✕</button>
         </div>
 
@@ -119,7 +120,7 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
           </form>
 
           {/* AI Chat */}
-          {!task && (
+          {!ticket && (
             <div className="flex flex-col h-full space-y-2 border-t-[0.5px] py-2">
               <div className="text-sm text-center">AI Chat</div>
               <textarea
@@ -149,7 +150,7 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
         </div>
 
         {/* Status changes */}
-        {task && (
+        {ticket && (
           <div className="grid grid-cols-2 py-2">
             {Object.values(statusMapping).map((status, key) => {
               if (status.name === taskStatus) {
@@ -189,7 +190,7 @@ const TaskModal = ({ task, isOpen, onClose }: TaskModalProps) => {
             onClick={handleSubmit}
             className="px-4 py-2 hover:bg-blue-500 bg-black text-white rounded text-sm"
           >
-            {task ? "Update" : "Create"}
+            {ticket ? "Update" : "Create"}
           </button>
         </div>
       </div>

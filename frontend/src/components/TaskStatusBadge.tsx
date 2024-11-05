@@ -1,10 +1,10 @@
 "use client";
 
-import { TaskStatus } from "@/types/types";
+import { TicketStatus } from "@/types/types";
 import { statusMapping } from "@/utils/statusMapping";
 
 interface TaskStatusBadgeProps {
-  status: TaskStatus;
+  status: TicketStatus;
 }
 
 const TaskStatusBadge = ({ status }: TaskStatusBadgeProps) => {
