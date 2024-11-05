@@ -1,11 +1,12 @@
 "use client";
+
 import { epicStore } from "@/stores/epicStore";
 import { getTicketsByStatus } from "@/utils/getTicketsByStatus";
 
 // Components
 import Kanban from "@/components/Kanban";
 
-const page = () => {
+const Page = () => {
   const { epics } = epicStore();
   const epicsByStatus = getTicketsByStatus(epics);
   return (
@@ -15,4 +16,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

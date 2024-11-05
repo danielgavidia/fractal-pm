@@ -1,8 +1,15 @@
-import React from "react";
+"use client";
 
-const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const slug = (await params).slug;
-  return <div>Epic: {slug}</div>;
+import EpicDisplay from "@/components/EpicDisplay";
+import { epicStore } from "@/stores/epicStore";
+import { useParams } from "next/navigation";
+
+const Page = () => {
+  const params = useParams();
+  const { epics } = epicStore();
+  const epic = epics.find((epic) => epic.id === params.slug);
+
+  return <div>{epic && <EpicDisplay epic={epic} />}</div>;
 };
 
-export default page;
+export default Page;
