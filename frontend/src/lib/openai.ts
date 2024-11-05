@@ -1,8 +1,8 @@
+import { Task } from "@/types/types";
+import { cleanResponseString } from "@/utils/cleanResponseString";
 import OpenAI from "openai";
-import dotenv from "dotenv";
-dotenv.config();
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
+const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY });
 
 export const openaiChatCompletions = async (
   model: string,
@@ -31,25 +31,31 @@ export const openaiChatCompletions = async (
   }
 };
 
-export const getTaskFromPrompt = async (description: string): Promise<string> => {
+export const getTaskFromPrompt = async (prompt: string): Promise<Task> => {
   const model = "gpt-4o-mini";
   const systemContent = `
-    You are a helpful assistant tasked with extracting dates from strings.
-    Return ONLY a date string in ISO 8601 format (YYYY-MM-DDTHH:mm:ss).
-    Example: 2023-10-24T19:30:00
-    Do not include any other text in your response.
-    When looking for the date, focus on the first few words in the string.
+    You are a helpful assistant tasked with generating task tickets.
+    Return only JSON objects with this structure:
+    {
+      id: number; // Must be a timestamp in milliseconds (return the actual number)
+      title: string;
+      description: string;
+      status: "notStarted" | "inProgress" | "completed" | "archived";
+    }
+    Always use the current timestamp in milliseconds for the id.
+    `;
 
-    Current date: ${new Date().toISOString()}
-    
-    Rules for determining the year:
-    1. If the month in the text is later than the current month, use current year
-    2. If the month in the text is earlier than the current month, use next year
-    3. If the month is the same as current month, compare the day:
-       - If the day is later than or equal to today, use current year
-       - If the day is earlier than today, use next year`;
-
-  const userContent = `Extract the date and time from this event description: ${description}`;
+  const userContent = `Generate a task based on this user prompt: ${prompt}`;
   const res = await openaiChatCompletions(model, systemContent, userContent);
-  return new Date(res).toISOString();
+
+  // Clean string
+  const resCleaned = cleanResponseString(res);
+  console.log(resCleaned);
+
+  // Parse
+  const task: Task = JSON.parse(resCleaned);
+  return task;
 };
+
+const res = await getTaskFromPrompt("Hi. Bake a cake.");
+console.log(res);
