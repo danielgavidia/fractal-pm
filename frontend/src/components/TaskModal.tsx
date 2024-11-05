@@ -96,7 +96,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
       <div
-        className="p-6 shadow-lg w-3/4 h-3/4 flex flex-col justify-between"
+        className="p-6 shadow-lg w-1/2 h-3/4 flex flex-col justify-between"
         style={{
           backgroundColor: backgroundPrimary,
           color: textPrimary,

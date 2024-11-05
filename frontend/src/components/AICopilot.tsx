@@ -1,22 +1,33 @@
 "use client";
 
+import { getTaskFromPrompt } from "@/lib/openai";
+import { taskStore } from "@/stores/taskStore";
 import { themeStore } from "@/stores/themeStore";
+import { Task } from "@/types/types";
 import { valueToColor } from "@/utils/valueToColor";
 import { useState } from "react";
 
 const AICopilot = () => {
+  // Themes
   const { currentTheme } = themeStore();
   const backgroundPrimary = valueToColor(currentTheme.backgroundPrimary);
   const textPrimary = valueToColor(currentTheme.textPrimary);
+
+  // Tasks
+  const { createTask } = taskStore();
 
   // Local state
   const [messages, setMessages] = useState<string[]>([]);
   const [currentMessage, setCurrentMessage] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessages((prev) => [...prev, currentMessage]);
     setCurrentMessage("");
+
+    // AI
+    const taskFromPrompt: Task = await getTaskFromPrompt(currentMessage);
+    createTask(taskFromPrompt);
   };
 
   return (
