@@ -157,6 +157,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
                     borderColor: textPrimary,
                     color: textPrimary,
                   }}
+                  placeholder="Start chat"
                 ></input>
               </form>
             </div>
@@ -196,7 +197,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
         )}
 
         {/* Cancel, update and create buttons */}
-        <div className="flex justify-between items-center">
+        <div className={`flex items-center ${ticket ? "justify-between" : "justify-end"}`}>
           {ticket && (
             <button
               onClick={() => {

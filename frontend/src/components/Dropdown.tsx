@@ -1,5 +1,3 @@
-import { themeStore } from "@/stores/themeStore";
-import { valueToColor } from "@/utils/valueToColor";
 import React, { useState } from "react";
 
 interface DropdownProps {
@@ -8,9 +6,6 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ dropdownItems, callback }: DropdownProps) => {
-  const { currentTheme } = themeStore();
-  const backgroundPrimary = valueToColor(currentTheme.backgroundPrimary);
-
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(dropdownItems[0] || "");
 
@@ -21,7 +16,7 @@ const Dropdown = ({ dropdownItems, callback }: DropdownProps) => {
   };
 
   return (
-    <div className="relative w-full text-xs text-left" style={{ color: backgroundPrimary }}>
+    <div className="relative w-full text-xs text-left" style={{ color: "black" }}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-2 bg-white border text-left shadow-sm hover:bg-gray-50"
