@@ -1,8 +1,8 @@
 import { taskStore } from "@/stores/taskStore";
 
 // Components
-import ProjectsHeader from "./ProjectsHeader";
-import TaskRow from "./TaskRow";
+import ProjectsHeader from "@/components/ProjectsHeader";
+import TaskRow from "@/components/TaskRow";
 
 const Backlog = () => {
   const { tasks } = taskStore();
