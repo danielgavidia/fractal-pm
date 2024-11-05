@@ -1,7 +1,8 @@
 import React from "react";
 
-const Page = ({ params }: { params: { slug: string } }) => {
-  return <div>Epic: {params.slug}</div>;
+const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const slug = (await params).slug;
+  return <div>Epic: {slug}</div>;
 };
 
-export default Page;
+export default page;
