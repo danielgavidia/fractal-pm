@@ -6,6 +6,7 @@ interface EpicStoreState {
   epics: Epic[];
   createEpic: (epic: Epic) => void;
   updateEpic: (epicId: string, epic: Epic) => void;
+  deleteEpic: (epicId: string) => void;
   // createTask: (task: Task) => void;
   // deleteTask: (taskId: string) => void;
   // updateTask: (taskId: string, newTask: Task) => void;
@@ -19,6 +20,9 @@ export const epicStore = create<EpicStoreState>((set) => ({
     set((state) => ({
       epics: state.epics.map((epic) => (epic.id === epicId ? newEpic : epic)),
     })),
+  deleteEpic: (epicId: string) => {
+    set((state) => ({ epics: state.epics.filter((epic) => epic.id !== epicId) }));
+  },
   // deleteTask: (taskId: string) =>
   //   set((state) => ({ tasks: state.tasks.filter((task) => task.id !== taskId) })),
   // updateTask: (taskId: string, newTask: Task) =>

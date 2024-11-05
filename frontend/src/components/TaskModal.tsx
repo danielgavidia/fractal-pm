@@ -31,7 +31,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   const { currentTheme } = themeStore();
 
   // Colors
-  const backgroundSecondary = valueToColor(currentTheme.backgroundSecondary);
+  const backgroundPrimary = valueToColor(currentTheme.backgroundPrimary);
   const textPrimary = valueToColor(currentTheme.textPrimary);
 
   // Local state
@@ -98,7 +98,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
       <div
         className="p-6 shadow-lg w-3/4 h-3/4 flex flex-col justify-between"
         style={{
-          backgroundColor: backgroundSecondary,
+          backgroundColor: backgroundPrimary,
           color: textPrimary,
         }}
       >
@@ -143,7 +143,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
               <textarea
                 className="flex-1 p-2 text-xs outline-none text-black text-right border-[0.5px]"
                 style={{
-                  backgroundColor: backgroundSecondary,
+                  backgroundColor: backgroundPrimary,
                   borderColor: textPrimary,
                   color: textPrimary,
                 }}
@@ -156,7 +156,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
                   onChange={(e) => setCurrentMessage(e.target.value)}
                   className="w-full h-full text-black outline-none text-xs p-2 border-[0.5px]"
                   style={{
-                    backgroundColor: backgroundSecondary,
+                    backgroundColor: backgroundPrimary,
                     borderColor: textPrimary,
                     color: textPrimary,
                   }}

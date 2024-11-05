@@ -8,7 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Page = () => {
-  const { updateEpic } = epicStore();
+  const { updateEpic, deleteEpic } = epicStore();
   const router = useRouter();
 
   // Get epic
@@ -66,12 +66,22 @@ const Page = () => {
       </form>
 
       {/* Epic status */}
-      <p className="text-xs">Status</p>
-      <TicketStatusPicker callback={setEpicStatus} defaultStatus={epicStatus} />
+      <div>
+        <p className="text-xs">Status</p>
+        <TicketStatusPicker callback={setEpicStatus} defaultStatus={epicStatus} />
+      </div>
 
-      {/* Submit */}
+      {/* Update */}
       <button onClick={handleSubmit} className="w-full border-[1px] p-2">
         Update
+      </button>
+
+      {/* Delete */}
+      <button
+        onClick={() => deleteEpic(epic.id)}
+        className="w-full border-[1px] border-red-500 text-red-500 p-2"
+      >
+        Delete
       </button>
     </div>
   );

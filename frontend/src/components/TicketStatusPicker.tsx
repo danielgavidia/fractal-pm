@@ -11,7 +11,8 @@ interface TicketStatusPickerProps {
 
 const TicketStatusPicker = ({ callback, defaultStatus }: TicketStatusPickerProps) => {
   const { currentTheme } = themeStore();
-  const backgroundSecondary = valueToColor(currentTheme.backgroundSecondary);
+  const backgroundPrimary = valueToColor(currentTheme.backgroundPrimary);
+  const textPrimary = valueToColor(currentTheme.textPrimary);
 
   return (
     <div className="grid grid-cols-2 py-2">
@@ -22,6 +23,7 @@ const TicketStatusPicker = ({ callback, defaultStatus }: TicketStatusPickerProps
               key={key}
               onClick={() => callback(status.name)}
               className="p-1 border-[0.5px] rounded-xl"
+              style={{ borderColor: textPrimary }}
             >
               <TicketStatusBadge status={status.name} />
             </button>
@@ -32,7 +34,7 @@ const TicketStatusPicker = ({ callback, defaultStatus }: TicketStatusPickerProps
               key={key}
               onClick={() => callback(status.name)}
               className="p-1 border-[0.5px] rounded-xl"
-              style={{ borderColor: backgroundSecondary }}
+              style={{ borderColor: backgroundPrimary }}
             >
               <TicketStatusBadge status={status.name} />
             </button>
