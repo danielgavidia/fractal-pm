@@ -1,19 +1,22 @@
-import { taskStore } from "@/stores/taskStore";
-import { Task as Ticket, TicketStatus } from "@/types/types";
-import { statusMapping } from "@/utils/statusMapping";
 import { useState } from "react";
+import { Task as Ticket, TicketStatus } from "@/types/types";
 
-//Components
-import TaskStatusBadge from "@/components/TaskStatusBadge";
+// Store
+import { taskStore } from "@/stores/taskStore";
+import { themeStore } from "@/stores/themeStore";
+import { epicStore } from "@/stores/epicStore";
+
+// Components
+import Dropdown from "@/components/Dropdown";
+import TicketStatusPicker from "@/components/TicketStatusPicker";
+
+// Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 // Utils
 import { valueToColor } from "@/utils/valueToColor";
-import { themeStore } from "@/stores/themeStore";
 import { getTaskFromPrompt } from "@/lib/openai";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import Dropdown from "./Dropdown";
-import { epicStore } from "@/stores/epicStore";
 
 interface TaskModalProps {
   ticket?: Ticket; // Optional task for update mode
@@ -28,7 +31,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
   const { currentTheme } = themeStore();
 
   // Colors
-  const backgroundSecondary = valueToColor(currentTheme.backgroundSecondary);
+  const backgroundPrimary = valueToColor(currentTheme.backgroundPrimary);
   const textPrimary = valueToColor(currentTheme.textPrimary);
 
   // Local state
@@ -95,7 +98,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
       <div
         className="p-6 shadow-lg w-3/4 h-3/4 flex flex-col justify-between"
         style={{
-          backgroundColor: backgroundSecondary,
+          backgroundColor: backgroundPrimary,
           color: textPrimary,
         }}
       >
@@ -140,7 +143,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
               <textarea
                 className="flex-1 p-2 text-xs outline-none text-black text-right border-[0.5px]"
                 style={{
-                  backgroundColor: backgroundSecondary,
+                  backgroundColor: backgroundPrimary,
                   borderColor: textPrimary,
                   color: textPrimary,
                 }}
@@ -153,7 +156,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
                   onChange={(e) => setCurrentMessage(e.target.value)}
                   className="w-full h-full text-black outline-none text-xs p-2 border-[0.5px]"
                   style={{
-                    backgroundColor: backgroundSecondary,
+                    backgroundColor: backgroundPrimary,
                     borderColor: textPrimary,
                     color: textPrimary,
                   }}
@@ -165,36 +168,7 @@ const TaskModal = ({ ticket, isOpen, onClose }: TaskModalProps) => {
         </div>
 
         {/* Status changes */}
-        {ticket && (
-          <div className="grid grid-cols-2 py-2">
-            {Object.values(statusMapping).map((status, key) => {
-              if (status.name === taskStatus) {
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setTaskStatus(status.name)}
-                    className="p-1 border-[0.5px] rounded-xl"
-                  >
-                    <TaskStatusBadge status={status.name} />
-                  </button>
-                );
-              } else {
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setTaskStatus(status.name)}
-                    className="p-1 border-[0.5px]"
-                    style={{
-                      borderColor: backgroundSecondary,
-                    }}
-                  >
-                    <TaskStatusBadge status={status.name} />
-                  </button>
-                );
-              }
-            })}
-          </div>
-        )}
+        {ticket && <TicketStatusPicker callback={setTaskStatus} defaultStatus={taskStatus} />}
 
         {/* Cancel, update and create buttons */}
         <div className={`flex items-center ${ticket ? "justify-between" : "justify-end"}`}>

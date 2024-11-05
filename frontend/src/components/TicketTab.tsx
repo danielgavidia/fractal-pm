@@ -4,7 +4,7 @@ import { truncateText } from "@/utils/truncateText";
 import { useRouter } from "next/navigation";
 
 // Components
-import TaskStatusBadge from "@/components/TaskStatusBadge";
+import TicketStatusBadge from "@/components/TicketStatusBadge";
 import TaskModal from "@/components/TaskModal";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
@@ -43,7 +43,7 @@ const TicketTab = ({ ticket }: TicketTabProps) => {
       >
         <div className="font-semibold h-10 text-left">{truncateText(ticket.title, 30)}</div>
         <div className="text-[10px] text-left h-14">{truncateText(ticket.description, 60)}</div>
-        <TaskStatusBadge status={ticket.status} />
+        <TicketStatusBadge status={ticket.status} />
       </button>
       {isOpen && (
         <TaskModal ticket={currentTask} isOpen={isOpen} onClose={() => setIsOpen(false)} />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Task } from "@/types/types";
 
 // Components
-import TaskStatusBadge from "@/components/TaskStatusBadge";
+import TicketStatusBadge from "@/components/TicketStatusBadge";
 import TaskModal from "@/components/TaskModal";
 
 interface TaskRowProps {
@@ -23,7 +23,7 @@ const TaskRow = ({ task }: TaskRowProps) => {
         className="flex border-[0.5px] w-full justify-between items-center p-1"
       >
         <p className="text-xs min-w-28 text-left">{task.title}</p>
-        <TaskStatusBadge status={task.status} />
+        <TicketStatusBadge status={task.status} />
       </button>
       {isOpen && <TaskModal ticket={task} isOpen={isOpen} onClose={handleClose} />}
     </>

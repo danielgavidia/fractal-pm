@@ -5,10 +5,13 @@ import SectionHeader from "@/components/SectionHeader";
 import TaskModal from "@/components/TaskModal";
 import { epicStore } from "@/stores/epicStore";
 import { taskStore } from "@/stores/taskStore";
-import { useParams } from "next/navigation";
+import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Page = () => {
+  const router = useRouter();
+
   // Local state
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -27,11 +30,21 @@ const Page = () => {
 
   return (
     <div className="px-4">
-      <SectionHeader title={`Epic: ${epic.title}`} />
+      <SectionHeader
+        title={`Epic: ${epic.title}`}
+        callback={() => router.push(`/epics/update/${epic.id}`)}
+        iconDefinition={faPenToSquare}
+        buttonLabel="Edit"
+      />
       <div className="italic text-xs text-right">id: {epic.id}</div>
       <div className="text-sm">{epic.description}</div>
       <div>
-        <SectionHeader title="Tasks" callback={() => setIsOpen(true)} />
+        <SectionHeader
+          title="Tasks"
+          callback={() => setIsOpen(true)}
+          iconDefinition={faPlus}
+          buttonLabel="New"
+        />
         <Kanban tickets={currentTasks} />
       </div>
       {isOpen && <TaskModal isOpen={isOpen} onClose={() => setIsOpen(false)} />}
