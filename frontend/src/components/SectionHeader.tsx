@@ -1,7 +1,7 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import { themeStore } from "@/stores/themeStore";
@@ -10,9 +10,11 @@ import { valueToColor } from "@/utils/valueToColor";
 interface SectionHeaderProps {
   title: string;
   callback?: (...args: any[]) => any;
+  iconDefinition?: IconDefinition;
+  buttonLabel?: string;
 }
 
-const SectionHeader = ({ title, callback }: SectionHeaderProps) => {
+const SectionHeader = ({ title, callback, iconDefinition, buttonLabel }: SectionHeaderProps) => {
   const { currentTheme } = themeStore();
   const backgroundColor = valueToColor(currentTheme.backgroundPrimary);
 
@@ -24,8 +26,9 @@ const SectionHeader = ({ title, callback }: SectionHeaderProps) => {
       >
         <p className="flex-1">{title}</p>
         {callback && (
-          <button onClick={() => callback()}>
-            <FontAwesomeIcon icon={faPlus} />
+          <button onClick={() => callback()} className="flex items-center space-x-2">
+            {buttonLabel && <p className="text-xs font-light">{buttonLabel}</p>}
+            {iconDefinition && <FontAwesomeIcon icon={iconDefinition} />}
           </button>
         )}
       </div>
