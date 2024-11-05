@@ -12,14 +12,39 @@ const ThemeDisplay = ({ theme }: ThemeDisplayProps) => {
   return (
     <button
       onClick={() => setCurrentTheme(theme)}
-      className="flex border-[0.5px] items-center w-full"
+      className="flex border-[0.5px] rounded-md items-center w-full p-1"
+      style={{ backgroundColor: valueToColor(backgroundPrimary), color: valueToColor(textPrimary) }}
     >
-      <div className="flex-1 text-left">Theme</div>
-      <div className="flex">
-        <div className="p-4" style={{ backgroundColor: valueToColor(backgroundPrimary) }}></div>
-        <div className="p-4" style={{ backgroundColor: valueToColor(backgroundSecondary) }}></div>
-        <div className="p-4" style={{ backgroundColor: valueToColor(textPrimary) }}></div>
-        <div className="p-4" style={{ backgroundColor: valueToColor(textSecondary) }}></div>
+      <div className="flex-1 text-left text-sm p-1">{theme.name}</div>
+      <div className="flex space-x-1">
+        <div
+          className="p-4 border-[0.5px]"
+          style={{
+            backgroundColor: valueToColor(backgroundPrimary),
+            borderColor: valueToColor(textPrimary),
+          }}
+        ></div>
+        <div
+          className="p-4 border-[0.5px]"
+          style={{
+            backgroundColor: valueToColor(backgroundSecondary),
+            borderColor: valueToColor(textPrimary),
+          }}
+        ></div>
+        <div
+          className="p-4 border-[0.5px]"
+          style={{
+            backgroundColor: valueToColor(textPrimary),
+            borderColor: valueToColor(textPrimary),
+          }}
+        ></div>
+        <div
+          className="p-4 border-[0.5px]"
+          style={{
+            backgroundColor: valueToColor(textSecondary),
+            borderColor: valueToColor(textPrimary),
+          }}
+        ></div>
       </div>
     </button>
   );

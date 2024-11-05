@@ -6,6 +6,7 @@ import { themeStore } from "@/stores/themeStore";
 import { Task } from "@/types/types";
 import { valueToColor } from "@/utils/valueToColor";
 import { useState } from "react";
+import SectionHeader from "./SectionHeader";
 
 const AICopilot = () => {
   // Themes
@@ -32,12 +33,12 @@ const AICopilot = () => {
 
   return (
     <div
-      className="min-w-80 px-4 border-l-2 sticky top-0 h-screen flex flex-col space-y-2"
+      className="min-w-80 px-4 border-l-2 sticky top-0 h-screen flex flex-col"
       style={{ backgroundColor: backgroundPrimary, color: textPrimary }}
     >
-      <p className="font-bold border-b-[0.5px] py-4 mb-4">GavidiaAI</p>
+      <SectionHeader title="GavidiaAI" />
       <textarea
-        className="flex-1 p-4 text-xs outline-none text-right border-[0.5px]"
+        className="flex-1 py-4 text-xs outline-none text-right border-[0.5px]"
         style={{
           backgroundColor: backgroundPrimary,
           borderColor: textPrimary,
