@@ -5,14 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJira } from "@fortawesome/free-brands-svg-icons";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
+import { useResizable } from "@/hooks/useResizable";
 
 const Sidebar = () => {
   const { currentTheme } = themeStore();
+  const { resizableProps, resizerProps } = useResizable({
+    minWidth: 200,
+    defaultWidth: 200,
+    position: "left",
+  });
 
   return (
     <nav
-      className="flex flex-col p-4 min-w-40 bg-gray-100 space-y-2 h-screen sticky top-0"
+      {...resizableProps}
+      className={`flex flex-col p-4 bg-gray-100 space-y-2 h-screen sticky top-0 ${resizableProps.className}`}
       style={{
+        ...resizableProps.style,
         backgroundColor: valueToColor(currentTheme.backgroundSecondary),
         color: valueToColor(currentTheme.textPrimary),
       }}
@@ -44,6 +52,9 @@ const Sidebar = () => {
       <Link href="/themes" className="text-sm">
         Themes
       </Link>
+
+      {/* Resizer handle */}
+      <div {...resizerProps} />
     </nav>
   );
 };
