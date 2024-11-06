@@ -12,7 +12,7 @@ const NavigationBar = ({ navigationItems }: NavigationBarProps) => {
   const [selected, setSelected] = useState<NavigationItem>();
 
   return (
-    <div className="border-b-[0.5px] py-2 flex space-x-3">
+    <div className="flex space-x-3">
       {navigationItems.map((item, key) => (
         <button
           key={key}

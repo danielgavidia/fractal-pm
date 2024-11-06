@@ -2,21 +2,30 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { NavigationItem } from "@/types/types";
+import NavigationBar from "./NavigationBar";
 
 interface SectionHeaderProps {
   title: string;
   callback?: (...args: any[]) => any;
   iconDefinition?: IconDefinition;
   buttonLabel?: string;
+  navigationItems?: NavigationItem[];
 }
 
-const SectionHeader = ({ title, callback, iconDefinition, buttonLabel }: SectionHeaderProps) => {
+const SectionHeader = ({
+  title,
+  callback,
+  iconDefinition,
+  buttonLabel,
+  navigationItems,
+}: SectionHeaderProps) => {
   return (
-    <>
-      <div
-        className="w-full border-b-[0.5px] py-4 mb-6 font-bold sticky top-0 flex"
-        style={{ backdropFilter: "none" }}
-      >
+    <div
+      className="w-full border-b-[0.5px] pt-4 pb-2 mb-2 sticky top-0 flex flex-col space-y-1"
+      style={{ backdropFilter: "none" }}
+    >
+      <div className="flex">
         <p className="flex-1">{title}</p>
         {callback && (
           <button onClick={() => callback()} className="flex items-center space-x-2">
@@ -25,7 +34,8 @@ const SectionHeader = ({ title, callback, iconDefinition, buttonLabel }: Section
           </button>
         )}
       </div>
-    </>
+      <div>{navigationItems && <NavigationBar navigationItems={navigationItems} />}</div>
+    </div>
   );
 };
 
