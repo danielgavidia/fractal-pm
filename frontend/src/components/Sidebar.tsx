@@ -37,9 +37,6 @@ const Sidebar = () => {
       </div>
 
       {/* Links */}
-      <div className="text-xs" style={{ color: valueToColor(currentTheme.textSecondary) }}>
-        Platform
-      </div>
       <Link href="/epics" className="text-sm">
         Epics
       </Link>
