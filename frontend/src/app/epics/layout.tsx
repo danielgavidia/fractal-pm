@@ -21,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     {
       title: "Kanban",
       iconDefinition: faTimeline,
-      route: "/epics",
+      route: "/epics/kanban",
     },
   ];
   return (

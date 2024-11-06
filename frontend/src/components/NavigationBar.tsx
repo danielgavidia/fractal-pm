@@ -9,7 +9,7 @@ interface NavigationBarProps {
 
 const NavigationBar = ({ navigationItems }: NavigationBarProps) => {
   const router = useRouter();
-  const [selected, setSelected] = useState<NavigationItem>(navigationItems[0]);
+  const [selected, setSelected] = useState<NavigationItem>();
 
   return (
     <div className="border-b-[0.5px] py-2 flex space-x-3">
