@@ -1,6 +1,5 @@
 "use client";
 
-import NavigationBar from "@/components/NavigationBar";
 import SectionHeader from "@/components/SectionHeader";
 import { NavigationItem } from "@/types/types";
 import { faPlus, faTable, faTimeline } from "@fortawesome/free-solid-svg-icons";
@@ -26,8 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   ];
   return (
     <div className="px-4">
-      <SectionHeader title="Epics" />
-      <NavigationBar navigationItems={navigationItems} />
+      <SectionHeader title="Epics" navigationItems={navigationItems} />
       <main>{children}</main>
     </div>
   );

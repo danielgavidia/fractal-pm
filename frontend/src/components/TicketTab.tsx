@@ -27,7 +27,7 @@ const TicketTab = ({ ticket }: TicketTabProps) => {
     if (ticket.ticketType === "epic") {
       router.push(`/epics/${ticket.id}`);
     } else {
-      setIsOpen(true);
+      router.push(`/epics/${currentTask?.epicId}/${currentTask?.id}`);
     }
   };
 
@@ -35,7 +35,7 @@ const TicketTab = ({ ticket }: TicketTabProps) => {
     <>
       <button
         onClick={handleClick}
-        className="flex flex-col border-[0.5px] rounded-none text-xs w-36 p-2 text-gray-700"
+        className="flex flex-col border-[0.5px] rounded text-xs w-36 p-2 text-gray-700"
         style={{
           color: valueToColor(currentTheme.textSecondary),
           borderColor: valueToColor(currentTheme.textPrimary),
