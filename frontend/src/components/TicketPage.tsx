@@ -2,7 +2,7 @@ import { epicStore } from "@/stores/epicStore";
 import { taskStore } from "@/stores/taskStore";
 import { Ticket } from "@/types/types";
 import SectionHeader from "./SectionHeader";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Kanban from "./Kanban";
 
@@ -12,7 +12,7 @@ interface TicketPageProps {
 
 const TicketPage = ({ ticket }: TicketPageProps) => {
   // Router
-  // const router = useRouter();
+  const router = useRouter();
 
   // Stores
   const { tasks } = taskStore();
@@ -33,6 +33,17 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
     return;
   }
 
+  // Routes
+  const getRoute = (): string => {
+    if (ticket.ticketType === "epic" && currentEpic) {
+      return `/epics/update/${currentEpic.id}`;
+    } else if (ticket.ticketType === "task" && currentTask) {
+      return `/epics/update/${currentTask.epicId}/${currentTask.id}`;
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col space-y-2">
@@ -40,7 +51,7 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
           title={`${ticket.ticketType.charAt(0).toUpperCase() + ticket.ticketType.slice(1)}: ${
             ticket.title
           }`}
-          // callback={() => router.push(`/epics/update/${epic.id}`)}
+          callback={() => router.push(getRoute())}
           iconDefinition={faPenToSquare}
           buttonLabel="Edit"
         />
