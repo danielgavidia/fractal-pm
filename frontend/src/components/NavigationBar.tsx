@@ -24,7 +24,7 @@ const NavigationBar = ({ navigationItems }: NavigationBarProps) => {
             selected === item ? "border-b-[0.5px]" : ""
           }`}
         >
-          <div className="flex items-center">{item.title}</div>
+          <div className="min-w-12">{item.title}</div>
           <div className="h-full w-full">
             <FontAwesomeIcon icon={item.iconDefinition} />
           </div>

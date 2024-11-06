@@ -3,7 +3,7 @@ import { taskStore } from "@/stores/taskStore";
 import { Ticket } from "@/types/types";
 import SectionHeader from "./SectionHeader";
 import { useRouter } from "next/navigation";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Kanban from "./Kanban";
 
 interface TicketPageProps {
@@ -59,6 +59,17 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
           <div className="text-xs font-bold">ID</div>
           <div className="italic text-xs">{ticket.id}</div>
         </div>
+        {currentTask && (
+          <div>
+            <div className="text-xs font-bold">Epic ID</div>
+            <button
+              onClick={() => router.push(`/epics/${currentTask.epicId}`)}
+              className="italic text-xs"
+            >
+              {currentTask.epicId}
+            </button>
+          </div>
+        )}
         <div>
           <div className="text-xs font-bold">Description</div>
           <div className="text-xs">{ticket.description}</div>
@@ -69,9 +80,9 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
           <>
             <SectionHeader
               title="Tasks"
-              // callback={() => setIsOpen(true)}
-              // iconDefinition={faPlus}
-              // buttonLabel="New"
+              callback={() => router.push(`/epics/new/${currentEpic.id}`)}
+              iconDefinition={faPlus}
+              buttonLabel="New"
             />
             <Kanban tickets={currentTasks} />
           </>
