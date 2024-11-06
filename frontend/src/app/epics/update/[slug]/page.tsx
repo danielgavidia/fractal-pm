@@ -1,5 +1,6 @@
 "use client";
 
+import DatePicker from "@/components/DatePicker";
 import SectionHeader from "@/components/SectionHeader";
 import TicketStatusPicker from "@/components/TicketStatusPicker";
 import { epicStore } from "@/stores/epicStore";
@@ -24,6 +25,7 @@ const Page = () => {
   const [epicTitle, setEpicTitle] = useState<string>(epic.title);
   const [epicDescription, setEpicDescription] = useState<string>(epic.description);
   const [epicStatus, setEpicStatus] = useState<TicketStatus>(epic.status);
+  const [epicDueDate, setEpicDueDate] = useState<Date>(epic.dueDate);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +34,7 @@ const Page = () => {
       title: epicTitle,
       description: epicDescription,
       status: epicStatus,
+      dueDate: epicDueDate,
     };
     if (epicTitle !== "" && epicDescription !== "") {
       updateEpic(epic.id, newEpic);
@@ -52,7 +55,7 @@ const Page = () => {
           value={epicTitle}
           onChange={(e) => setEpicTitle(e.target.value)}
           placeholder="Title"
-          className="p-2 text-xs outline-none text-black"
+          className="p-2 text-xs outline-none text-black rounded"
         />
 
         {/* Epic description */}
@@ -61,9 +64,15 @@ const Page = () => {
           value={epicDescription}
           onChange={(e) => setEpicDescription(e.target.value)}
           placeholder="Description"
-          className="p-2 text-xs outline-none text-black"
+          className="p-2 text-xs outline-none text-black rounded"
         ></textarea>
       </form>
+
+      {/* Due date */}
+      <div className="flex flex-col space-y-2">
+        <p className="text-xs">Due Date</p>
+        <DatePicker onDateChange={(date: Date | undefined) => date && setEpicDueDate(date)} />
+      </div>
 
       {/* Epic status */}
       <div>

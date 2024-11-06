@@ -1,5 +1,6 @@
 "use client";
 
+import DatePicker from "@/components/DatePicker";
 import Dropdown from "@/components/Dropdown";
 import SectionHeader from "@/components/SectionHeader";
 import TicketStatusPicker from "@/components/TicketStatusPicker";
@@ -23,6 +24,7 @@ const Page = () => {
   const [taskDescription, setTaskDescription] = useState<string>(task ? task.description : "");
   const [taskStatus, setTaskStatus] = useState<TicketStatus>(task ? task.status : "notStarted");
   const [taskEpicId, setTaskEpicId] = useState<string>(task ? task.epicId : "");
+  const [taskDueDate, setTaskDueDate] = useState<Date>(task ? task.dueDate : new Date());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const Page = () => {
         title: taskTitle,
         description: taskDescription,
         status: taskStatus,
+        dueDate: taskDueDate,
         epicId: taskEpicId,
       };
       updateTask(task.id, newTask);
@@ -57,7 +60,7 @@ const Page = () => {
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
           placeholder="Title"
-          className="p-2 text-xs outline-none text-black"
+          className="p-2 text-xs outline-none text-black rounded"
         />
 
         {/* Task description */}
@@ -66,13 +69,19 @@ const Page = () => {
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
           placeholder="Description"
-          className="p-2 text-xs outline-none text-black"
+          className="p-2 text-xs outline-none text-black rounded"
         ></textarea>
       </form>
 
+      {/* Due date */}
+      <div className="flex flex-col space-y-2">
+        <p className="text-xs">Due Date</p>
+        <DatePicker onDateChange={(date: Date | undefined) => date && setTaskDueDate(date)} />
+      </div>
+
       {/* Epic dropdown */}
-      <div className="flex flex-col items-center space-y-2">
-        <p className="text-xs text-left w-full p">Epic: </p>
+      <div className="flex flex-col items-center space-y-2 rounded">
+        <p className="text-xs text-left w-full">Epic: </p>
         <Dropdown dropdownItems={epics.map((epic) => epic.title)} callback={setTaskEpicId} />
       </div>
 
