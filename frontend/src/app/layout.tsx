@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             {children}
           </main>
-          <AICopilot />
+          {/* <AICopilot /> */}
         </div>
       </body>
     </html>

@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 // Tickets
 export type TicketStatus = "notStarted" | "inProgress" | "completed" | "archived";
 
@@ -43,3 +45,10 @@ export type Theme = {
   textPrimary: Color;
   textSecondary: Color;
 };
+
+// Navigation
+export interface NavigationItem {
+  title: string;
+  iconDefinition: IconDefinition;
+  route: string;
+}

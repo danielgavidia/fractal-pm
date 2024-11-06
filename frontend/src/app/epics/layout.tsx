@@ -1,20 +1,33 @@
 "use client";
 
+import NavigationBar from "@/components/NavigationBar";
 import SectionHeader from "@/components/SectionHeader";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation";
+import { NavigationItem } from "@/types/types";
+import { faPlus, faTable, faTimeline } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
+  const navigationItems: NavigationItem[] = [
+    {
+      title: "New",
+      iconDefinition: faPlus,
+      route: "/epics/new",
+    },
+    {
+      title: "Backlog",
+      iconDefinition: faTable,
+      route: "/epics",
+    },
+    {
+      title: "Kanban",
+      iconDefinition: faTimeline,
+      route: "/epics",
+    },
+  ];
   return (
     <div className="px-4">
-      <SectionHeader
-        title="Epics"
-        callback={() => router.push("/epics/new")}
-        iconDefinition={faPlus}
-        buttonLabel="New"
-      />
+      <SectionHeader title="Epics" />
+      <NavigationBar navigationItems={navigationItems} />
       <main>{children}</main>
     </div>
   );
