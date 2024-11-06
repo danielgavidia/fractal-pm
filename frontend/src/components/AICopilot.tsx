@@ -1,6 +1,6 @@
 "use client";
 
-import { getTaskFromPrompt } from "@/lib/openai";
+import { getTaskFromPrompt } from "@/lib/getTaskFromPrompt";
 import { taskStore } from "@/stores/taskStore";
 import { themeStore } from "@/stores/themeStore";
 import { Task } from "@/types/types";
