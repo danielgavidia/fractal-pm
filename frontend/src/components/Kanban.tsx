@@ -1,5 +1,5 @@
 // Components
-import TicketTabRow from "@/components/TicketTabRow";
+import TicketTabGroup from "@/components/TicketTabGroup";
 
 // Types
 import { Ticket } from "@/types/types";
@@ -12,10 +12,12 @@ interface KanbanProps {
 const Kanban = ({ tickets }: KanbanProps) => {
   const ticketsByStatus = getTicketsByStatus(tickets);
   return (
-    <div className="flex flex-col justify-start overflow-x-auto max-w-96">
-      {ticketsByStatus.map((tickets, key) => (
-        <TicketTabRow key={key} status={tickets.status} tickets={tickets.tickets} />
-      ))}
+    <div className="w-full flex justify-center">
+      <div className="flex flex-col justify-center h-full min-h-0">
+        {ticketsByStatus.map((tickets, key) => (
+          <TicketTabGroup key={key} status={tickets.status} tickets={tickets.tickets} />
+        ))}
+      </div>
     </div>
   );
 };

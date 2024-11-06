@@ -29,14 +29,16 @@ const TicketTab = ({ ticket }: TicketTabProps) => {
   return (
     <button
       onClick={handleClick}
-      className="flex flex-col border-[0.5px] rounded text-xs w-36 p-2 text-gray-700"
+      className="flex flex-col space-y-1 border-[0.5px] rounded text-xs min-w-48 max-w-48 p-2 text-gray-700"
       style={{
         color: valueToColor(currentTheme.textSecondary),
         borderColor: valueToColor(currentTheme.textPrimary),
       }}
     >
-      <div className="font-semibold h-10 text-left">{truncateText(ticket.title, 30)}</div>
-      <div className="text-[10px] text-left h-14">{truncateText(ticket.description, 60)}</div>
+      <div className="text-[10px] font-semibold text-left h-4">
+        {truncateText(ticket.title, 24)}
+      </div>
+      <div className="text-[10px] text-left h-8">{truncateText(ticket.description, 60)}</div>
       <TicketStatusBadge status={ticket.status} />
     </button>
   );
