@@ -3,10 +3,13 @@
 import { getTaskFromPrompt } from "@/lib/getTaskFromPrompt";
 import { taskStore } from "@/stores/taskStore";
 import { themeStore } from "@/stores/themeStore";
-import { Task } from "@/types/types";
+import { Epic, Task, TicketType } from "@/types/types";
 import { valueToColor } from "@/utils/valueToColor";
 import { useState } from "react";
 import SectionHeader from "./SectionHeader";
+import { epicStore } from "@/stores/epicStore";
+import { determineTicketType } from "@/lib/determineTicketType";
+import { getEpicFromPrompt } from "@/lib/getEpicFromPrompt";
 
 const AICopilot = () => {
   // Themes
@@ -15,7 +18,10 @@ const AICopilot = () => {
   const textPrimary = valueToColor(currentTheme.textPrimary);
 
   // Tasks
-  const { createTask } = taskStore();
+  const { createTask, createTaskMultiple } = taskStore();
+
+  // Epics
+  const { createEpic } = epicStore();
 
   // Local state
   const [messages, setMessages] = useState<string[]>([]);
@@ -26,9 +32,18 @@ const AICopilot = () => {
     setMessages((prev) => [...prev, currentMessage]);
     setCurrentMessage("");
 
-    // AI
-    const taskFromPrompt: Task = await getTaskFromPrompt(currentMessage);
-    createTask(taskFromPrompt);
+    // Determine ticket type
+    const ticketType: TicketType = await determineTicketType(currentMessage);
+
+    if (ticketType === "epic") {
+      const epicFromPrompt: { epic: Epic; tasks: Task[] } = await getEpicFromPrompt(currentMessage);
+      createEpic(epicFromPrompt.epic);
+      createTaskMultiple(epicFromPrompt.tasks);
+    } else {
+      // AI
+      const taskFromPrompt: Task = await getTaskFromPrompt(currentMessage);
+      createTask(taskFromPrompt);
+    }
   };
 
   return (

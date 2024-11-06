@@ -36,8 +36,6 @@ export const getEpicFromPrompt = async (prompt: string): Promise<{ epic: Epic; t
 
   // Clean string and parse
   const resCleaned = cleanResponseString(res);
+  console.log(resCleaned);
   return JSON.parse(resCleaned);
 };
-
-const res = await getEpicFromPrompt("Create an epic around building a bridge");
-console.log(res);

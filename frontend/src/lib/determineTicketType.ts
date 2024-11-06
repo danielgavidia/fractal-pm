@@ -24,8 +24,6 @@ export const determineTicketType = async (prompt: string): Promise<TicketType> =
 
   // Clean string and parse
   const resCleaned = cleanResponseString(res);
+  console.log(resCleaned);
   return resCleaned.toLowerCase().trim() as TicketType;
 };
-
-const res = await determineTicketType("Bake a cake");
-console.log(res);
