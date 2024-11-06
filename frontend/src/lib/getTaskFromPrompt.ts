@@ -1,38 +1,6 @@
-import { Task } from "@/types/types";
 import { cleanResponseString } from "@/utils/cleanResponseString";
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY,
-  dangerouslyAllowBrowser: true, // Change
-});
-
-export const openaiChatCompletions = async (
-  model: string,
-  systemContent: string,
-  userContent: string
-): Promise<string> => {
-  const res = await openai.chat.completions.create({
-    model: model,
-    messages: [
-      {
-        role: "system",
-        content: systemContent,
-      },
-      {
-        role: "user",
-        content: userContent,
-      },
-    ],
-  });
-
-  const data = res.choices[0].message.content;
-  if (data) {
-    return data;
-  } else {
-    throw new Error();
-  }
-};
+import { openaiChatCompletions } from "./openaiChatCompletions";
+import { Task } from "@/types/types";
 
 export const getTaskFromPrompt = async (prompt: string): Promise<Task> => {
   const model = "gpt-4o-mini";

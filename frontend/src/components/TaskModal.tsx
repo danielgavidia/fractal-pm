@@ -16,7 +16,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 // Utils
 import { valueToColor } from "@/utils/valueToColor";
-import { getTaskFromPrompt } from "@/lib/openai";
+import { getTaskFromPrompt } from "@/lib/getTaskFromPrompt";
 
 interface TaskModalProps {
   ticket?: Ticket; // Optional task for update mode
