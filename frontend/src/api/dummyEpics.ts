@@ -7,6 +7,7 @@ export const dummyEpics: Epic[] = [
     description: "Implement core user authentication and management features",
     status: "inProgress",
     ticketType: "epic",
+    dueDate: new Date("2024-06-30"),
     taskIds: [
       "task-2",
       "task-9",
@@ -29,6 +30,7 @@ export const dummyEpics: Epic[] = [
     description: "Enhance user interface and overall user experience",
     status: "inProgress",
     ticketType: "epic",
+    dueDate: new Date("2024-08-15"),
     taskIds: [
       "task-1",
       "task-4",
@@ -47,6 +49,7 @@ export const dummyEpics: Epic[] = [
     description: "Comprehensive documentation and testing implementation",
     status: "inProgress",
     ticketType: "epic",
+    dueDate: new Date("2024-09-30"),
     taskIds: [
       "task-3",
       "task-7",
@@ -65,6 +68,7 @@ export const dummyEpics: Epic[] = [
     description: "Setup and maintain development and deployment infrastructure",
     status: "inProgress",
     ticketType: "epic",
+    dueDate: new Date("2024-11-15"),
     taskIds: [
       "task-5",
       "task-8",

@@ -72,14 +72,14 @@ const Page = () => {
       </div>
 
       {/* Update */}
-      <button onClick={handleSubmit} className="w-full border-[1px] p-2">
+      <button onClick={handleSubmit} className="w-full border-[1px] p-2 rounded">
         Update
       </button>
 
       {/* Delete */}
       <button
         onClick={() => deleteEpic(epic.id)}
-        className="w-full border-[1px] border-red-500 text-red-500 p-2"
+        className="w-full border-[1px] border-red-500 text-red-500 p-2 rounded"
       >
         Delete
       </button>

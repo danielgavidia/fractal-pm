@@ -24,6 +24,7 @@ const Page = () => {
       description: taskDescription,
       status: "inProgress",
       ticketType: "task",
+      dueDate: new Date(),
       epicId: Array.isArray(slug) ? slug[0] : slug || "",
     };
     if (taskTitle !== "" && taskDescription !== "") {
@@ -59,7 +60,7 @@ const Page = () => {
       </form>
 
       {/* Submit */}
-      <button onClick={handleSubmit} className="w-full border-[1px] p-2">
+      <button onClick={handleSubmit} className="w-full border-[1px] p-2 rounded">
         Create
       </button>
     </div>

@@ -1,6 +1,7 @@
 import { Ticket } from "@/types/types";
 import React, { useState } from "react";
 import TicketRow from "./TicketRow";
+import { epicStore } from "@/stores/epicStore";
 
 interface TicketRowGroupProps {
   primaryTicket: Ticket;
@@ -8,6 +9,8 @@ interface TicketRowGroupProps {
 }
 
 const TicketRowGroup = ({ primaryTicket, secondaryTickets }: TicketRowGroupProps) => {
+  const epic = epicStore().epics.find((epic) => epic.id === primaryTicket.id);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -18,7 +21,7 @@ const TicketRowGroup = ({ primaryTicket, secondaryTickets }: TicketRowGroupProps
       {isOpen && (
         <div>
           {secondaryTickets.map((ticket, index) => (
-            <TicketRow key={index} ticket={ticket} modality="secondary" />
+            <TicketRow key={index} ticket={ticket} modality="secondary" epicId={epic && epic.id} />
           ))}
         </div>
       )}

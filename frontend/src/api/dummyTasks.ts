@@ -8,6 +8,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2024-04-15"),
   },
   {
     id: "task-2",
@@ -16,6 +17,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2024-05-10"),
   },
   {
     id: "task-3",
@@ -24,6 +26,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2024-06-15"),
   },
   {
     id: "task-4",
@@ -32,6 +35,7 @@ export const dummyTasks: Task[] = [
     status: "archived",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2024-07-20"),
   },
   {
     id: "task-5",
@@ -40,6 +44,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2024-08-25"),
   },
   {
     id: "task-6",
@@ -48,6 +53,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2024-09-30"),
   },
   {
     id: "task-7",
@@ -56,6 +62,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2024-10-31"),
   },
   {
     id: "task-8",
@@ -64,6 +71,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2024-11-15"),
   },
   {
     id: "task-9",
@@ -72,6 +80,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2024-12-20"),
   },
   {
     id: "task-10",
@@ -80,6 +89,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2025-01-25"),
   },
   {
     id: "task-11",
@@ -88,6 +98,7 @@ export const dummyTasks: Task[] = [
     status: "archived",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2025-02-28"),
   },
   {
     id: "task-12",
@@ -96,6 +107,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2025-03-31"),
   },
   {
     id: "task-13",
@@ -104,6 +116,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2025-04-15"),
   },
   {
     id: "task-14",
@@ -112,6 +125,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2025-05-20"),
   },
   {
     id: "task-15",
@@ -120,6 +134,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2025-06-25"),
   },
   {
     id: "task-16",
@@ -128,6 +143,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2025-07-30"),
   },
   {
     id: "task-17",
@@ -136,6 +152,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2025-08-31"),
   },
   {
     id: "task-18",
@@ -144,6 +161,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2025-09-15"),
   },
   {
     id: "task-19",
@@ -152,6 +170,7 @@ export const dummyTasks: Task[] = [
     status: "archived",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2025-10-20"),
   },
   {
     id: "task-20",
@@ -160,6 +179,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2025-11-25"),
   },
   {
     id: "task-21",
@@ -168,6 +188,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2025-12-30"),
   },
   {
     id: "task-22",
@@ -176,6 +197,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2026-01-31"),
   },
   {
     id: "task-23",
@@ -184,6 +206,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2026-02-28"),
   },
   {
     id: "task-24",
@@ -192,6 +215,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2026-03-31"),
   },
   {
     id: "task-25",
@@ -200,6 +224,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2026-04-30"),
   },
   {
     id: "task-26",
@@ -208,6 +233,7 @@ export const dummyTasks: Task[] = [
     status: "archived",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2026-05-31"),
   },
   {
     id: "task-27",
@@ -216,6 +242,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2026-06-30"),
   },
   {
     id: "task-28",
@@ -224,6 +251,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2026-07-31"),
   },
   {
     id: "task-29",
@@ -232,6 +260,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2026-08-31"),
   },
   {
     id: "task-30",
@@ -240,6 +269,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2026-09-30"),
   },
   {
     id: "task-31",
@@ -248,6 +278,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2026-10-31"),
   },
   {
     id: "task-32",
@@ -256,6 +287,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2026-11-30"),
   },
   {
     id: "task-33",
@@ -264,6 +296,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2026-12-31"),
   },
   {
     id: "task-34",
@@ -272,6 +305,7 @@ export const dummyTasks: Task[] = [
     status: "archived",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2027-01-31"),
   },
   {
     id: "task-35",
@@ -280,6 +314,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2027-02-28"),
   },
   {
     id: "task-36",
@@ -288,6 +323,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2027-03-31"),
   },
   {
     id: "task-37",
@@ -296,6 +332,7 @@ export const dummyTasks: Task[] = [
     status: "completed",
     ticketType: "task",
     epicId: "epic-5",
+    dueDate: new Date("2027-04-30"),
   },
   {
     id: "task-38",
@@ -304,6 +341,7 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-3",
+    dueDate: new Date("2027-05-31"),
   },
   {
     id: "task-39",
@@ -312,6 +350,7 @@ export const dummyTasks: Task[] = [
     status: "inProgress",
     ticketType: "task",
     epicId: "epic-2",
+    dueDate: new Date("2027-06-30"),
   },
   {
     id: "task-40",
@@ -320,5 +359,6 @@ export const dummyTasks: Task[] = [
     status: "notStarted",
     ticketType: "task",
     epicId: "epic-1",
+    dueDate: new Date("2027-07-31"),
   },
 ];

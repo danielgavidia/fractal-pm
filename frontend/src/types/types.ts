@@ -18,6 +18,7 @@ export interface Ticket {
   description: string;
   status: TicketStatus;
   ticketType: TicketType;
+  dueDate: Date;
 }
 
 // Tasks

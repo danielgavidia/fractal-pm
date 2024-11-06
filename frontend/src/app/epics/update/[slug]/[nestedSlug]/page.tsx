@@ -83,7 +83,7 @@ const Page = () => {
       </div>
 
       {/* Update */}
-      <button type="submit" className="w-full border-[1px] p-2">
+      <button type="submit" className="w-full border-[1px] p-2 rounded">
         Update
       </button>
 
@@ -93,7 +93,7 @@ const Page = () => {
           deleteTask(task.id);
           router.push(`/epics/${task.epicId}`);
         }}
-        className="w-full border-[1px] border-red-500 text-red-500 p-2"
+        className="w-full border-[1px] border-red-500 text-red-500 p-2 rounded"
       >
         Delete
       </button>

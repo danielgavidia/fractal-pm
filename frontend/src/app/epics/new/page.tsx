@@ -1,5 +1,6 @@
 "use client";
 
+import DatePicker from "@/components/DatePicker";
 import SectionHeader from "@/components/SectionHeader";
 import { epicStore } from "@/stores/epicStore";
 import { Epic } from "@/types/types";
@@ -22,6 +23,7 @@ const Page = () => {
       description: epicDescription,
       status: "inProgress",
       ticketType: "epic",
+      dueDate: new Date(),
       taskIds: [],
     };
     if (epicTitle !== "" && epicDescription !== "") {
@@ -56,8 +58,11 @@ const Page = () => {
         ></textarea>
       </form>
 
+      {/* Due date */}
+      <DatePicker />
+
       {/* Submit */}
-      <button onClick={handleSubmit} className="w-full border-[1px] p-2">
+      <button onClick={handleSubmit} className="w-full border-[1px] p-2 rounded">
         Create
       </button>
     </div>
