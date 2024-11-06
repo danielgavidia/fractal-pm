@@ -8,7 +8,7 @@ import React from "react";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const navigationItems: NavigationItem[] = [
     {
-      title: "New",
+      title: "New Epic",
       iconDefinition: faPlus,
       route: "/epics/new",
     },
