@@ -22,6 +22,7 @@ const Page = () => {
       description: epicDescription,
       status: "inProgress",
       ticketType: "epic",
+      taskIds: [],
     };
     if (epicTitle !== "" && epicDescription !== "") {
       createEpic(newEpic);
