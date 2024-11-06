@@ -13,10 +13,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className="antialiased">
-        <div className="flex">
+        <div className="flex w-full">
           <Sidebar />
           <main
-            className="flex-1"
+            className="flex-1 min-w-0"
             style={{
               backgroundColor: valueToColor(backgroundSecondary),
               color: valueToColor(textPrimary),

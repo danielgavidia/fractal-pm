@@ -16,10 +16,10 @@ const Dropdown = ({ dropdownItems, callback }: DropdownProps) => {
   };
 
   return (
-    <div className="relative w-full text-xs text-left" style={{ color: "black" }}>
+    <div className="relative w-full text-xs text-left rounded" style={{ color: "black" }}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-2 bg-white border text-left shadow-sm hover:bg-gray-50"
+        className="w-full p-2 bg-white border text-left shadow-sm hover:bg-gray-50 rounded"
       >
         {selectedItem}
       </button>
