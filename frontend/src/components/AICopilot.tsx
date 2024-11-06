@@ -6,7 +6,6 @@ import { themeStore } from "@/stores/themeStore";
 import { Epic, Task, TicketType } from "@/types/types";
 import { valueToColor } from "@/utils/valueToColor";
 import { useState } from "react";
-import SectionHeader from "./SectionHeader";
 import { epicStore } from "@/stores/epicStore";
 import { determineTicketType } from "@/lib/determineTicketType";
 import { getEpicFromPrompt } from "@/lib/getEpicFromPrompt";
@@ -16,6 +15,7 @@ const AICopilot = () => {
   // Themes
   const { currentTheme } = themeStore();
   const backgroundPrimary = valueToColor(currentTheme.backgroundPrimary);
+  const backgroundSecondary = valueToColor(currentTheme.backgroundSecondary);
   const textPrimary = valueToColor(currentTheme.textPrimary);
 
   // Tasks
@@ -57,7 +57,7 @@ const AICopilot = () => {
   return (
     <div
       {...resizableProps}
-      className="px-4 border-l-2 sticky top-0 h-screen flex flex-col relative"
+      className="p-4 sticky top-0 h-screen flex flex-col relative"
       style={{
         ...resizableProps.style,
         backgroundColor: backgroundPrimary,
@@ -65,12 +65,10 @@ const AICopilot = () => {
       }}
     >
       <div {...resizerProps} className="absolute left-0 top-0 w-1 h-full cursor-ew-resize" />
-      <SectionHeader title="GavidiaAI" />
       <textarea
-        className="flex-1 py-4 text-xs outline-none text-right border-[0.5px]"
+        className="flex-1 py-4 text-xs outline-none text-right shadow-md"
         style={{
-          backgroundColor: backgroundPrimary,
-          borderColor: textPrimary,
+          backgroundColor: backgroundSecondary,
           color: textPrimary,
         }}
         value={messages.join("\n")}
@@ -80,10 +78,9 @@ const AICopilot = () => {
         <input
           value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
-          className="w-full h-full text-black outline-none text-xs p-4 border-[0.5px]"
+          className="w-full h-full text-black outline-none rounded text-xs p-4 shadow-md"
           style={{
-            backgroundColor: backgroundPrimary,
-            borderColor: textPrimary,
+            backgroundColor: backgroundSecondary,
             color: textPrimary,
           }}
           placeholder="Start chat"

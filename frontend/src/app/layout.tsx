@@ -4,7 +4,7 @@ import { themeStore } from "@/stores/themeStore";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import { valueToColor } from "@/utils/valueToColor";
-// import AICopilot from "@/components/AICopilot";
+import AICopilot from "@/components/AICopilot";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = themeStore();
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             {children}
           </main>
-          {/* <AICopilot /> */}
+          <AICopilot />
         </div>
       </body>
     </html>
