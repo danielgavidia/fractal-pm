@@ -10,8 +10,9 @@ import { useResizable } from "@/hooks/useResizable";
 const Sidebar = () => {
   const { currentTheme } = themeStore();
   const { resizableProps, resizerProps } = useResizable({
-    minWidth: 160,
-    defaultWidth: 160,
+    minWidth: 200,
+    defaultWidth: 200,
+    position: "left",
   });
 
   return (

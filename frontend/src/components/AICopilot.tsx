@@ -10,6 +10,7 @@ import SectionHeader from "./SectionHeader";
 import { epicStore } from "@/stores/epicStore";
 import { determineTicketType } from "@/lib/determineTicketType";
 import { getEpicFromPrompt } from "@/lib/getEpicFromPrompt";
+import { useResizable } from "@/hooks/useResizable";
 
 const AICopilot = () => {
   // Themes
@@ -26,6 +27,13 @@ const AICopilot = () => {
   // Local state
   const [messages, setMessages] = useState<string[]>([]);
   const [currentMessage, setCurrentMessage] = useState<string>("");
+
+  // Add resizable functionality
+  const { resizableProps, resizerProps } = useResizable({
+    minWidth: 300,
+    defaultWidth: 300,
+    position: "right",
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,9 +56,15 @@ const AICopilot = () => {
 
   return (
     <div
-      className="min-w-80 px-4 border-l-2 sticky top-0 h-screen flex flex-col"
-      style={{ backgroundColor: backgroundPrimary, color: textPrimary }}
+      {...resizableProps}
+      className="px-4 border-l-2 sticky top-0 h-screen flex flex-col relative"
+      style={{
+        ...resizableProps.style,
+        backgroundColor: backgroundPrimary,
+        color: textPrimary,
+      }}
     >
+      <div {...resizerProps} className="absolute left-0 top-0 w-1 h-full cursor-ew-resize" />
       <SectionHeader title="GavidiaAI" />
       <textarea
         className="flex-1 py-4 text-xs outline-none text-right border-[0.5px]"

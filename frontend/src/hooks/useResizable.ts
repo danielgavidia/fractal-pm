@@ -4,12 +4,14 @@ interface UseResizableProps {
   minWidth?: number;
   maxWidth?: number;
   defaultWidth?: number;
+  position?: "left" | "right";
 }
 
 export const useResizable = ({
   minWidth = 160,
   maxWidth = Infinity,
   defaultWidth = 160,
+  position = "left",
 }: UseResizableProps = {}) => {
   const [width, setWidth] = useState(defaultWidth);
   const [isResizing, setIsResizing] = useState(false);
@@ -27,11 +29,14 @@ export const useResizable = ({
     (e: MouseEvent) => {
       e.preventDefault();
       if (isResizing) {
-        const newWidth = Math.max(minWidth, Math.min(maxWidth, e.clientX));
+        const newWidth =
+          position === "left"
+            ? Math.max(minWidth, Math.min(maxWidth, e.clientX))
+            : Math.max(minWidth, Math.min(maxWidth, window.innerWidth - e.clientX));
         setWidth(newWidth);
       }
     },
-    [isResizing, minWidth, maxWidth]
+    [isResizing, minWidth, maxWidth, position]
   );
 
   useEffect(() => {
@@ -48,12 +53,17 @@ export const useResizable = ({
     isResizing,
     startResizing,
     resizableProps: {
-      style: { width: `${width}px` },
+      style: {
+        width: `${width}px`,
+        ...(position === "right" && { marginLeft: "auto" }),
+      },
       className: "relative select-none",
     },
     resizerProps: {
       onMouseDown: startResizing,
-      className: "absolute top-0 right-0 w-1 h-full cursor-ew-resize",
+      className: `absolute top-0 ${
+        position === "left" ? "right" : "left"
+      }-0 w-1 h-full cursor-ew-resize`,
     },
   };
 };
