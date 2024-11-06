@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <nav
       {...resizableProps}
-      className={`flex flex-col p-4 bg-gray-100 space-y-2 h-screen sticky top-0 ${resizableProps.className}`}
+      className={`flex flex-col p-4 bg-gray-100 space-y-2 h-screen fixed left-0 ${resizableProps.className}`}
       style={{
         ...resizableProps.style,
         backgroundColor: valueToColor(currentTheme.backgroundPrimary),
@@ -40,12 +40,6 @@ const Sidebar = () => {
       <div className="text-xs" style={{ color: valueToColor(currentTheme.textSecondary) }}>
         Platform
       </div>
-      <Link href="/backlog" className="text-sm">
-        Backlog
-      </Link>
-      <Link href="/kanban" className="text-sm">
-        Kanban
-      </Link>
       <Link href="/epics" className="text-sm">
         Epics
       </Link>
