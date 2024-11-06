@@ -3,10 +3,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
-// Components
-import { themeStore } from "@/stores/themeStore";
-import { valueToColor } from "@/utils/valueToColor";
-
 interface SectionHeaderProps {
   title: string;
   callback?: (...args: any[]) => any;
@@ -15,14 +11,11 @@ interface SectionHeaderProps {
 }
 
 const SectionHeader = ({ title, callback, iconDefinition, buttonLabel }: SectionHeaderProps) => {
-  const { currentTheme } = themeStore();
-  const backgroundColor = valueToColor(currentTheme.backgroundPrimary);
-
   return (
     <>
       <div
         className="w-full border-b-[0.5px] py-4 mb-6 font-bold sticky top-0 flex"
-        style={{ backgroundColor: backgroundColor }}
+        style={{ backdropFilter: "none" }}
       >
         <p className="flex-1">{title}</p>
         {callback && (

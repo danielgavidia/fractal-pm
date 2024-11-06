@@ -21,7 +21,7 @@ const Sidebar = () => {
       className={`flex flex-col p-4 bg-gray-100 space-y-2 h-screen sticky top-0 ${resizableProps.className}`}
       style={{
         ...resizableProps.style,
-        backgroundColor: valueToColor(currentTheme.backgroundSecondary),
+        backgroundColor: valueToColor(currentTheme.backgroundPrimary),
         color: valueToColor(currentTheme.textPrimary),
       }}
     >

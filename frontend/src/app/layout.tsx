@@ -8,7 +8,7 @@ import AICopilot from "@/components/AICopilot";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = themeStore();
-  const { backgroundPrimary, textPrimary } = currentTheme;
+  const { backgroundSecondary, textPrimary } = currentTheme;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -18,13 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main
             className="flex-1"
             style={{
-              backgroundColor: valueToColor(backgroundPrimary),
+              backgroundColor: valueToColor(backgroundSecondary),
               color: valueToColor(textPrimary),
             }}
           >
             {children}
           </main>
-          <AICopilot />
+          {/* <AICopilot /> */}
         </div>
       </body>
     </html>

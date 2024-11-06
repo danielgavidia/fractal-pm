@@ -42,7 +42,7 @@ const Page = () => {
   };
 
   return (
-    <div className="px-4 flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4">
       <SectionHeader title="Update Epic" />
       <form className="flex flex-col space-y-2">
         {/* Epic title */}

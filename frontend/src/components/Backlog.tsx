@@ -1,15 +1,15 @@
-import { taskStore } from "@/stores/taskStore";
+import TicketRow from "@/components/TicketRow";
+import { Ticket } from "@/types/types";
 
-// Components
-import TaskRow from "@/components/TaskRow";
+interface BacklogProps {
+  tickets: Ticket[];
+}
 
-const Backlog = () => {
-  const { tasks } = taskStore();
-
+const Backlog = ({ tickets }: BacklogProps) => {
   return (
-    <div className="px-4 w-full">
-      {tasks.map((task, key) => (
-        <TaskRow key={key} task={task} />
+    <div className="w-full">
+      {tickets.map((ticket, key) => (
+        <TicketRow key={key} ticket={ticket} />
       ))}
     </div>
   );

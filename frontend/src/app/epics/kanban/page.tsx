@@ -1,15 +1,12 @@
 "use client";
 
+import Kanban from "@/components/Kanban";
 import { epicStore } from "@/stores/epicStore";
-import Backlog from "@/components/Backlog";
 
 const Page = () => {
   const { epics } = epicStore();
-  return (
-    <div className="py-2">
-      <Backlog tickets={epics} />
-    </div>
-  );
+
+  return <Kanban tickets={epics} />;
 };
 
 export default Page;

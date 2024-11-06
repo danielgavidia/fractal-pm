@@ -29,7 +29,7 @@ const Page = () => {
   const currentTasks = tasks.filter((task) => task.epicId === epic.id);
 
   return (
-    <div className="px-4">
+    <div>
       <SectionHeader
         title={`Epic: ${epic.title}`}
         callback={() => router.push(`/epics/update/${epic.id}`)}
