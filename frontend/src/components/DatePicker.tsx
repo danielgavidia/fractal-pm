@@ -20,7 +20,7 @@ const DatePicker = ({ date, onDateChange }: DatePickerProps) => {
         <Button
           variant={"outline"}
           className={cn(
-            "w-[240px] justify-start text-left font-normal text-gray-400 text-xs",
+            "w-full justify-start text-left font-normal text-gray-400 text-xs p-1",
             !selectedDate && "text-muted-foreground"
           )}
         >

@@ -74,6 +74,10 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
           <div className="text-xs font-bold">Description</div>
           <div className="text-xs">{ticket.description}</div>
         </div>
+        <div>
+          <div className="text-xs font-bold">Due Date</div>
+          <div className="text-xs">{ticket.dueDate.toLocaleDateString()}</div>
+        </div>
       </div>
       <div>
         {ticket.ticketType === "epic" && currentEpic ? (

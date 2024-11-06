@@ -14,6 +14,7 @@ const Page = () => {
   // Local state
   const [epicTitle, setEpicTitle] = useState<string>("");
   const [epicDescription, setEpicDescription] = useState<string>("");
+  const [epicDueDate, setEpicDueDate] = useState<Date>(new Date());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const Page = () => {
       description: epicDescription,
       status: "inProgress",
       ticketType: "epic",
-      dueDate: new Date(),
+      dueDate: epicDueDate,
       taskIds: [],
     };
     if (epicTitle !== "" && epicDescription !== "") {
@@ -45,7 +46,7 @@ const Page = () => {
           value={epicTitle}
           onChange={(e) => setEpicTitle(e.target.value)}
           placeholder="Title"
-          className="p-2 text-xs outline-none text-black"
+          className="p-2 text-xs outline-none text-black rounded"
         />
 
         {/* Epic description */}
@@ -54,12 +55,15 @@ const Page = () => {
           value={epicDescription}
           onChange={(e) => setEpicDescription(e.target.value)}
           placeholder="Description"
-          className="p-2 text-xs outline-none text-black"
+          className="p-2 text-xs outline-none text-black rounded"
         ></textarea>
       </form>
 
       {/* Due date */}
-      <DatePicker />
+      <div className="flex flex-col space-y-2">
+        <p className="text-xs">Due Date</p>
+        <DatePicker onDateChange={(date: Date | undefined) => date && setEpicDueDate(date)} />
+      </div>
 
       {/* Submit */}
       <button onClick={handleSubmit} className="w-full border-[1px] p-2 rounded">
