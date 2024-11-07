@@ -30,7 +30,7 @@ const AICopilot = () => {
 
   // Add resizable functionality
   const { resizableProps, resizerProps } = useResizable({
-    minWidth: 300,
+    minWidth: 0,
     defaultWidth: 300,
     position: "right",
   });
