@@ -10,6 +10,7 @@ import { epicStore } from "@/stores/epicStore";
 import { determineTicketType } from "@/lib/determineTicketType";
 import { getEpicFromPrompt } from "@/lib/getEpicFromPrompt";
 import { useResizable } from "@/hooks/useResizable";
+import SectionHeader from "./SectionHeader";
 
 const AICopilot = () => {
   // Themes
@@ -27,6 +28,7 @@ const AICopilot = () => {
   // Local state
   const [messages, setMessages] = useState<string[]>([]);
   const [currentMessage, setCurrentMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Add resizable functionality
   const { resizableProps, resizerProps } = useResizable({
@@ -39,6 +41,7 @@ const AICopilot = () => {
     e.preventDefault();
     setMessages((prev) => [...prev, currentMessage]);
     setCurrentMessage("");
+    setLoading(true);
 
     // Determine ticket type
     const ticketType: TicketType = await determineTicketType(currentMessage);
@@ -52,6 +55,8 @@ const AICopilot = () => {
       const taskFromPrompt: Task = await getTaskFromPrompt(currentMessage);
       createTask(taskFromPrompt);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -65,15 +70,29 @@ const AICopilot = () => {
       }}
     >
       <div {...resizerProps} className="absolute left-0 top-0 w-1 h-full cursor-ew-resize" />
-      <textarea
-        className="flex-1 p-4 text-xs outline-none text-right shadow-md"
-        style={{
-          backgroundColor: backgroundSecondary,
-          color: textPrimary,
-        }}
-        value={messages.join("\n")}
-        readOnly
-      />
+      <SectionHeader title="Chat" />
+      <div className="h-full flex flex-col space-y-2 overflow-y-scroll no-scrollbar">
+        {messages.map((message, key) => (
+          <div>
+            <div key={key} className="flex justify-end">
+              <div className="rounded p-2 text-xs" style={{ backgroundColor: backgroundSecondary }}>
+                {message}
+              </div>
+            </div>
+            {loading && key === messages.length - 1 && (
+              <div className="flex justify-start py-2">
+                <div
+                  className="rounded p-2 text-xs"
+                  style={{ backgroundColor: backgroundSecondary }}
+                >
+                  Loading...
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
       <form onSubmit={handleSubmit} className="w-full py-4">
         <input
           value={currentMessage}
@@ -84,6 +103,7 @@ const AICopilot = () => {
             color: textPrimary,
           }}
           placeholder="Start chat"
+          disabled={loading}
         ></input>
       </form>
     </div>
