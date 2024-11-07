@@ -12,7 +12,7 @@ interface BacklogProps {
 const Backlog = ({ tickets }: BacklogProps) => {
   const { tasks } = taskStore();
   return (
-    <div className="w-full flex flex-col space-y-2">
+    <div className="w-full flex flex-col space-y-2 overflow-x-auto no-scrollbar">
       {tickets.map((ticket, key) => {
         if (ticket.ticketType === "task") {
           return <TicketRow key={key} ticket={ticket} modality="primary" />;
