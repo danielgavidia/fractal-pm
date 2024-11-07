@@ -73,8 +73,8 @@ const AICopilot = () => {
       <SectionHeader title="Chat" />
       <div className="h-full flex flex-col space-y-2 overflow-y-scroll no-scrollbar">
         {messages.map((message, key) => (
-          <div>
-            <div key={key} className="flex justify-end">
+          <div key={key}>
+            <div className="flex justify-end">
               <div className="rounded p-2 text-xs" style={{ backgroundColor: backgroundSecondary }}>
                 {message}
               </div>
