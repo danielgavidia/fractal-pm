@@ -36,7 +36,7 @@ const SidebarGroup = ({ sidebarItem }: SidebarGroupProps) => {
         <div>
           <FontAwesomeIcon icon={iconDefinition} />
         </div>
-        <div className="text-left">{title}</div>
+        <div className="text-left hover:underline">{title}</div>
       </button>
 
       {isOpen && children && (

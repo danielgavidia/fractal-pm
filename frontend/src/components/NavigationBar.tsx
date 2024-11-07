@@ -20,7 +20,7 @@ const NavigationBar = ({ navigationItems }: NavigationBarProps) => {
             setSelected(item);
             router.push(item.route);
           }}
-          className={`flex space-x-1 items-center text-[10px] ${
+          className={`flex space-x-1 items-center text-[10px] hover:border-b-[0.5px] ${
             selected === item ? "border-b-[0.5px]" : ""
           }`}
         >
