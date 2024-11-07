@@ -14,7 +14,7 @@ const TicketTabGroup = ({ status, tickets }: TicketTabGroupProps) => {
   return (
     <div className="flex flex-col items-center p-1 min-w-48">
       <p className="text-[10px] py-1 text-left w-full font-bold">{statusMapping[status].label}</p>
-      <div className="flex space-x-2 w-full">
+      <div className="flex space-x-3 w-full">
         {tickets.map((ticket, key) => (
           <TicketTab key={key} ticket={ticket} />
         ))}

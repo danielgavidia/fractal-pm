@@ -57,40 +57,55 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
           iconDefinition={faPenToSquare}
           buttonLabel="Edit"
         />
-        <div>
-          <div className="text-xs font-bold">ID</div>
-          <div className="italic text-xs">{ticket.id}</div>
-        </div>
-        {currentTask && (
+
+        {/* Ticket info (non-description) */}
+        <div className="flex w-full space-x-6">
+          {/* Due date */}
           <div>
-            <div className="text-xs font-bold">Epic</div>
-            <div
-              onClick={() => router.push(`/epics/${currentTask.epicId}`)}
-              className="italic text-xs cursor-pointer hover:underline"
-            >
-              {epics.find((epic) => epic.id === currentTask.epicId)?.title}
+            <div className="text-xs font-bold">Due Date</div>
+            <div className="text-xs py-1">{ticket.dueDate.toLocaleDateString()}</div>
+          </div>
+
+          {/* Status */}
+          <div>
+            <div className="text-xs font-bold">Status</div>
+            <div className="py-1">
+              <TicketStatusBadge status={ticket.status} />
             </div>
           </div>
-        )}
+
+          {/* Priority */}
+          <div>
+            <div className="text-xs font-bold">Priority</div>
+            <div className="py-1">
+              <TicketPriorityBadge priority={ticket.priority} />
+            </div>
+          </div>
+
+          {/* Tasks (for epics) */}
+          {currentTask && (
+            <div>
+              <div className="text-xs font-bold">Epic</div>
+              <div
+                onClick={() => router.push(`/epics/${currentTask.epicId}`)}
+                className="italic text-xs cursor-pointer py-1 hover:underline"
+              >
+                {epics.find((epic) => epic.id === currentTask.epicId)?.title}
+              </div>
+            </div>
+          )}
+
+          {/* Id */}
+          <div>
+            <div className="text-xs font-bold">ID</div>
+            <div className="italic text-xs py-1">{ticket.id}</div>
+          </div>
+        </div>
+
+        {/* Description */}
         <div>
           <div className="text-xs font-bold">Description</div>
           <div className="text-xs">{ticket.description}</div>
-        </div>
-        <div>
-          <div className="text-xs font-bold">Due Date</div>
-          <div className="text-xs">{ticket.dueDate.toLocaleDateString()}</div>
-        </div>
-        <div>
-          <div className="text-xs font-bold">Status</div>
-          <div className="py-1 w-10">
-            <TicketStatusBadge status={ticket.status} />
-          </div>
-        </div>
-        <div>
-          <div className="text-xs font-bold">Priority</div>
-          <div className="py-1 w-10">
-            <TicketPriorityBadge priority={ticket.priority} />
-          </div>
         </div>
       </div>
       <div>

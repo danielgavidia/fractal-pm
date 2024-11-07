@@ -18,7 +18,7 @@ const TicketRow = ({ ticket, modality, handleOpen, epicId }: TaskRowProps) => {
     return (
       <button
         onClick={handleOpen}
-        className="flex w-full justify-between items-center p-1 border-[0.5px] rounded"
+        className="flex w-full justify-between items-center p-1 border-[0.5px] rounded min-w-[700px]"
       >
         <p className="text-xs min-w-28 text-left">{ticket.title}</p>
         <div className="flex space-x-3 items-center">
@@ -32,7 +32,7 @@ const TicketRow = ({ ticket, modality, handleOpen, epicId }: TaskRowProps) => {
     return (
       <button
         onClick={() => router.push(`epics/${epicId}/${ticket.id}`)}
-        className="flex w-full justify-between items-center p-1 pl-4"
+        className="flex w-full justify-between items-center p-1 pl-4 min-w-[700px]"
       >
         <p className="text-xs min-w-28 text-left opacity-70">{ticket.title}</p>
         <div className="flex space-x-3 items-center">
