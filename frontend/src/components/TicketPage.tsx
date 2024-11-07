@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Kanban from "./Kanban";
 import TicketStatusBadge from "./TicketStatusBadge";
+import TicketPriorityBadge from "./TicketPriorityBadge";
 
 interface TicketPageProps {
   ticket: Ticket;
@@ -62,13 +63,13 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
         </div>
         {currentTask && (
           <div>
-            <div className="text-xs font-bold">Epic ID</div>
-            <button
+            <div className="text-xs font-bold">Epic</div>
+            <div
               onClick={() => router.push(`/epics/${currentTask.epicId}`)}
-              className="italic text-xs"
+              className="italic text-xs cursor-pointer hover:underline"
             >
-              {currentTask.epicId}
-            </button>
+              {epics.find((epic) => epic.id === currentTask.epicId)?.title}
+            </div>
           </div>
         )}
         <div>
@@ -83,6 +84,12 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
           <div className="text-xs font-bold">Status</div>
           <div className="py-1 w-10">
             <TicketStatusBadge status={ticket.status} />
+          </div>
+        </div>
+        <div>
+          <div className="text-xs font-bold">Priority</div>
+          <div className="py-1 w-10">
+            <TicketPriorityBadge priority={ticket.priority} />
           </div>
         </div>
       </div>
