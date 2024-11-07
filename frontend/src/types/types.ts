@@ -62,3 +62,10 @@ export interface NavigationItem {
   iconDefinition: IconDefinition;
   route: string;
 }
+
+export interface SidebarItem {
+  title: string;
+  link: string;
+  children?: SidebarItem[];
+  iconDefinition: IconDefinition;
+}
