@@ -1,3 +1,5 @@
+"use server";
+
 import { cleanResponseString } from "@/utils/cleanResponseString";
 import { openaiChatCompletions } from "./openaiChatCompletions";
 import { Epic, Task } from "@/types/types";
@@ -14,6 +16,8 @@ export const getEpicFromPrompt = async (prompt: string): Promise<{ epic: Epic; t
         description: string;
         status: "notStarted" | "inProgress" | "completed" | "archived";
         ticketType: "epic";
+        dueDate: Date;
+        priority: "low" | "medium" | "high";
         taskIds: string[];
       },
       tasks: [
@@ -23,6 +27,8 @@ export const getEpicFromPrompt = async (prompt: string): Promise<{ epic: Epic; t
           description: string;
           status: "notStarted" | "inProgress" | "completed" | "archived";
           ticketType: "task";
+          dueDate: Date;
+          priority: "low" | "medium" | "high";
           epicId: string;
         }
       ]
@@ -33,9 +39,23 @@ export const getEpicFromPrompt = async (prompt: string): Promise<{ epic: Epic; t
 
   const userContent = `Generate an epic and its related tasks based on this user prompt: ${prompt}`;
   const res = await openaiChatCompletions(model, systemContent, userContent);
+  console.log(res);
 
-  // Clean string and parse
+  // Clean string
   const resCleaned = cleanResponseString(res);
-  console.log(resCleaned);
-  return JSON.parse(resCleaned);
+
+  // Parse
+  const resParsed = JSON.parse(resCleaned);
+  const resParsedFinal: { epic: Epic; tasks: Task[] } = {
+    epic: {
+      ...resParsed.epic,
+      dueDate: new Date(resParsed.epic.dueDate),
+    },
+    tasks: resParsed.tasks.map((task: Task) => ({
+      ...task,
+      dueDate: new Date(task.dueDate),
+    })),
+  };
+
+  return resParsedFinal;
 };

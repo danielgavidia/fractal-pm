@@ -1,3 +1,5 @@
+"use server";
+
 import { cleanResponseString } from "@/utils/cleanResponseString";
 import { openaiChatCompletions } from "./openaiChatCompletions";
 import { Task } from "@/types/types";
@@ -12,6 +14,9 @@ export const getTaskFromPrompt = async (prompt: string): Promise<Task> => {
       title: string;
       description: string;
       status: "notStarted" | "inProgress" | "completed" | "archived";
+      dueDate: Date;
+      priority: "low" | "medium" | "high";
+      epicId: ""
     }
     Always use the current timestamp in milliseconds for the id.
     `;
@@ -20,9 +25,11 @@ export const getTaskFromPrompt = async (prompt: string): Promise<Task> => {
   const res = await openaiChatCompletions(model, systemContent, userContent);
 
   // Clean string
-  const resCleaned = cleanResponseString(res);
+  const resCleaned: string = cleanResponseString(res);
 
   // Parse
-  const task: Task = JSON.parse(resCleaned);
-  return task;
+  const resParsed = JSON.parse(resCleaned);
+  const resParsedFinal: Task = { ...resParsed, dueDate: new Date(resParsed.dueDate) };
+
+  return resParsedFinal;
 };

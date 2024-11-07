@@ -66,7 +66,7 @@ const AICopilot = () => {
     >
       <div {...resizerProps} className="absolute left-0 top-0 w-1 h-full cursor-ew-resize" />
       <textarea
-        className="flex-1 py-4 text-xs outline-none text-right shadow-md"
+        className="flex-1 p-4 text-xs outline-none text-right shadow-md"
         style={{
           backgroundColor: backgroundSecondary,
           color: textPrimary,

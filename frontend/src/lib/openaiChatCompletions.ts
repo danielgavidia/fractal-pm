@@ -1,11 +1,14 @@
-import { openaiClient } from "./openaiClient";
+"use server";
+
+import { getOpenaiClient } from "./openaiClient";
 
 export const openaiChatCompletions = async (
   model: string,
   systemContent: string,
   userContent: string
 ): Promise<string> => {
-  const res = await openaiClient.chat.completions.create({
+  const client = await getOpenaiClient();
+  const res = await client.chat.completions.create({
     model: model,
     messages: [
       {

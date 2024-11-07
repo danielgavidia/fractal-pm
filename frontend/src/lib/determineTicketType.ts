@@ -1,3 +1,5 @@
+"use server";
+
 import { cleanResponseString } from "@/utils/cleanResponseString";
 import { openaiChatCompletions } from "./openaiChatCompletions";
 import { TicketType } from "@/types/types";

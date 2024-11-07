@@ -10,6 +10,7 @@ interface TicketTabGroupProps {
 }
 
 const TicketTabGroup = ({ status, tickets }: TicketTabGroupProps) => {
+  console.log(status);
   return (
     <div className="flex flex-col items-center p-1 min-w-48">
       <p className="text-[10px] py-1 text-left w-full font-bold">{statusMapping[status].label}</p>
