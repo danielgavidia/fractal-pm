@@ -5,6 +5,7 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import { valueToColor } from "@/utils/valueToColor";
 import AICopilot from "@/components/AICopilot";
+import NavigationPath from "@/components/NavigationPath";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = themeStore();
@@ -18,15 +19,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning className="antialiased">
         <div className="flex w-full">
           <Sidebar />
-          <main
-            className="flex-1 min-w-0"
-            style={{
-              backgroundColor: valueToColor(backgroundSecondary),
-              color: valueToColor(textPrimary),
-            }}
-          >
-            {children}
-          </main>
+          <div className="flex-1 min-w-0 flex flex-col">
+            <div>
+              <NavigationPath />
+            </div>
+            <main
+              className="h-full"
+              style={{
+                backgroundColor: valueToColor(backgroundSecondary),
+                color: valueToColor(textPrimary),
+              }}
+            >
+              {children}
+            </main>
+          </div>
+
           <AICopilot />
         </div>
       </body>
