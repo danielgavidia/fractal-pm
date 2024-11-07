@@ -1,11 +1,11 @@
 import { TicketPriorityEnums } from "@/types/types";
 
 export const priorityMapping = {
-  [TicketPriorityEnums.HIGH]: {
-    name: TicketPriorityEnums.HIGH,
-    backgroundColor: "#fee2e2",
-    ballColor: "#ef4444",
-    label: "High",
+  [TicketPriorityEnums.LOW]: {
+    name: TicketPriorityEnums.LOW,
+    backgroundColor: "#f3f4f6",
+    ballColor: "#6b7280",
+    label: "Low",
   },
   [TicketPriorityEnums.MEDIUM]: {
     name: TicketPriorityEnums.MEDIUM,
@@ -13,10 +13,10 @@ export const priorityMapping = {
     ballColor: "#eab308",
     label: "Medium",
   },
-  [TicketPriorityEnums.LOW]: {
-    name: TicketPriorityEnums.LOW,
-    backgroundColor: "#dbeafe",
-    ballColor: "#3b82f6",
-    label: "Low",
+  [TicketPriorityEnums.HIGH]: {
+    name: TicketPriorityEnums.HIGH,
+    backgroundColor: "#fee2e2",
+    ballColor: "#ef4444",
+    label: "High",
   },
 };
