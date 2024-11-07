@@ -30,10 +30,10 @@ const TicketTab = ({ ticket }: TicketTabProps) => {
   return (
     <button
       onClick={handleClick}
-      className="flex flex-col space-y-1 border-[0.5px] rounded text-xs min-w-56 max-w-48 p-2 text-gray-700"
+      className="flex flex-col space-y-1 rounded text-xs min-w-56 max-w-48 p-3 text-gray-700 shadow-sm"
       style={{
-        color: valueToColor(currentTheme.textSecondary),
-        borderColor: valueToColor(currentTheme.textPrimary),
+        color: valueToColor(currentTheme.backgroundPrimary),
+        backgroundColor: valueToColor(currentTheme.textPrimary),
       }}
     >
       <div className="text-[10px] font-semibold text-left h-4">
