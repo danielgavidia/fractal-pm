@@ -5,6 +5,8 @@ export type TicketStatus = "notStarted" | "inProgress" | "completed" | "archived
 
 export type TicketType = "epic" | "task";
 
+export type TicketPriority = "low" | "medium" | "high";
+
 export enum TicketStatusEnums {
   NOT_STARTED = "notStarted",
   IN_PROGRESS = "inProgress",
@@ -19,6 +21,7 @@ export interface Ticket {
   status: TicketStatus;
   ticketType: TicketType;
   dueDate: Date;
+  priority: TicketPriority;
 }
 
 // Tasks

@@ -25,6 +25,7 @@ const Page = () => {
       status: "inProgress",
       ticketType: "epic",
       dueDate: epicDueDate,
+      priority: "low",
       taskIds: [],
     };
     if (epicTitle !== "" && epicDescription !== "") {

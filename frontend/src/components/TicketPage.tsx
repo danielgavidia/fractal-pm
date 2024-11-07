@@ -5,6 +5,7 @@ import SectionHeader from "./SectionHeader";
 import { useRouter } from "next/navigation";
 import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Kanban from "./Kanban";
+import TicketStatusBadge from "./TicketStatusBadge";
 
 interface TicketPageProps {
   ticket: Ticket;
@@ -77,6 +78,12 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
         <div>
           <div className="text-xs font-bold">Due Date</div>
           <div className="text-xs">{ticket.dueDate.toLocaleDateString()}</div>
+        </div>
+        <div>
+          <div className="text-xs font-bold">Status</div>
+          <div className="py-1 w-10">
+            <TicketStatusBadge status={ticket.status} />
+          </div>
         </div>
       </div>
       <div>

@@ -27,6 +27,7 @@ const Page = () => {
       status: "inProgress",
       ticketType: "task",
       dueDate: taskDueDate,
+      priority: "low",
       epicId: Array.isArray(slug) ? slug[0] : slug || "",
     };
     if (taskTitle !== "" && taskDescription !== "") {
