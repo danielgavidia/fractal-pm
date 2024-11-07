@@ -18,16 +18,16 @@ const Page = () => {
   const { epics } = epicStore();
   const epic = epics.find((epic) => epic.id === params.slug);
 
+  // Local state
+  const [epicTitle, setEpicTitle] = useState<string>(epic ? epic.title : "");
+  const [epicDescription, setEpicDescription] = useState<string>(epic ? epic.description : "");
+  const [epicStatus, setEpicStatus] = useState<TicketStatus>(epic ? epic.status : "notStarted");
+  const [epicDueDate, setEpicDueDate] = useState<Date>(epic ? epic.dueDate : new Date());
+  const [epicPriority, setEpicPriority] = useState<TicketPriority>(epic ? epic.priority : "low");
+
   if (!epic) {
     return;
   }
-
-  // Local state
-  const [epicTitle, setEpicTitle] = useState<string>(epic.title);
-  const [epicDescription, setEpicDescription] = useState<string>(epic.description);
-  const [epicStatus, setEpicStatus] = useState<TicketStatus>(epic.status);
-  const [epicDueDate, setEpicDueDate] = useState<Date>(epic.dueDate);
-  const [epicPriority, setEpicPriority] = useState<TicketPriority>(epic.priority);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

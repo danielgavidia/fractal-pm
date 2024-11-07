@@ -5,7 +5,7 @@ import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
 
 interface TicketStatusPickerProps {
-  callback: (value: any) => void;
+  callback: (value: TicketStatus) => void;
   defaultStatus: TicketStatus;
 }
 

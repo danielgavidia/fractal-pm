@@ -6,7 +6,7 @@ import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
 
 interface TicketPriorityPickerProps {
-  callback: (value: any) => void;
+  callback: (value: TicketPriority) => void;
   defaultPriority: TicketPriority;
 }
 
