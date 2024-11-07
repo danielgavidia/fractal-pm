@@ -56,7 +56,7 @@ const Sidebar = () => {
   // Resizing hook
   const { resizableProps, resizerProps } = useResizable({
     minWidth: 200,
-    defaultWidth: 200,
+    defaultWidth: 300,
     position: "left",
   });
 
