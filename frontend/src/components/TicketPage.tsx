@@ -88,7 +88,7 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
               <div className="text-xs font-bold">Epic</div>
               <div
                 onClick={() => router.push(`/epics/${currentTask.epicId}`)}
-                className="italic text-xs cursor-pointer hover:underline"
+                className="italic text-xs cursor-pointer py-1 hover:underline"
               >
                 {epics.find((epic) => epic.id === currentTask.epicId)?.title}
               </div>

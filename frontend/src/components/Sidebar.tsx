@@ -14,7 +14,7 @@ import { taskStore } from "@/stores/taskStore";
 import { themeStore } from "@/stores/themeStore";
 
 // Types
-import { SidebarItem } from "@/types/types";
+import { NavigationItem } from "@/types/types";
 
 // Hooks
 import { useResizable } from "@/hooks/useResizable";
@@ -29,27 +29,40 @@ const Sidebar = () => {
   const { tasks } = taskStore();
 
   // Sidebar items
-  const sidebarEpics: SidebarItem = {
+  const sidebarEpics: NavigationItem = {
     title: "Epics",
-    link: "/epics",
+    route: "/epics",
     iconDefinition: faTrophy,
-    children: epics.map((epic) => ({
-      title: epic.title,
-      link: `/epics/${epic.id}`,
-      iconDefinition: faTrophy,
-      children: tasks
+    children: epics.map((epic) => {
+      // Create the epic navigation item
+      const epicNavItem: NavigationItem = {
+        title: epic.title,
+        route: `/epics/${epic.id}`,
+        iconDefinition: faTrophy,
+        children: [],
+        parent: {
+          title: "Epics",
+          route: "/epics",
+          iconDefinition: faTrophy,
+        }, // Will reference the root epics item
+      };
+      // Create task navigation items with reference to their parent epic
+      epicNavItem.children = tasks
         .filter((task) => task.epicId === epic.id)
         .map((task) => ({
           title: task.title,
-          link: `/epics/${epic.id}/${task.id}`,
+          route: `/epics/${epic.id}/${task.id}`,
           iconDefinition: faCircleCheck,
-        })),
-    })),
+          parent: epicNavItem, // Reference to parent epic
+        }));
+
+      return epicNavItem;
+    }),
   };
 
-  const sidebarThemes: SidebarItem = {
+  const sidebarThemes: NavigationItem = {
     title: "Themes",
-    link: "/themes",
+    route: "/themes",
     iconDefinition: faPaintBrush,
   };
 

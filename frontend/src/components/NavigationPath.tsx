@@ -15,31 +15,38 @@ interface NavigationPathItem {
 
 const NavigationPathItem = ({ navigationItem }: NavigationPathItem) => {
   const { title, iconDefinition, route } = navigationItem;
+  const { setCurrentNavigationItem } = navigationStore();
   const router = useRouter();
+  const handleClick = () => {
+    router.push(route);
+    setCurrentNavigationItem(navigationItem);
+  };
   return (
-    <div onClick={() => router.push(route)} className="flex text-xs p-2 space-x-1 items-center">
+    <button onClick={handleClick} className="flex py-2 space-x-1 items-center opacity-50">
       <FontAwesomeIcon icon={iconDefinition} />
-      <div>{title}</div>
+      <div className="hover:underline">{title}</div>
       <FontAwesomeIcon icon={faChevronRight} />
-    </div>
+    </button>
   );
 };
 
-const NavigationPath = () => {
-  const { currentNavigationItemArray } = navigationStore();
+interface NavigationPathProps {
+  navigationItem: NavigationItem;
+}
+
+const NavigationPath = ({ navigationItem }: NavigationPathProps) => {
   const { currentTheme } = themeStore();
   return (
     <div
-      className="px-2 shadow-md border-b-[0.5px]"
+      className="pr-2 flex justify-start text-[10px]"
       style={{
         color: valueToColor(currentTheme.textPrimary),
         backgroundColor: valueToColor(currentTheme.backgroundSecondary),
         borderColor: valueToColor(currentTheme.backgroundPrimary),
       }}
     >
-      {currentNavigationItemArray.map((navigationItem, key) => (
-        <NavigationPathItem key={key} navigationItem={navigationItem} />
-      ))}
+      {navigationItem.parent && <NavigationPath navigationItem={navigationItem.parent} />}
+      <NavigationPathItem navigationItem={navigationItem} />
     </div>
   );
 };

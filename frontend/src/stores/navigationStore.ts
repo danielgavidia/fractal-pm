@@ -3,12 +3,12 @@ import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { create } from "zustand";
 
 interface NavigationStore {
-  currentNavigationItemArray: NavigationItem[];
-  setCurrentNavigationItemArray: (navigationItemArray: NavigationItem[]) => void;
+  currentNavigationItem: NavigationItem;
+  setCurrentNavigationItem: (NavigationItem: NavigationItem) => void;
 }
 
 export const navigationStore = create<NavigationStore>((set) => ({
-  currentNavigationItemArray: [{ title: "Epics", iconDefinition: faTrophy, route: "/epics" }],
-  setCurrentNavigationItemArray: (navigationItemArray: NavigationItem[]) =>
-    set(() => ({ currentNavigationItemArray: navigationItemArray })),
+  currentNavigationItem: { title: "Epics", iconDefinition: faTrophy, route: "/epics" },
+  setCurrentNavigationItem: (navigationItem: NavigationItem) =>
+    set(() => ({ currentNavigationItem: navigationItem })),
 }));

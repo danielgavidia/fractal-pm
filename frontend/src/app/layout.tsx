@@ -6,10 +6,12 @@ import Sidebar from "@/components/Sidebar";
 import { valueToColor } from "@/utils/valueToColor";
 import AICopilot from "@/components/AICopilot";
 import NavigationPath from "@/components/NavigationPath";
+import { navigationStore } from "@/stores/navigationStore";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = themeStore();
-  const { backgroundSecondary, textPrimary } = currentTheme;
+  const { backgroundPrimary, backgroundSecondary, textPrimary } = currentTheme;
+  const { currentNavigationItem } = navigationStore();
 
   return (
     <html lang="en">
@@ -20,8 +22,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex w-full">
           <Sidebar />
           <div className="flex-1 min-w-0 flex flex-col">
-            <div>
-              <NavigationPath />
+            <div
+              className="px-2 shadow-md border-b-[0.5px]"
+              style={{
+                backgroundColor: valueToColor(backgroundSecondary),
+                borderColor: valueToColor(backgroundPrimary),
+              }}
+            >
+              <NavigationPath navigationItem={currentNavigationItem} />
             </div>
             <main
               className="h-full"

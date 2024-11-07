@@ -1,22 +1,25 @@
 "use client";
 
-import { SidebarItem } from "@/types/types";
+import { navigationStore } from "@/stores/navigationStore";
+import { NavigationItem } from "@/types/types";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface SidebarGroupProps {
-  sidebarItem: SidebarItem;
+  sidebarItem: NavigationItem;
 }
 
 const SidebarGroup = ({ sidebarItem }: SidebarGroupProps) => {
   const router = useRouter();
-  const { link, title, children, iconDefinition } = sidebarItem;
+  const { route, title, children, iconDefinition } = sidebarItem;
+  const { setCurrentNavigationItem } = navigationStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
-    router.push(link);
+    router.push(route);
+    setCurrentNavigationItem(sidebarItem);
     if (children) {
       setIsOpen(!isOpen);
     }
