@@ -2,8 +2,9 @@
 
 import DatePicker from "@/components/DatePicker";
 import SectionHeader from "@/components/SectionHeader";
+import TicketPriorityPicker from "@/components/TicketPriorityPicker";
 import { epicStore } from "@/stores/epicStore";
-import { Epic } from "@/types/types";
+import { Epic, TicketPriority } from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -15,6 +16,7 @@ const Page = () => {
   const [epicTitle, setEpicTitle] = useState<string>("");
   const [epicDescription, setEpicDescription] = useState<string>("");
   const [epicDueDate, setEpicDueDate] = useState<Date>(new Date());
+  const [epicPriority, setEpicPriority] = useState<TicketPriority>("low");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,6 +27,7 @@ const Page = () => {
       status: "inProgress",
       ticketType: "epic",
       dueDate: epicDueDate,
+      priority: epicPriority,
       taskIds: [],
     };
     if (epicTitle !== "" && epicDescription !== "") {
@@ -63,6 +66,12 @@ const Page = () => {
       <div className="flex flex-col space-y-2">
         <p className="text-xs">Due Date</p>
         <DatePicker onDateChange={(date: Date | undefined) => date && setEpicDueDate(date)} />
+      </div>
+
+      {/* Priority */}
+      <div>
+        <p className="text-xs">Priority</p>
+        <TicketPriorityPicker callback={setEpicPriority} defaultPriority={epicPriority} />
       </div>
 
       {/* Submit */}

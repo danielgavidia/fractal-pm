@@ -3,13 +3,21 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 // Tickets
 export type TicketStatus = "notStarted" | "inProgress" | "completed" | "archived";
 
-export type TicketType = "epic" | "task";
-
 export enum TicketStatusEnums {
   NOT_STARTED = "notStarted",
   IN_PROGRESS = "inProgress",
   COMPLETED = "completed",
   ARCHIVED = "archived",
+}
+
+export type TicketType = "epic" | "task";
+
+export type TicketPriority = "low" | "medium" | "high";
+
+export enum TicketPriorityEnums {
+  LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
 }
 
 export interface Ticket {
@@ -19,6 +27,7 @@ export interface Ticket {
   status: TicketStatus;
   ticketType: TicketType;
   dueDate: Date;
+  priority: TicketPriority;
 }
 
 // Tasks

@@ -2,8 +2,9 @@
 
 import DatePicker from "@/components/DatePicker";
 import SectionHeader from "@/components/SectionHeader";
+import TicketPriorityPicker from "@/components/TicketPriorityPicker";
 import { taskStore } from "@/stores/taskStore";
-import { Task } from "@/types/types";
+import { Task, TicketPriority } from "@/types/types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -17,6 +18,7 @@ const Page = () => {
   const [taskTitle, setTaskTitle] = useState<string>("");
   const [taskDescription, setTaskDescription] = useState<string>("");
   const [taskDueDate, setTaskDueDate] = useState<Date>(new Date());
+  const [taskPriority, setTaskPriority] = useState<TicketPriority>("low");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const Page = () => {
       status: "inProgress",
       ticketType: "task",
       dueDate: taskDueDate,
+      priority: taskPriority,
       epicId: Array.isArray(slug) ? slug[0] : slug || "",
     };
     if (taskTitle !== "" && taskDescription !== "") {
@@ -65,6 +68,12 @@ const Page = () => {
       <div className="flex flex-col space-y-2">
         <p className="text-xs">Due Date</p>
         <DatePicker onDateChange={(date: Date | undefined) => date && setTaskDueDate(date)} />
+      </div>
+
+      {/* Priority */}
+      <div>
+        <p className="text-xs">Priority</p>
+        <TicketPriorityPicker callback={setTaskPriority} defaultPriority={taskPriority} />
       </div>
 
       {/* Submit */}

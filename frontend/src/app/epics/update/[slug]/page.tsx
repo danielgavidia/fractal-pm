@@ -2,9 +2,10 @@
 
 import DatePicker from "@/components/DatePicker";
 import SectionHeader from "@/components/SectionHeader";
+import TicketPriorityPicker from "@/components/TicketPriorityPicker";
 import TicketStatusPicker from "@/components/TicketStatusPicker";
 import { epicStore } from "@/stores/epicStore";
-import { Epic, TicketStatus } from "@/types/types";
+import { Epic, TicketPriority, TicketStatus } from "@/types/types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -26,6 +27,7 @@ const Page = () => {
   const [epicDescription, setEpicDescription] = useState<string>(epic.description);
   const [epicStatus, setEpicStatus] = useState<TicketStatus>(epic.status);
   const [epicDueDate, setEpicDueDate] = useState<Date>(epic.dueDate);
+  const [epicPriority, setEpicPriority] = useState<TicketPriority>(epic.priority);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +37,7 @@ const Page = () => {
       description: epicDescription,
       status: epicStatus,
       dueDate: epicDueDate,
+      priority: epicPriority,
     };
     if (epicTitle !== "" && epicDescription !== "") {
       updateEpic(epic.id, newEpic);
@@ -78,6 +81,12 @@ const Page = () => {
       <div>
         <p className="text-xs">Status</p>
         <TicketStatusPicker callback={setEpicStatus} defaultStatus={epicStatus} />
+      </div>
+
+      {/* Priority */}
+      <div>
+        <p className="text-xs">Priority</p>
+        <TicketPriorityPicker callback={setEpicPriority} defaultPriority={epicPriority} />
       </div>
 
       {/* Update */}

@@ -3,10 +3,11 @@
 import DatePicker from "@/components/DatePicker";
 import Dropdown from "@/components/Dropdown";
 import SectionHeader from "@/components/SectionHeader";
+import TicketPriorityPicker from "@/components/TicketPriorityPicker";
 import TicketStatusPicker from "@/components/TicketStatusPicker";
 import { epicStore } from "@/stores/epicStore";
 import { taskStore } from "@/stores/taskStore";
-import { Task, TicketStatus } from "@/types/types";
+import { Task, TicketStatus, TicketPriority } from "@/types/types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -25,6 +26,7 @@ const Page = () => {
   const [taskStatus, setTaskStatus] = useState<TicketStatus>(task ? task.status : "notStarted");
   const [taskEpicId, setTaskEpicId] = useState<string>(task ? task.epicId : "");
   const [taskDueDate, setTaskDueDate] = useState<Date>(task ? task.dueDate : new Date());
+  const [taskPriority, setTaskPriority] = useState<TicketPriority>(task ? task.priority : "low");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +39,7 @@ const Page = () => {
         status: taskStatus,
         dueDate: taskDueDate,
         epicId: taskEpicId,
+        priority: taskPriority,
       };
       updateTask(task.id, newTask);
       setTaskTitle("");
@@ -89,6 +92,12 @@ const Page = () => {
       <div>
         <p className="text-xs">Status</p>
         <TicketStatusPicker callback={setTaskStatus} defaultStatus={taskStatus} />
+      </div>
+
+      {/* Priority */}
+      <div>
+        <p className="text-xs">Priority</p>
+        <TicketPriorityPicker callback={setTaskPriority} defaultPriority={taskPriority} />
       </div>
 
       {/* Update */}
