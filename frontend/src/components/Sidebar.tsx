@@ -1,14 +1,59 @@
 "use client";
 
-import Link from "next/link";
+// FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck, faPaintBrush, faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { faJira } from "@fortawesome/free-brands-svg-icons";
+
+// Components
+import SidebarGroup from "@/components/SidebarGroup";
+
+// Stores
+import { epicStore } from "@/stores/epicStore";
+import { taskStore } from "@/stores/taskStore";
 import { themeStore } from "@/stores/themeStore";
-import { valueToColor } from "@/utils/valueToColor";
+
+// Types
+import { SidebarItem } from "@/types/types";
+
+// Hooks
 import { useResizable } from "@/hooks/useResizable";
 
+// Utilities
+import { valueToColor } from "@/utils/valueToColor";
+
 const Sidebar = () => {
+  // Stores
   const { currentTheme } = themeStore();
+  const { epics } = epicStore();
+  const { tasks } = taskStore();
+
+  // Sidebar items
+  const sidebarEpics: SidebarItem = {
+    title: "Epics",
+    link: "/epics",
+    iconDefinition: faTrophy,
+    children: epics.map((epic) => ({
+      title: epic.title,
+      link: `/epics/${epic.id}`,
+      iconDefinition: faTrophy,
+      children: tasks
+        .filter((task) => task.epicId === epic.id)
+        .map((task) => ({
+          title: task.title,
+          link: `/epics/${epic.id}/${task.id}`,
+          iconDefinition: faCircleCheck,
+        })),
+    })),
+  };
+
+  const sidebarThemes: SidebarItem = {
+    title: "Themes",
+    link: "/themes",
+    iconDefinition: faPaintBrush,
+  };
+
+  // Resizing hook
   const { resizableProps, resizerProps } = useResizable({
     minWidth: 200,
     defaultWidth: 200,
@@ -36,13 +81,9 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Links */}
-      <Link href="/epics" className="text-sm">
-        Epics
-      </Link>
-      <Link href="/themes" className="text-sm">
-        Themes
-      </Link>
+      {/* Sidebar groups */}
+      <SidebarGroup sidebarItem={sidebarEpics} />
+      <SidebarGroup sidebarItem={sidebarThemes} />
 
       {/* Resizer handle */}
       <div {...resizerProps} />
