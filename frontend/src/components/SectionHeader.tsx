@@ -9,7 +9,7 @@ import { valueToColor } from "@/utils/valueToColor";
 
 interface SectionHeaderProps {
   title: string;
-  callback?: (...args: any[]) => any;
+  callback?: () => void;
   iconDefinition?: IconDefinition;
   buttonLabel?: string;
   navigationItems?: NavigationItem[];

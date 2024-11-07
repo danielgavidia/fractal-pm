@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 interface DropdownProps {
   dropdownItems: string[];
-  callback?: (value: string) => any;
+  callback?: (value: string) => void;
 }
 
 const Dropdown = ({ dropdownItems, callback }: DropdownProps) => {
