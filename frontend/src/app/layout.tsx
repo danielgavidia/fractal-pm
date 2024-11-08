@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Sidebar />
           <div className="flex-1 min-w-0 flex flex-col">
             <div
-              className="px-2 shadow-md border-b-[0.5px]"
+              className="px-2 shadow-md border-b-[0.5px] sticky top-0 z-10"
               style={{
                 backgroundColor: valueToColor(backgroundSecondary),
                 borderColor: valueToColor(backgroundPrimary),
