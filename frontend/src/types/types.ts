@@ -63,4 +63,5 @@ export interface NavigationItem {
   route: string;
   children?: NavigationItem[];
   parent?: NavigationItem;
+  ticketId?: string;
 }

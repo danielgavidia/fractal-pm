@@ -45,6 +45,7 @@ const Sidebar = () => {
           route: "/epics",
           iconDefinition: faTrophy,
         }, // Will reference the root epics item
+        ticketId: epic.id,
       };
       // Create task navigation items with reference to their parent epic
       epicNavItem.children = tasks
@@ -54,6 +55,7 @@ const Sidebar = () => {
           route: `/epics/${epic.id}/${task.id}`,
           iconDefinition: faCircleCheck,
           parent: epicNavItem, // Reference to parent epic
+          ticketId: task.id,
         }));
 
       return epicNavItem;
