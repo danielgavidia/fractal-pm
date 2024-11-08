@@ -88,12 +88,14 @@ const Sidebar = () => {
     >
       {/* Header */}
       <div className="flex items-center mb-4">
-        <div className="w-10 h-10 pr-2 flex">
-          <FontAwesomeIcon icon={faJira} className="w-full h-full" />
-        </div>
-        <div>
-          <div className="text-sm font-bold">Gavidia</div>
-          <div className="text-xs">Enterprise</div>
+        <div className="flex-1 flex">
+          <div className="w-10 h-10 pr-2 flex">
+            <FontAwesomeIcon icon={faJira} className="w-full h-full" />
+          </div>
+          <div>
+            <div className="text-sm font-bold">Gavidia</div>
+            <div className="text-xs">Enterprise</div>
+          </div>
         </div>
         <div>
           <DarkModeToggle />
