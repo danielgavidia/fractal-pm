@@ -12,7 +12,7 @@ interface KanbanProps {
 const Kanban = ({ tickets }: KanbanProps) => {
   const ticketsByStatus = getTicketsByStatus(tickets);
   return (
-    <div className="w-full flex justify-start">
+    <div className="w-full flex justify-start pb-10">
       <div className="flex flex-col justify-center overflow-x-auto no-scrollbar">
         {ticketsByStatus.map((tickets, key) => (
           <TicketTabGroup key={key} status={tickets.status} tickets={tickets.tickets} />

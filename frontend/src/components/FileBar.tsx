@@ -31,7 +31,7 @@ const FileTab = ({ navigationItem }: FileTabProps) => {
   };
   return (
     <div
-      className={`opacity-75 flex-shrink-0 shadow-md p-1 px-3 text-center flex space-x-1 items-center ${border}`}
+      className={`opacity-75 flex-shrink-0 shadow-sm p-1 px-3 text-center flex space-x-1 items-center ${border}`}
     >
       <button onClick={handleClick} className="flex space-x-1">
         <div>
@@ -51,7 +51,7 @@ const FileBar = () => {
   const { currentTheme } = themeStore();
   return (
     <div
-      className="text-[10px] p-1 flex justify-start overflow-x-auto no-scrollbar"
+      className="text-[10px] py-1 flex justify-start overflow-x-auto no-scrollbar"
       style={{
         backgroundColor: valueToColor(currentTheme.backgroundSecondary),
         color: valueToColor(currentTheme.textPrimary),
