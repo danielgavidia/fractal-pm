@@ -1,5 +1,7 @@
+"use server";
+
 import { pool } from "./db";
-import { getOpenaiClient } from "./openaiClient";
+import { getOpenaiClient } from "../openaiClient";
 
 export const generateEmbedding = async (text: string): Promise<number[]> => {
   const openai = await getOpenaiClient();
@@ -7,10 +9,11 @@ export const generateEmbedding = async (text: string): Promise<number[]> => {
     model: "text-embedding-ada-002",
     input: text,
   });
+  console.log(`Generated embedding for ${text}`);
   return response.data[0].embedding;
 };
 
-const arrayToVector = (arr: number[]): string => {
+const arrayToVector = async (arr: number[]): Promise<string> => {
   const formattedNumbers = arr.map((num) => num.toFixed(8));
   return `[${formattedNumbers.join(",")}]`;
 };
@@ -19,9 +22,13 @@ export const storeDocument = async (content: string): Promise<void> => {
   const embedding = await generateEmbedding(content);
 
   // transform embedding to pgvector compatible format
-  const vectorString = arrayToVector(embedding);
+  const vectorString = await arrayToVector(embedding);
 
-  await pool.query("INSERT INTO documents (content, embedding) VALUES ($1, $2::vector)", [
+  console.log(`Stored document for ${content}`);
+
+  const poolResolved = await pool();
+
+  await poolResolved.query("INSERT INTO documents (content, embedding) VALUES ($1, $2::vector)", [
     content,
     vectorString,
   ]);
@@ -33,7 +40,9 @@ export const findSimilarDocuments = async (query: string, limit: number = 3): Pr
   // transform embedding to pgvector compatible format
   const vectorString = arrayToVector(queryEmbedding);
 
-  const result = await pool.query(
+  const poolResolved = await pool();
+
+  const result = await poolResolved.query(
     `SELECT content, embedding <-> $1::vector as distance
      FROM documents
      ORDER BY distance ASC
