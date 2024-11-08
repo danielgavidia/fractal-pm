@@ -79,10 +79,11 @@ const Sidebar = () => {
   return (
     <nav
       {...resizableProps}
-      className={`flex flex-col p-4 bg-gray-100 space-y-2 h-screen sticky top-0 left-0 ${resizableProps.className}`}
+      className={`flex flex-col border-r-[0.5px] p-4 space-y-2 h-screen sticky top-0 left-0 ${resizableProps.className}`}
       style={{
         ...resizableProps.style,
         backgroundColor: valueToColor(currentTheme.backgroundPrimary),
+        borderColor: valueToColor(currentTheme.textPrimary),
         color: valueToColor(currentTheme.textPrimary),
       }}
     >

@@ -32,17 +32,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex w-full">
           <Sidebar />
           <div className="flex-1 min-w-0 flex flex-col">
-            <div className="overflow-x-auto">
-              <FileBar />
-            </div>
             <div
-              className="px-2 shadow-sm sticky top-0 z-10"
+              className="pr-2 shadow-sm sticky top-0 z-10"
               style={{
                 backgroundColor: valueToColor(backgroundSecondary),
                 borderColor: valueToColor(backgroundPrimary),
               }}
             >
-              <NavigationPath navigationItem={currentNavigationItem} />
+              <FileBar />
+              <div className="px-2">
+                <NavigationPath navigationItem={currentNavigationItem} />
+              </div>
             </div>
             <main
               className="h-full"

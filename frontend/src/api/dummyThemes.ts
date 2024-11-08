@@ -13,7 +13,7 @@ export const dummyThemes: Theme[] = [
     id: "light-mode",
     name: "Light Mode",
     backgroundPrimary: { hue: 0, saturation: 0, lightness: 100 },
-    backgroundSecondary: { hue: 0, saturation: 0, lightness: 95 },
+    backgroundSecondary: { hue: 0, saturation: 0, lightness: 100 },
     textPrimary: { hue: 220, saturation: 15, lightness: 20 },
     textSecondary: { hue: 220, saturation: 10, lightness: 40 },
   },

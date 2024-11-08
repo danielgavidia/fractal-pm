@@ -62,10 +62,11 @@ const AICopilot = () => {
   return (
     <div
       {...resizableProps}
-      className="p-4 sticky top-0 h-screen flex flex-col relative"
+      className="p-4 sticky top-0 h-screen flex flex-col relative border-l-[0.5px]"
       style={{
         ...resizableProps.style,
         backgroundColor: backgroundPrimary,
+        borderColor: valueToColor(currentTheme.textPrimary),
         color: textPrimary,
       }}
     >
