@@ -14,12 +14,13 @@ interface SidebarGroupProps {
 const SidebarGroup = ({ sidebarItem }: SidebarGroupProps) => {
   const router = useRouter();
   const { route, title, children, iconDefinition } = sidebarItem;
-  const { setCurrentNavigationItem } = navigationStore();
+  const { setCurrentNavigationItem, addNavigationItem } = navigationStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
     router.push(route);
     setCurrentNavigationItem(sidebarItem);
+    addNavigationItem(sidebarItem);
     if (children) {
       setIsOpen(!isOpen);
     }

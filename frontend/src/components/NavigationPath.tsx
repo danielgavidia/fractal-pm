@@ -22,7 +22,7 @@ const NavigationPathItem = ({ navigationItem }: NavigationPathItem) => {
     setCurrentNavigationItem(navigationItem);
   };
   return (
-    <button onClick={handleClick} className="flex py-2 space-x-1 items-center opacity-50">
+    <button onClick={handleClick} className="flex py-1 space-x-1 items-center opacity-50">
       <FontAwesomeIcon icon={iconDefinition} />
       <div className="hover:underline">{title}</div>
       <FontAwesomeIcon icon={faChevronRight} />
@@ -38,7 +38,7 @@ const NavigationPath = ({ navigationItem }: NavigationPathProps) => {
   const { currentTheme } = themeStore();
   return (
     <div
-      className="pr-2 flex justify-start text-[10px]"
+      className="pr-2 flex justify-start text-[9px]"
       style={{
         color: valueToColor(currentTheme.textPrimary),
         backgroundColor: valueToColor(currentTheme.backgroundSecondary),
