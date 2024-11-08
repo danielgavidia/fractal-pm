@@ -21,6 +21,7 @@ import { useResizable } from "@/hooks/useResizable";
 
 // Utilities
 import { valueToColor } from "@/utils/valueToColor";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Sidebar = () => {
   // Stores
@@ -93,6 +94,9 @@ const Sidebar = () => {
         <div>
           <div className="text-sm font-bold">Gavidia</div>
           <div className="text-xs">Enterprise</div>
+        </div>
+        <div>
+          <DarkModeToggle />
         </div>
       </div>
 

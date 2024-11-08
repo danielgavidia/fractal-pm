@@ -1,0 +1,22 @@
+.toggle-container {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.toggle-button {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.toggle-button.light {
+  transform: translateX(0);
+}
+
+.toggle-button.dark {
+  transform: translateX(100%);
+}

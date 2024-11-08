@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <FileBar />
             </div>
             <div
-              className="px-2 shadow-md border-b-[0.5px] sticky top-0 z-10"
+              className="px-2 shadow-sm sticky top-0 z-10"
               style={{
                 backgroundColor: valueToColor(backgroundSecondary),
                 borderColor: valueToColor(backgroundPrimary),
