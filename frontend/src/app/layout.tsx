@@ -7,11 +7,20 @@ import { valueToColor } from "@/utils/valueToColor";
 import AICopilot from "@/components/AICopilot";
 import NavigationPath from "@/components/NavigationPath";
 import { navigationStore } from "@/stores/navigationStore";
+import { useEffect } from "react";
+import { main } from "@/lib/rag/main";
+import { taskStore } from "@/stores/taskStore";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = themeStore();
+  const { tasks } = taskStore();
   const { backgroundPrimary, backgroundSecondary, textPrimary } = currentTheme;
   const { currentNavigationItem } = navigationStore();
+
+  // useEffect(() => {
+  //   const tasksStringified = tasks.map((task) => JSON.stringify(task));
+  //   main(tasksStringified);
+  // }, []);
 
   return (
     <html lang="en">
