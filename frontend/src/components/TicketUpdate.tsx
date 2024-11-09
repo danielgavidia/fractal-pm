@@ -1,7 +1,6 @@
 "use client";
 
 import DatePicker from "@/components/DatePicker";
-import SectionHeader from "@/components/SectionHeader";
 import TicketPriorityPicker from "@/components/TicketPriorityPicker";
 import TicketStatusPicker from "@/components/TicketStatusPicker";
 import { ticketStore } from "@/stores/ticketStore";
@@ -14,7 +13,6 @@ interface TicketUpdateProps {
 }
 
 const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
-  // const { updateEpic, deleteEpic } = epicStore();
   const router = useRouter();
 
   const { updateTicket, deleteTicket } = ticketStore();
@@ -56,7 +54,6 @@ const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
 
   return (
     <div className="flex flex-col space-y-4">
-      <SectionHeader title="Update Epic" />
       <form className="flex flex-col space-y-2">
         {/* Epic title */}
         <p className="text-xs">Title</p>

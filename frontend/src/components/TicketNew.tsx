@@ -16,18 +16,10 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const TicketNew = () => {
-  // const { createTask } = taskStore();
   const { createTicket } = ticketStore();
   const router = useRouter();
-  // const params = useParams();
-  // const { slug } = params;
 
   // Local state
-  // const [taskTitle, setTaskTitle] = useState<string>("");
-  // const [taskDescription, setTaskDescription] = useState<string>("");
-  // const [taskDueDate, setTaskDueDate] = useState<Date>(new Date());
-  // const [taskPriority, setTaskPriority] = useState<TicketPriority>("low");
-
   const [ticketTitle, setTicketTitle] = useState<string>("");
   const [ticketDescription, setTicketDescription] = useState<string>("");
   const [ticketDueDate, setTicketDueDate] = useState<Date>(new Date());
@@ -44,7 +36,6 @@ const TicketNew = () => {
       ticketType: ticketType,
       dueDate: ticketDueDate,
       priority: ticketPriority,
-      // epicId: Array.isArray(slug) ? slug[0] : slug || "",
     };
     if (ticketTitle !== "" && ticketDescription !== "") {
       createTicket(newTicket);
