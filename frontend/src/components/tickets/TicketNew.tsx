@@ -1,17 +1,11 @@
 "use client";
 
-import DatePicker from "@/components/DatePicker";
-import SectionHeader from "@/components/SectionHeader";
-import TicketPriorityPicker from "@/components/TicketPriorityPicker";
+import DatePicker from "@/components/general/DatePicker";
+import SectionHeader from "@/components/general/SectionHeader";
+import TicketPriorityPicker from "@/components/tickets/TicketPriorityPicker";
 import { ticketStore } from "@/stores/ticketStore";
-import {
-  TicketFinal,
-  TicketPriority,
-  TicketPriorityEnums,
-  TicketStatusEnums,
-  TicketType,
-  TicketTypeEnums,
-} from "@/types/types";
+import { Ticket, TicketPriority, TicketType } from "@/types/types";
+import { TicketTypeEnums, TicketPriorityEnums, TicketStatusEnums } from "@/types/enums";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -28,7 +22,7 @@ const TicketNew = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTicket: TicketFinal = {
+    const newTicket: Ticket = {
       id: Date.now().toString(),
       title: ticketTitle,
       description: ticketDescription,

@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { ticketStore } from "@/stores/ticketStore";
-import TicketPageFinal from "@/components/TicketPageFinal";
+import TicketPage from "@/components/tickets/TicketPageFinal";
 
 const Page = () => {
   // Get epic
@@ -17,7 +17,7 @@ const Page = () => {
 
   return (
     <div className="px-2">
-      <TicketPageFinal ticket={ticket} />
+      <TicketPage ticket={ticket} />
     </div>
   );
 };

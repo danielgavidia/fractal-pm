@@ -1,4 +1,4 @@
-import TicketNew from "@/components/TicketNew";
+import TicketNew from "@/components/tickets/TicketNew";
 import React from "react";
 
 const Page = () => {

@@ -1,4 +1,4 @@
-import { TicketPriorityEnums } from "@/types/types";
+import { TicketPriorityEnums } from "@/types/enums";
 
 export const priorityMapping = {
   [TicketPriorityEnums.LOW]: {

@@ -1,17 +1,26 @@
-"use client";
-
+// Imports from stores
 import { ticketStore } from "@/stores/ticketStore";
-import { TicketFinal } from "@/types/types";
-import { useRouter } from "next/navigation";
-import TicketPriorityBadge from "./TicketPriorityBadge";
-import TicketStatusBadge from "./TicketStatusBadge";
+
+// Types
+import { Ticket } from "@/types/types";
+
+// React and routing
+import { useRouter } from "next/router";
 import { useState } from "react";
+
+// FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faEye } from "@fortawesome/free-solid-svg-icons";
+
+// Components
+import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
+import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
+
+// Utilities
 import { iconMapping } from "@/utils/iconMapping";
 
 interface TicketRowGroupProps {
-  ticket: TicketFinal;
+  ticket: Ticket;
 }
 
 const TicketRowGroup = ({ ticket }: TicketRowGroupProps) => {
@@ -65,18 +74,4 @@ const TicketRowGroup = ({ ticket }: TicketRowGroupProps) => {
   );
 };
 
-interface BacklogProps {
-  tickets: TicketFinal[];
-}
-
-const BacklogFinal = ({ tickets }: BacklogProps) => {
-  return (
-    <div className="w-full flex flex-col space-y-2 overflow-x-auto no-scrollbar">
-      {tickets.map((ticket, key) => (
-        <TicketRowGroup key={key} ticket={ticket} />
-      ))}
-    </div>
-  );
-};
-
-export default BacklogFinal;
+export default TicketRowGroup;

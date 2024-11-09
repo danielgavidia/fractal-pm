@@ -3,11 +3,10 @@ import { truncateText } from "@/utils/truncateText";
 import { useRouter } from "next/navigation";
 
 // Components
-import TicketStatusBadge from "@/components/TicketStatusBadge";
+import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
-import { taskStore } from "@/stores/taskStore";
-import TicketPriorityBadge from "./TicketPriorityBadge";
+import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
 
 interface TicketTabProps {
   ticket: Ticket;
@@ -15,16 +14,10 @@ interface TicketTabProps {
 
 const TicketTab = ({ ticket }: TicketTabProps) => {
   const { currentTheme } = themeStore();
-  const { tasks } = taskStore();
   const router = useRouter();
-  const currentTask = tasks.find((task) => task.id === ticket.id);
 
   const handleClick = () => {
-    if (ticket.ticketType === "epic") {
-      router.push(`/epics/${ticket.id}`);
-    } else {
-      router.push(`/epics/${currentTask?.epicId}/${currentTask?.id}`);
-    }
+    router.push(`/projects/${ticket.id}`);
   };
 
   return (

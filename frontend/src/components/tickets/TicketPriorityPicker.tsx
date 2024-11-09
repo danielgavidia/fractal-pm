@@ -1,6 +1,6 @@
 import React from "react";
 import { priorityMapping } from "@/utils/priorityMapping";
-import TicketPriorityBadge from "./TicketPriorityBadge";
+import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
 import { TicketPriority } from "@/types/types";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";

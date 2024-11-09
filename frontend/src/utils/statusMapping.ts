@@ -1,4 +1,4 @@
-import { TicketStatusEnums } from "@/types/types";
+import { TicketStatusEnums } from "@/types/enums";
 
 export const statusMapping = {
   [TicketStatusEnums.ARCHIVED]: {

@@ -1,7 +1,7 @@
 "use client";
 
-import SectionHeader from "@/components/SectionHeader";
-import ThemeDisplay from "@/components/ThemeDisplay";
+import SectionHeader from "@/components/general/SectionHeader";
+import ThemeDisplay from "@/components/general/ThemeDisplay";
 import { themeStore } from "@/stores/themeStore";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";

@@ -1,5 +1,5 @@
 import { statusMapping } from "@/utils/statusMapping";
-import TicketStatusBadge from "./TicketStatusBadge";
+import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
 import { TicketStatus } from "@/types/types";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";

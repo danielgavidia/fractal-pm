@@ -1,20 +1,21 @@
-import { TicketFinal } from "@/types/types";
-import SectionHeader from "./SectionHeader";
+// Imports
+import { Ticket } from "@/types/types";
+import SectionHeader from "@/components/general/SectionHeader";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import Kanban from "./Kanban";
-import TicketStatusBadge from "./TicketStatusBadge";
-import TicketPriorityBadge from "./TicketPriorityBadge";
+import Kanban from "@/components/general/Kanban";
+import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
+import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
 import { ticketStore } from "@/stores/ticketStore";
 import { useState } from "react";
-import TicketUpdate from "./TicketUpdate";
+import TicketUpdate from "@/components/tickets/TicketUpdate";
 
 interface TicketPageProps {
-  ticket: TicketFinal;
+  ticket: Ticket;
 }
 
-const TicketPageFinal = ({ ticket }: TicketPageProps) => {
+const TicketPage = ({ ticket }: TicketPageProps) => {
   const { tickets } = ticketStore();
-  const ticketChildren: TicketFinal[] | null = ticket.childrenIds
+  const ticketChildren: Ticket[] | null = ticket.childrenIds
     ? tickets.filter((t) => t.parentId === ticket.id)
     : null;
 
@@ -86,4 +87,4 @@ const TicketPageFinal = ({ ticket }: TicketPageProps) => {
   );
 };
 
-export default TicketPageFinal;
+export default TicketPage;
