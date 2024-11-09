@@ -1,3 +1,5 @@
+"use client";
+
 import { Ticket } from "@/types/types";
 import { truncateText } from "@/utils/truncateText";
 import { useRouter } from "next/navigation";

@@ -1,3 +1,5 @@
+"use client";
+
 // Imports from stores
 import { ticketStore } from "@/stores/ticketStore";
 

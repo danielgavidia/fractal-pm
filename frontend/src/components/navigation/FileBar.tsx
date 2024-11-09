@@ -1,3 +1,5 @@
+"use client";
+
 import { navigationStore } from "@/stores/navigationStore";
 import { themeStore } from "@/stores/themeStore";
 import { NavigationItem } from "@/types/types";
