@@ -1,3 +1,4 @@
+// Imports
 import { Ticket } from "@/types/types";
 import SectionHeader from "@/components/general/SectionHeader";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";

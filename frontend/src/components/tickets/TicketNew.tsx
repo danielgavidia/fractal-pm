@@ -4,14 +4,8 @@ import DatePicker from "@/components/general/DatePicker";
 import SectionHeader from "@/components/general/SectionHeader";
 import TicketPriorityPicker from "@/components/tickets/TicketPriorityPicker";
 import { ticketStore } from "@/stores/ticketStore";
-import {
-  Ticket,
-  TicketPriority,
-  TicketPriorityEnums,
-  TicketStatusEnums,
-  TicketType,
-  TicketTypeEnums,
-} from "@/types/types";
+import { Ticket, TicketPriority, TicketType } from "@/types/types";
+import { TicketTypeEnums, TicketPriorityEnums, TicketStatusEnums } from "@/types/enums";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 

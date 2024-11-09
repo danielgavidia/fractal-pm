@@ -1,4 +1,5 @@
-import { Ticket, TicketPriorityEnums, TicketStatusEnums } from "@/types/types";
+import { Ticket } from "@/types/types";
+import { TicketPriorityEnums, TicketStatusEnums } from "@/types/enums";
 
 export const dummyTickets: Ticket[] = [
   {
