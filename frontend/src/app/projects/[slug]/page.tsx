@@ -1,22 +1,23 @@
 "use client";
 
-import { epicStore } from "@/stores/epicStore";
 import { useParams } from "next/navigation";
-import TicketPage from "@/components/TicketPage";
+import { ticketStore } from "@/stores/ticketStore";
+import TicketPageFinal from "@/components/TicketPageFinal";
 
 const Page = () => {
   // Get epic
   const params = useParams();
-  const { epics } = epicStore();
-  const epic = epics.find((epic) => epic.id === params.slug);
+  // const { epics } = epicStore();
+  const { tickets } = ticketStore();
+  const ticket = tickets.find((ticket) => ticket.id === params.slug);
 
-  if (!epic) {
+  if (!ticket) {
     return;
   }
 
   return (
-    <div>
-      <TicketPage ticket={epic} />
+    <div className="px-2">
+      <TicketPageFinal ticket={ticket} />
     </div>
   );
 };
