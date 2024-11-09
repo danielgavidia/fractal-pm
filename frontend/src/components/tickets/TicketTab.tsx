@@ -1,4 +1,4 @@
-import { TicketFinal } from "@/types/types";
+import { Ticket } from "@/types/types";
 import { truncateText } from "@/utils/truncateText";
 import { useRouter } from "next/navigation";
 
@@ -9,7 +9,7 @@ import { valueToColor } from "@/utils/valueToColor";
 import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
 
 interface TicketTabProps {
-  ticket: TicketFinal;
+  ticket: Ticket;
 }
 
 const TicketTab = ({ ticket }: TicketTabProps) => {

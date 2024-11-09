@@ -1,10 +1,10 @@
 "use client";
 
-import { NavigationItem, TicketFinal } from "@/types/types";
+import { NavigationItem, Ticket } from "@/types/types";
 import { iconMapping } from "./iconMapping";
 import { ticketStore } from "@/stores/ticketStore";
 
-export const getSidebarTicket = (ticket: TicketFinal, childrenBool: boolean): NavigationItem => {
+export const getSidebarTicket = (ticket: Ticket, childrenBool: boolean): NavigationItem => {
   const { tickets } = ticketStore();
   console.log(tickets.length);
   const parent = ticket.parentId ? tickets.find((t) => t.id === ticket.parentId) : null;

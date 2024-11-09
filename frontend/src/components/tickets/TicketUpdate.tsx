@@ -4,12 +4,12 @@ import DatePicker from "@/components/general/DatePicker";
 import TicketPriorityPicker from "@/components/tickets/TicketPriorityPicker";
 import TicketStatusPicker from "@/components/tickets/TicketStatusPicker";
 import { ticketStore } from "@/stores/ticketStore";
-import { TicketFinal, TicketPriority, TicketStatus } from "@/types/types";
+import { Ticket, TicketPriority, TicketStatus } from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface TicketUpdateProps {
-  ticket: TicketFinal;
+  ticket: Ticket;
 }
 
 const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
@@ -36,7 +36,7 @@ const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTicket: TicketFinal = {
+    const newTicket: Ticket = {
       ...ticket,
       title: ticketTitle,
       description: ticketDescription,

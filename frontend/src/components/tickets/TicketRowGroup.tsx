@@ -2,7 +2,7 @@
 import { ticketStore } from "@/stores/ticketStore";
 
 // Types
-import { TicketFinal } from "@/types/types";
+import { Ticket } from "@/types/types";
 
 // React and routing
 import { useRouter } from "next/router";
@@ -20,7 +20,7 @@ import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
 import { iconMapping } from "@/utils/iconMapping";
 
 interface TicketRowGroupProps {
-  ticket: TicketFinal;
+  ticket: Ticket;
 }
 
 const TicketRowGroup = ({ ticket }: TicketRowGroupProps) => {

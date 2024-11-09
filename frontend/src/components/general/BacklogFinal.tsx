@@ -1,10 +1,10 @@
 "use client";
 
-import { TicketFinal } from "@/types/types";
+import { Ticket } from "@/types/types";
 import TicketRowGroup from "@/components/tickets/TicketRowGroup";
 
 interface BacklogProps {
-  tickets: TicketFinal[];
+  tickets: Ticket[];
 }
 
 const Backlog = ({ tickets }: BacklogProps) => {

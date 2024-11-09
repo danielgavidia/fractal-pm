@@ -5,7 +5,7 @@ import SectionHeader from "@/components/general/SectionHeader";
 import TicketPriorityPicker from "@/components/tickets/TicketPriorityPicker";
 import { ticketStore } from "@/stores/ticketStore";
 import {
-  TicketFinal,
+  Ticket,
   TicketPriority,
   TicketPriorityEnums,
   TicketStatusEnums,
@@ -28,7 +28,7 @@ const TicketNew = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTicket: TicketFinal = {
+    const newTicket: Ticket = {
       id: Date.now().toString(),
       title: ticketTitle,
       description: ticketDescription,

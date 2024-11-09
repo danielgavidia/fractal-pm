@@ -1,4 +1,4 @@
-import { TicketFinal } from "@/types/types";
+import { Ticket } from "@/types/types";
 import SectionHeader from "@/components/general/SectionHeader";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Kanban from "@/components/general/Kanban";
@@ -9,12 +9,12 @@ import { useState } from "react";
 import TicketUpdate from "@/components/tickets/TicketUpdate";
 
 interface TicketPageProps {
-  ticket: TicketFinal;
+  ticket: Ticket;
 }
 
 const TicketPage = ({ ticket }: TicketPageProps) => {
   const { tickets } = ticketStore();
-  const ticketChildren: TicketFinal[] | null = ticket.childrenIds
+  const ticketChildren: Ticket[] | null = ticket.childrenIds
     ? tickets.filter((t) => t.parentId === ticket.id)
     : null;
 

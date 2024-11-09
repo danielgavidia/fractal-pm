@@ -1,6 +1,6 @@
-import { TicketFinal, TicketPriorityEnums, TicketStatusEnums } from "@/types/types";
+import { Ticket, TicketPriorityEnums, TicketStatusEnums } from "@/types/types";
 
-export const dummyTickets: TicketFinal[] = [
+export const dummyTickets: Ticket[] = [
   {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     title: "Project Alpha",
