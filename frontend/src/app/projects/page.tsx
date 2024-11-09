@@ -9,7 +9,7 @@ const Page = () => {
   const projects = tickets.filter((ticket) => ticket.ticketType === "project");
   console.log(projects);
   return (
-    <div>
+    <div className="p-4">
       <BacklogFinal tickets={projects} />
     </div>
   );
