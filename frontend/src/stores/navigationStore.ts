@@ -1,5 +1,6 @@
 import { NavigationItem } from "@/types/types";
-import { faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faAtom } from "@fortawesome/free-solid-svg-icons";
+// import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { create } from "zustand";
 
 interface NavigationStore {
@@ -11,7 +12,7 @@ interface NavigationStore {
 }
 
 export const navigationStore = create<NavigationStore>((set) => ({
-  currentNavigationItem: { title: "Epics", iconDefinition: faTrophy, route: "/epics" },
+  currentNavigationItem: { title: "Projects", route: "/projects", iconDefinition: faAtom },
   setCurrentNavigationItem: (navigationItem: NavigationItem) =>
     set(() => ({ currentNavigationItem: navigationItem })),
   navigationItems: [],

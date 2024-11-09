@@ -1,5 +1,5 @@
 // Components
-import TicketTabGroup from "@/components/TicketTabGroup";
+import TicketTabGroup from "@/components/tickets/TicketTabGroup";
 
 // Types
 import { Ticket } from "@/types/types";

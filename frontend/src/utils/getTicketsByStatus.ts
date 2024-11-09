@@ -1,4 +1,7 @@
-import { Ticket, TicketStatus, TicketStatusEnums } from "@/types/types";
+"use client";
+
+import { Ticket, TicketStatus } from "@/types/types";
+import { TicketStatusEnums } from "@/types/enums";
 
 export const getTicketsByStatus = (tickets: Ticket[]) => {
   const tasksByStatus = Object.entries(

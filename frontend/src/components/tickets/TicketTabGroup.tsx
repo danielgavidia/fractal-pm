@@ -1,8 +1,9 @@
 import { Ticket, TicketStatus } from "@/types/types";
 
 // Components
-import TicketTab from "@/components/TicketTab";
+// import TicketTab from "@/components/TicketTab";
 import { statusMapping } from "@/utils/statusMapping";
+import TicketTab from "@/components/tickets/TicketTab";
 
 interface TicketTabGroupProps {
   status: TicketStatus;
@@ -10,7 +11,6 @@ interface TicketTabGroupProps {
 }
 
 const TicketTabGroup = ({ status, tickets }: TicketTabGroupProps) => {
-  console.log(status);
   return (
     <div className="flex flex-col items-center p-1 min-w-48">
       <p className="text-[10px] py-1 text-left w-full font-bold">{statusMapping[status].label}</p>

@@ -1,16 +1,25 @@
 "use client";
 
+// Imports for task and epic handling
 import { getTaskFromPrompt } from "@/lib/getTaskFromPrompt";
 import { taskStore } from "@/stores/taskStore";
-import { themeStore } from "@/stores/themeStore";
-import { Epic, Task, TicketType } from "@/types/types";
-import { valueToColor } from "@/utils/valueToColor";
-import { useState } from "react";
 import { epicStore } from "@/stores/epicStore";
 import { determineTicketType } from "@/lib/determineTicketType";
 import { getEpicFromPrompt } from "@/lib/getEpicFromPrompt";
+
+// Imports for types
+import { Epic, Task, TicketType } from "@/types/types";
+
+// Imports for theming
+import { themeStore } from "@/stores/themeStore";
+import { valueToColor } from "@/utils/valueToColor";
+
+// React hooks
+import { useState } from "react";
 import { useResizable } from "@/hooks/useResizable";
-import SectionHeader from "./SectionHeader";
+
+// Component imports
+import SectionHeader from "@/components/general/SectionHeader";
 
 const AICopilot = () => {
   // Themes
