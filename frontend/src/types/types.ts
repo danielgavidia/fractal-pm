@@ -10,7 +10,7 @@ export enum TicketStatusEnums {
   ARCHIVED = "archived",
 }
 
-export type TicketType = "epic" | "task";
+export type TicketType = "project" | "epic" | "task";
 
 export type TicketPriority = "low" | "medium" | "high";
 
@@ -28,6 +28,18 @@ export interface Ticket {
   ticketType: TicketType;
   dueDate: Date;
   priority: TicketPriority;
+}
+
+export interface TicketFinal {
+  id: string;
+  title: string;
+  description: string;
+  status: TicketStatus;
+  ticketType: TicketType;
+  dueDate: Date;
+  priority: TicketPriority;
+  parentId?: string;
+  childrenIds?: string[];
 }
 
 // Tasks
