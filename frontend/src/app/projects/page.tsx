@@ -1,6 +1,6 @@
 "use client";
 
-import BacklogFinal from "@/components/BacklogFinal";
+import Backlog from "@/components/general/BacklogFinal";
 import { ticketStore } from "@/stores/ticketStore";
 import React from "react";
 
@@ -10,7 +10,7 @@ const Page = () => {
   console.log(projects);
   return (
     <div className="p-4">
-      <BacklogFinal tickets={projects} />
+      <Backlog tickets={projects} />
     </div>
   );
 };

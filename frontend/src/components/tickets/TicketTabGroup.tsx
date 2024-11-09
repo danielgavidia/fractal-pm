@@ -3,7 +3,7 @@ import { Ticket, TicketStatus } from "@/types/types";
 // Components
 // import TicketTab from "@/components/TicketTab";
 import { statusMapping } from "@/utils/statusMapping";
-import TicketTabFinal from "./TicketTabFinal";
+import TicketTab from "@/components/tickets/TicketTab";
 
 interface TicketTabGroupProps {
   status: TicketStatus;
@@ -16,7 +16,7 @@ const TicketTabGroup = ({ status, tickets }: TicketTabGroupProps) => {
       <p className="text-[10px] py-1 text-left w-full font-bold">{statusMapping[status].label}</p>
       <div className="flex space-x-3 w-full">
         {tickets.map((ticket, key) => (
-          <TicketTabFinal key={key} ticket={ticket} />
+          <TicketTab key={key} ticket={ticket} />
         ))}
       </div>
     </div>

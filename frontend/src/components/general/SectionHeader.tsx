@@ -3,7 +3,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { NavigationItem } from "@/types/types";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "@/components/navigation/NavigationBar";
 
 interface SectionHeaderProps {
   title: string;

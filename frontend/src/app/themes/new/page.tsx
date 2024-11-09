@@ -1,7 +1,7 @@
 "use client";
 
-import SectionHeader from "@/components/SectionHeader";
-import ColorEditor from "@/components/ColorEditor";
+import SectionHeader from "@/components/general/SectionHeader";
+import ColorEditor from "@/components/general/ColorEditor";
 import { useState } from "react";
 import { Theme, Color } from "@/types/types";
 import { themeStore } from "@/stores/themeStore";

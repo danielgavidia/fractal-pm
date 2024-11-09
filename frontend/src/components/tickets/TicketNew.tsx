@@ -1,61 +1,53 @@
 "use client";
 
-import DatePicker from "@/components/DatePicker";
-import TicketPriorityPicker from "@/components/TicketPriorityPicker";
-import TicketStatusPicker from "@/components/TicketStatusPicker";
+import DatePicker from "@/components/general/DatePicker";
+import SectionHeader from "@/components/general/SectionHeader";
+import TicketPriorityPicker from "@/components/tickets/TicketPriorityPicker";
 import { ticketStore } from "@/stores/ticketStore";
-import { TicketFinal, TicketPriority, TicketStatus } from "@/types/types";
+import {
+  TicketFinal,
+  TicketPriority,
+  TicketPriorityEnums,
+  TicketStatusEnums,
+  TicketType,
+  TicketTypeEnums,
+} from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-interface TicketUpdateProps {
-  ticket: TicketFinal;
-}
-
-const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
+const TicketNew = () => {
+  const { createTicket } = ticketStore();
   const router = useRouter();
 
-  const { updateTicket, deleteTicket } = ticketStore();
-
   // Local state
-  const [ticketTitle, setTicketTitle] = useState<string>(ticket.title);
-  const [ticketDescription, setTicketDescription] = useState<string>(
-    ticket ? ticket.description : ""
-  );
-  const [ticketStatus, setTicketStatus] = useState<TicketStatus>(
-    ticket ? ticket.status : "notStarted"
-  );
-  const [ticketDueDate, setTicketDueDate] = useState<Date>(ticket ? ticket.dueDate : new Date());
-  const [ticketPriority, setTicketPriority] = useState<TicketPriority>(
-    ticket ? ticket.priority : "low"
-  );
-
-  if (!ticket) {
-    return;
-  }
+  const [ticketTitle, setTicketTitle] = useState<string>("");
+  const [ticketDescription, setTicketDescription] = useState<string>("");
+  const [ticketDueDate, setTicketDueDate] = useState<Date>(new Date());
+  const [ticketPriority, setTicketPriority] = useState<TicketPriority>(TicketPriorityEnums.LOW);
+  const [ticketType, setTicketType] = useState<TicketType>(TicketTypeEnums.TASK);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newTicket: TicketFinal = {
-      ...ticket,
+      id: Date.now().toString(),
       title: ticketTitle,
       description: ticketDescription,
-      status: ticketStatus,
+      status: TicketStatusEnums.IN_PROGRESS,
+      ticketType: ticketType,
       dueDate: ticketDueDate,
       priority: ticketPriority,
     };
     if (ticketTitle !== "" && ticketDescription !== "") {
-      updateTicket(ticket.id, newTicket);
-      setTicketTitle("");
-      setTicketDescription("");
-      router.push(`/epics/${ticket.id}`);
+      createTicket(newTicket);
+      router.push(`/projects/${newTicket.id}`);
     }
   };
 
   return (
     <div className="flex flex-col space-y-4">
+      <SectionHeader title="New Ticket" />
       <form className="flex flex-col space-y-2">
-        {/* Epic title */}
+        {/* Task title */}
         <p className="text-xs">Title</p>
         <input
           type="text"
@@ -65,7 +57,7 @@ const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
           className="p-2 text-xs outline-none text-black rounded"
         />
 
-        {/* Epic description */}
+        {/* Task description */}
         <p className="text-xs">Description</p>
         <textarea
           value={ticketDescription}
@@ -75,16 +67,22 @@ const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
         ></textarea>
       </form>
 
+      {/* Ticket Type */}
+      <div>
+        <p className="text-xs">Ticket Type</p>
+        <div className="flex space-x-2">
+          {Object.values(TicketTypeEnums).map((type, key) => (
+            <button key={key} onClick={() => setTicketType(type)}>
+              {type}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Due date */}
       <div className="flex flex-col space-y-2">
         <p className="text-xs">Due Date</p>
         <DatePicker onDateChange={(date: Date | undefined) => date && setTicketDueDate(date)} />
-      </div>
-
-      {/* Epic status */}
-      <div>
-        <p className="text-xs">Status</p>
-        <TicketStatusPicker callback={setTicketStatus} defaultStatus={ticketStatus} />
       </div>
 
       {/* Priority */}
@@ -93,20 +91,12 @@ const TicketUpdate = ({ ticket }: TicketUpdateProps) => {
         <TicketPriorityPicker callback={setTicketPriority} defaultPriority={ticketPriority} />
       </div>
 
-      {/* Update */}
+      {/* Submit */}
       <button onClick={handleSubmit} className="w-full border-[1px] p-2 rounded">
-        Update
-      </button>
-
-      {/* Delete */}
-      <button
-        onClick={() => deleteTicket(ticket.id)}
-        className="w-full border-[1px] border-red-500 text-red-500 p-2 rounded"
-      >
-        Delete
+        Create
       </button>
     </div>
   );
 };
 
-export default TicketUpdate;
+export default TicketNew;

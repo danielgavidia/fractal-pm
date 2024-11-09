@@ -6,7 +6,7 @@ import { faAtom, faPaintBrush } from "@fortawesome/free-solid-svg-icons";
 import { faJira } from "@fortawesome/free-brands-svg-icons";
 
 // Components
-import SidebarGroup from "@/components/SidebarGroup";
+import SidebarGroup from "@/components/navigation/SidebarGroup";
 
 // Stores
 import { themeStore } from "@/stores/themeStore";
@@ -19,7 +19,7 @@ import { useResizable } from "@/hooks/useResizable";
 
 // Utilities
 import { valueToColor } from "@/utils/valueToColor";
-import DarkModeToggle from "./DarkModeToggle";
+import DarkModeToggle from "@/components/general/DarkModeToggle";
 import { getSidebarTicket } from "@/utils/getSidebarTicket";
 import { ticketStore } from "@/stores/ticketStore";
 

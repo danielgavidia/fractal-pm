@@ -2,12 +2,12 @@
 
 import { themeStore } from "@/stores/themeStore";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/navigation/Sidebar";
 import { valueToColor } from "@/utils/valueToColor";
-import AICopilot from "@/components/AICopilot";
-import NavigationPath from "@/components/NavigationPath";
+import AICopilot from "@/components/general/AICopilot";
+import NavigationPath from "@/components/navigation/NavigationPath";
 import { navigationStore } from "@/stores/navigationStore";
-import FileBar from "@/components/FileBar";
+import FileBar from "@/components/navigation/FileBar";
 // import { useEffect } from "react";
 // import { main } from "@/lib/rag/main";
 // import { taskStore } from "@/stores/taskStore";
