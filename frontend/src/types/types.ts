@@ -12,6 +12,17 @@ export enum TicketStatusEnums {
 
 export type TicketType = "project" | "epic" | "task";
 
+export interface TicketTypeFinal {
+  title: string;
+  level: number;
+}
+
+export enum TicketTypeEnums {
+  PROJECT = "project",
+  EPIC = "epic",
+  TASK = "task",
+}
+
 export type TicketPriority = "low" | "medium" | "high";
 
 export enum TicketPriorityEnums {
