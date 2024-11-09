@@ -9,6 +9,8 @@ import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
 import { themeStore } from "@/stores/themeStore";
 import { valueToColor } from "@/utils/valueToColor";
 import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { iconMapping } from "@/utils/iconMapping";
 
 interface TicketTabProps {
   ticket: Ticket;
@@ -35,7 +37,13 @@ const TicketTab = ({ ticket }: TicketTabProps) => {
         {truncateText(ticket.title, 24)}
       </div>
       <div className="text-[10px] text-left h-8">{truncateText(ticket.description, 60)}</div>
-      <div className="text-[10px] opacity-50 h-4">Due: {ticket.dueDate.toLocaleDateString()}</div>
+      <div className="text-[10px] opacity-50 h-4 flex justify-between w-full">
+        <p>Due: {ticket.dueDate.toLocaleDateString()}</p>
+        <div className="flex items-center space-x-2">
+          <p>{ticket.ticketType}</p>
+          <FontAwesomeIcon icon={iconMapping[ticket.ticketType]} />
+        </div>
+      </div>
       <div className="flex space-x-2 h-4">
         <TicketStatusBadge status={ticket.status} />
         <TicketPriorityBadge priority={ticket.priority} />

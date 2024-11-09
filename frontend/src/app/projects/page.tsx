@@ -1,6 +1,6 @@
 "use client";
 
-import Backlog from "@/components/general/BacklogFinal";
+import Backlog from "@/components/tickets/Backlog";
 import { ticketStore } from "@/stores/ticketStore";
 import React from "react";
 

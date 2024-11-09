@@ -2,7 +2,7 @@
 
 import { taskStore } from "@/stores/taskStore";
 import { Epic } from "@/types/types";
-import Kanban from "@/components/general/Kanban";
+import Kanban from "@/components/tickets/Kanban";
 
 interface EpicDisplayProps {
   epic: Epic;
