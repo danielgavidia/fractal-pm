@@ -2,15 +2,13 @@
 
 // FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faPaintBrush, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faAtom, faPaintBrush } from "@fortawesome/free-solid-svg-icons";
 import { faJira } from "@fortawesome/free-brands-svg-icons";
 
 // Components
 import SidebarGroup from "@/components/SidebarGroup";
 
 // Stores
-import { epicStore } from "@/stores/epicStore";
-import { taskStore } from "@/stores/taskStore";
 import { themeStore } from "@/stores/themeStore";
 
 // Types
@@ -22,45 +20,21 @@ import { useResizable } from "@/hooks/useResizable";
 // Utilities
 import { valueToColor } from "@/utils/valueToColor";
 import DarkModeToggle from "./DarkModeToggle";
+import { getSidebarTicket } from "@/utils/getSidebarTicket";
+import { ticketStore } from "@/stores/ticketStore";
 
 const Sidebar = () => {
   // Stores
   const { currentTheme } = themeStore();
-  const { epics } = epicStore();
-  const { tasks } = taskStore();
+  const { tickets } = ticketStore();
+  const projectTickets = tickets.filter((t) => t.ticketType === "project");
 
   // Sidebar items
-  const sidebarEpics: NavigationItem = {
-    title: "Epics",
-    route: "/epics",
-    iconDefinition: faTrophy,
-    children: epics.map((epic) => {
-      // Create the epic navigation item
-      const epicNavItem: NavigationItem = {
-        title: epic.title,
-        route: `/epics/${epic.id}`,
-        iconDefinition: faTrophy,
-        children: [],
-        parent: {
-          title: "Epics",
-          route: "/epics",
-          iconDefinition: faTrophy,
-        }, // Will reference the root epics item
-        ticketId: epic.id,
-      };
-      // Create task navigation items with reference to their parent epic
-      epicNavItem.children = tasks
-        .filter((task) => task.epicId === epic.id)
-        .map((task) => ({
-          title: task.title,
-          route: `/epics/${epic.id}/${task.id}`,
-          iconDefinition: faCircleCheck,
-          parent: epicNavItem, // Reference to parent epic
-          ticketId: task.id,
-        }));
-
-      return epicNavItem;
-    }),
+  const sidebarProjects: NavigationItem = {
+    title: "Projects",
+    route: "/projects",
+    iconDefinition: faAtom,
+    children: projectTickets.map((t) => getSidebarTicket(t, true)),
   };
 
   const sidebarThemes: NavigationItem = {
@@ -104,7 +78,7 @@ const Sidebar = () => {
       </div>
 
       {/* Sidebar groups */}
-      <SidebarGroup sidebarItem={sidebarEpics} />
+      <SidebarGroup sidebarItem={sidebarProjects} />
       <SidebarGroup sidebarItem={sidebarThemes} />
 
       {/* Resizer handle */}
