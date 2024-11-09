@@ -1,3 +1,5 @@
+"use client";
+
 import TicketNew from "@/components/tickets/TicketNew";
 import React from "react";
 
