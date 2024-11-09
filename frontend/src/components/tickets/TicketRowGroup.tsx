@@ -7,8 +7,8 @@ import { ticketStore } from "@/stores/ticketStore";
 import { Ticket } from "@/types/types";
 
 // React and routing
-import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from "next/link";
 
 // FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +27,6 @@ interface TicketRowGroupProps {
 
 const TicketRowGroup = ({ ticket }: TicketRowGroupProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const router = useRouter();
   const { tickets } = ticketStore();
   const childTickets = ticket.childrenIds ? tickets.filter((t) => t.parentId === ticket.id) : null;
 
@@ -55,9 +54,9 @@ const TicketRowGroup = ({ ticket }: TicketRowGroupProps) => {
             <TicketStatusBadge status={ticket.status} />
           </div>
         </button>
-        <button onClick={() => router.push(`/projects/${ticket.id}`)}>
+        <Link href={`/projects/${ticket.id}`}>
           <FontAwesomeIcon icon={faEye} />
-        </button>
+        </Link>
       </div>
 
       {/* Children */}

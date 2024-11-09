@@ -1,3 +1,5 @@
+"use client";
+
 import { Ticket, TicketStatus } from "@/types/types";
 import { TicketStatusEnums } from "@/types/enums";
 
