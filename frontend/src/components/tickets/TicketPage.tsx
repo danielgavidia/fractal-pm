@@ -2,12 +2,15 @@
 import { Ticket } from "@/types/types";
 import SectionHeader from "@/components/general/SectionHeader";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import Kanban from "@/components/general/Kanban";
+import Kanban from "@/components/tickets/Kanban";
 import TicketStatusBadge from "@/components/tickets/TicketStatusBadge";
 import TicketPriorityBadge from "@/components/tickets/TicketPriorityBadge";
 import { ticketStore } from "@/stores/ticketStore";
 import { useState } from "react";
 import TicketUpdate from "@/components/tickets/TicketUpdate";
+import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { iconMapping } from "@/utils/iconMapping";
 
 interface TicketPageProps {
   ticket: Ticket;
@@ -15,6 +18,7 @@ interface TicketPageProps {
 
 const TicketPage = ({ ticket }: TicketPageProps) => {
   const { tickets } = ticketStore();
+  const router = useRouter();
   const ticketChildren: Ticket[] | null = ticket.childrenIds
     ? tickets.filter((t) => t.parentId === ticket.id)
     : null;
@@ -34,11 +38,18 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
         {updateMode ? (
           <TicketUpdate ticket={ticket} />
         ) : (
-          <div>
+          <div className="space-y-2">
             {/* Ticket Title */}
-            <div>
-              <div className="text-xs font-bold">Title</div>
-              <div className="text-xs py-1">{ticket.title}</div>
+            <div className="flex w-full space-x-6">
+              <div>
+                <div className="text-xs font-bold">Title</div>
+                <div className="text-xs py-1">{ticket.title}</div>
+              </div>
+              {/* Id */}
+              <div>
+                <div className="text-xs font-bold">ID</div>
+                <div className="italic text-xs py-1">{ticket.id}</div>
+              </div>
             </div>
 
             {/* Ticket info (non-description) */}
@@ -65,21 +76,44 @@ const TicketPage = ({ ticket }: TicketPageProps) => {
                 </div>
               </div>
 
-              {/* Id */}
+              {/* Type */}
               <div>
-                <div className="text-xs font-bold">ID</div>
-                <div className="italic text-xs py-1">{ticket.id}</div>
+                <div className="text-xs font-bold">Type</div>
+                <div className="py-1 flex space-x-2 text-xs items-center">
+                  <FontAwesomeIcon icon={iconMapping[ticket.ticketType]} />
+                  <p>{ticket.ticketType}</p>
+                </div>
               </div>
+
+              {/* Parent */}
+              {ticket.parentId && (
+                <div>
+                  <div className="text-xs font-bold">Parent</div>
+                  <button
+                    onClick={() => router.push(`/projects/${ticket.parentId}`)}
+                    className="text-xs py-1 hover:underline"
+                  >
+                    {tickets.find((t) => t.id === ticket.parentId)?.title}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Description */}
             <div>
               <div className="text-xs font-bold">Description</div>
-              <div className="text-xs">{ticket.description}</div>
+              <div className="text-xs py-1">{ticket.description}</div>
             </div>
 
             {/* Children */}
-            <div>{ticketChildren && <Kanban tickets={ticketChildren} />}</div>
+            <div>
+              {ticketChildren && (
+                <div>
+                  <div className="text-xs font-bold">Children</div>
+                  <Kanban tickets={ticketChildren} />
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

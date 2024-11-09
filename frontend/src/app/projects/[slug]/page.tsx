@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { ticketStore } from "@/stores/ticketStore";
-import TicketPage from "@/components/tickets/TicketPageFinal";
+import TicketPage from "@/components/tickets/TicketPage";
 
 const Page = () => {
   // Get epic
